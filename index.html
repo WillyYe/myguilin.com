@@ -384,7 +384,7 @@
 
           <!-- 7. Contact us -->
           <li class="nav-item h-full flex items-center">
-            <a href="javascript:void(0)" onclick="document.getElementById('contact-modal').classList.remove('hidden')" class="nav-link text-sm font-semibold text-river hover:bg-river hover:text-white px-4 h-full flex items-center rounded-full transition-colors">Contact us</a>
+            <button type="button" onclick="openContactModal()" class="nav-link bg-transparent border-0 cursor-pointer text-sm font-semibold text-river hover:bg-river hover:text-white px-4 h-full flex items-center rounded-full transition-colors">Contact us</button>
           </li>
         </ul>
       </nav>
@@ -428,7 +428,7 @@
       <a href="#tour-vip-card" class="block text-stone/80 py-1 pl-3 text-sm">VIP Tours</a>
       <a href="#hotel" class="block text-stone font-semibold py-2 pt-3">5. Hotel</a>
       <a href="#food" class="block text-stone font-semibold py-2">6. Food</a>
-      <a href="javascript:void(0)" onclick="document.getElementById('contact-modal').classList.remove('hidden'); document.getElementById('mobile-menu').classList.add('hidden')" class="block text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</a>
+      <button type="button" onclick="openContactModal(); document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left bg-transparent border-0 cursor-pointer text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</button>
       <a href="https://wa.me/8618777358302" target="_blank" class="block text-center bg-river text-white font-semibold py-2.5 rounded-full mt-3">WhatsApp Us</a>
     </div>
   </header>
@@ -949,17 +949,17 @@
   </footer>
 
   <!-- ========== Contact Modal ========== -->
-  <div id="contact-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+  <div id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
     <!-- backdrop -->
-    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="document.getElementById('contact-modal').classList.add('hidden')"></div>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeContactModal()" aria-hidden="true"></div>
     <!-- card -->
     <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center fade-in-visible">
-      <button onclick="document.getElementById('contact-modal').classList.add('hidden')" class="absolute top-4 right-4 text-stone/40 hover:text-stone transition-colors" aria-label="Close">
+      <button type="button" onclick="closeContactModal()" class="absolute top-4 right-4 text-stone/40 hover:text-stone transition-colors" aria-label="Close">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
 
       <p class="text-river text-xs font-bold tracking-[0.15em] uppercase mb-3">Let's Plan Together</p>
-      <h3 class="font-display text-2xl text-stone mb-3">Ready for Your Guilin Adventure?</h3>
+      <h3 id="contact-modal-title" class="font-display text-2xl text-stone mb-3">Ready for Your Guilin Adventure?</h3>
       <p class="text-stone/60 text-sm mb-6 leading-relaxed">We'll reply within 24 hours with a personalized itinerary — no obligation, no spam.</p>
 
       <div class="space-y-3 mb-6">
@@ -1005,11 +1005,36 @@
     }, 200);
 
     // Contact modal: close on Escape
+    // ---- Contact modal: open/close + focus management ----
+    const contactModal = document.getElementById('contact-modal');
+    let lastFocusedEl = null;
+    function openContactModal() {
+      lastFocusedEl = document.activeElement;
+      contactModal.classList.remove('hidden');
+      const closeBtn = contactModal.querySelector('button[aria-label="Close"]');
+      if (closeBtn) closeBtn.focus();
+    }
+    function closeContactModal() {
+      contactModal.classList.add('hidden');
+      if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') lastFocusedEl.focus();
+    }
+    // Focus trap inside modal (WCAG 2.1.2)
+    contactModal.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusables = contactModal.querySelectorAll('a[href], button:not([disabled])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const m = document.getElementById('contact-modal');
-        if (!m.classList.contains('hidden')) m.classList.add('hidden');
-      }
+      if (e.key === 'Escape' && !contactModal.classList.contains('hidden')) closeContactModal();
+    });
+    // Mobile menu: close after tapping any in-page anchor
+    document.querySelectorAll('#mobile-menu a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
     });
   </script>
 

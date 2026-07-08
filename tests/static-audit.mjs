@@ -128,6 +128,35 @@ const focusStyle = /:focus\b|:focus-visible|focus:\\w|@apply\s+focus|class=["'][
 if (focusStyle) pass.push({ name: 'Focus-visible styling present (keyboard navigation)' });
 else warn.push({ name: 'No focus-visible styling detected', detail: 'keyboard users may not see focus ring' });
 
+// ---- T14: Contact modal dialog semantics (WCAG 4.1.2) ----
+const modalMatch = html.match(/<div id="contact-modal"([^>]*)>/);
+if (!modalMatch) {
+  fail.push({ name: 'Contact modal element present', detail: '#contact-modal not found' });
+} else {
+  const ma = modalMatch[1];
+  const labelledby = (ma.match(/aria-labelledby=["']([^"']+)["']/) || [])[1];
+  const titleExists = labelledby && new RegExp(`id=["']${labelledby}["']`).test(html);
+  const ok = /role=["']dialog["']/.test(ma) && /aria-modal=["']true["']/.test(ma) && titleExists;
+  if (ok) pass.push({ name: 'Contact modal exposes dialog semantics (role/aria-modal/aria-labelledby→title)' });
+  else fail.push({ name: 'Contact modal missing dialog role/aria (a11y WCAG 4.1.2)', detail: 'needs role="dialog" aria-modal="true" aria-labelledby→title id' });
+}
+
+// ---- T15: no javascript: URI links (semantics/a11y) ----
+const jsUri = html.match(/href=["']javascript:/g);
+if (jsUri) fail.push({ name: 'javascript: URI used as link (semantics/a11y)', detail: jsUri.length + ' occurrence(s) — use <button> for actions' });
+else pass.push({ name: 'No javascript: URI links (nav triggers use <button>)' });
+
+// ---- T16: modal close mechanisms (Close button + ESC) ----
+const hasCloseBtn = /<button[^>]*aria-label=["']Close["'][^>]*>/.test(html);
+const hasEsc = /Escape/.test(html) && /contact-modal/.test(html);
+if (hasCloseBtn && hasEsc) pass.push({ name: 'Modal close mechanisms present (Close button + ESC key)' });
+else fail.push({ name: 'Modal missing a close mechanism', detail: `closeBtn=${hasCloseBtn}, escHandler=${hasEsc}` });
+
+// ---- T17: mobile menu auto-closes on anchor tap ----
+const hasMobileAutoClose = /querySelectorAll\(['"]#mobile-menu a/.test(html) || (html.match(/mobile-menu'\)\.classList\.add\('hidden'\)/g) || []).length >= 1;
+if (hasMobileAutoClose) pass.push({ name: 'Mobile menu auto-closes after tapping a section link' });
+else fail.push({ name: 'Mobile menu stays open after anchor tap (UX bug)', detail: 'add delegated close on #mobile-menu a[href^="#"]' });
+
 // ---- report ----
 console.log('\n===== myguilin First-Level Page — Static Audit =====');
 console.log(`referenced images: ${refImgs.size} | <img> tags: ${imgTags.length} | ids: ${ids.size}`);
