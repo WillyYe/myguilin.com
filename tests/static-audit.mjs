@@ -83,6 +83,51 @@ const navCount = (html.match(/<nav\b/g) || []).length;
 const footerCount = (html.match(/<footer\b/g) || []).length;
 (navCount > 0 ? pass : warn).push({ name: `Landmark: <nav> x${navCount}, <footer> x${footerCount}` });
 
+// ---- T10: heading hierarchy (WCAG 2.4.6) ----
+const headings = [...html.matchAll(/<h([1-6])\b[^>]*>/g)].map(m => +m[1]);
+const h1Count = headings.filter(x => x === 1).length;
+if (h1Count !== 1) warn.push({ name: 'Heading structure: exactly one <h1> expected', detail: `found ${h1Count} <h1>` });
+else pass.push({ name: 'Exactly one <h1> present' });
+let skipped = false;
+for (let i = 1; i < headings.length; i++) if (headings[i] - headings[i - 1] > 1) { skipped = true; break; }
+if (skipped) warn.push({ name: 'Heading levels skip (e.g. h1→h3)', detail: headings.join(' ') + ' — avoid skipping levels' });
+else pass.push({ name: 'Heading levels do not skip (sequence: ' + headings.join('>') + ')' });
+
+// ---- T11: form fields have programmatic label (WCAG 1.3.1 / 4.1.2) ----
+const formFields = [...html.matchAll(/<(input|textarea|select)\b([^>]*)>/g)];
+const labelledOk = []; const unlabelled = [];
+for (const m of formFields) {
+  const tag = m[1], attrs = m[2];
+  if (/\btype=["']?(hidden|submit|button|reset)["']?/.test(attrs)) continue;
+  const idm = attrs.match(/\bid=["']([^"']+)["']/);
+  const hasFor = idm && new RegExp(`<label[^>]*for=["']${idm[1]}["']`).test(html);
+  const aria = /\baria-label=/.test(attrs) || /\baria-labelledby=/.test(attrs) || /\btitle=/.test(attrs);
+  if (hasFor || aria) labelledOk.push(tag);
+  else if (/\bplaceholder=/.test(attrs)) unlabelled.push(tag + '(placeholder-only)');
+  else unlabelled.push(tag);
+}
+if (unlabelled.length) fail.push({ name: 'Form fields without programmatic label (a11y)', detail: unlabelled.join(', ') + ' — need <label for> or aria-label' });
+else pass.push({ name: `All ${labelledOk.length} form fields have a programmatic label` });
+
+// ---- T12: links have accessible name (WCAG 2.4.4 / 4.1.2) ----
+const aBlocks = [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
+const emptyA = [];
+for (const m of aBlocks) {
+  const attrs = m[1], inner = m[2];
+  if (/href=["']#/.test(attrs)) continue;
+  const named = /\baria-label=["'][^"']/.test(attrs) || /\baria-labelledby=/.test(attrs);
+  const text = inner.replace(/<[^>]+>/g, '').trim();
+  const imgAlt = /<img[^>]*alt=["'][^"']/.test(inner);
+  if (!named && !text && !imgAlt) emptyA.push(attrs.slice(0, 50));
+}
+if (emptyA.length) fail.push({ name: 'Links with no accessible name (a11y)', detail: emptyA.length + ' empty <a> — need text or aria-label' });
+else pass.push({ name: `All ${aBlocks.length} links have an accessible name (text / aria-label / img-alt)` });
+
+// ---- T13: focus-visible styling (WCAG 2.4.7) ----
+const focusStyle = /:focus\b|:focus-visible|focus:\\w|@apply\s+focus|class=["'][^"']*\bfocus:/.test(html);
+if (focusStyle) pass.push({ name: 'Focus-visible styling present (keyboard navigation)' });
+else warn.push({ name: 'No focus-visible styling detected', detail: 'keyboard users may not see focus ring' });
+
 // ---- report ----
 console.log('\n===== myguilin First-Level Page — Static Audit =====');
 console.log(`referenced images: ${refImgs.size} | <img> tags: ${imgTags.length} | ids: ${ids.size}`);
