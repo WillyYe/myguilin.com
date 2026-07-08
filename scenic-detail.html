@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scenic Detail — Visit Guilin</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; color: #1a1a1a; background: #fff; line-height: 1.6; }
+    .header {
+      background: #0d283f; color: white; padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 16px; }
+    .header a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; }
+    .header a:hover { color: white; }
+    .logo-icon { width: 36px; height: 36px; background: #b5882a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .hero-img {
+      width: 100%; height: 50vh; min-height: 350px; max-height: 550px;
+      object-fit: cover; background: linear-gradient(135deg, #2d7aa0, #1a4a6a);
+      display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: #0d283f; margin-bottom: 4px; }
+    .sub-title { font-size: 16px; color: #52b8d8; margin-bottom: 24px; font-weight: 500; }
+    .tag { display: inline-block; background: #e8f4fc; color: #1a4a6a; padding: 4px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .desc { font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 32px; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 36px; }
+    .info-card { background: #f7f9fc; border-radius: 12px; padding: 18px; text-align: center; }
+    .info-card .icon { font-size: 28px; margin-bottom: 8px; }
+    .info-card .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .info-card .value { font-size: 16px; font-weight: 600; color: #0d283f; margin-top: 4px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #0d283f; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #e8ecf4; }
+    .attractions-grid { display: grid; gap: 16px; margin-bottom: 24px; }
+    .attraction-item { display: flex; gap: 14px; align-items: start; padding: 16px; background: #fafbfc; border-radius: 10px; border-left: 3px solid #52b8d8; }
+    .attraction-item .icon { font-size: 22px; flex-shrink: 0; }
+    .attraction-item h4 { font-size: 15px; color: #0d283f; margin-bottom: 4px; }
+    .attraction-item p { font-size: 13px; color: #666; line-height: 1.6; }
+    .tips-list { list-style: none; counter-reset: tips; }
+    .tips-list li { counter-increment: tips; padding: 12px 0 12px 40px; position: relative; font-size: 14px; color: #555; border-bottom: 1px solid #f0f0f0; }
+    .tips-list li::before { content: counter(tips); position: absolute; left: 0; top: 12px; width: 26px; height: 26px; background: #1a4a6a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: #1a4a6a; text-decoration: none; font-weight: 500; margin-top: 48px; }
+    .back-link:hover { text-decoration: underline; }
+    .footer { text-align: center; padding: 24px; color: #999; font-size: 13px; border-top: 1px solid #eee; margin-top: 48px; }
+    @media (max-width: 768px) { h1 { font-size: 26px; } .hero-img { height: 35vh; min-height: 250px; } }
+  </style>
+</head>
+<body>
+  <div class="header"><div class="header-inner">
+    <a href="./" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:white;">
+      <div class="logo-icon">🏔️</div><strong>Visit Guilin</strong>
+    </a><a href="./">← Back to Home</a></div></div>
+
+  <div class="hero-img" id="heroImg"></div>
+
+  <div class="container">
+    <div class="tag" id="tag"></div>
+    <h1 id="name"></h1>
+    <p class="sub-title" id="subTitle"></p>
+    <p class="desc" id="desc"></p>
+
+    <div class="info-grid" id="infoGrid"></div>
+
+    <h2 class="section-title">Highlights & Attractions</h2>
+    <div class="attractions-grid" id="attractionsGrid"></div>
+
+    <h2 class="section-title">Visitor Tips</h2>
+    <ul class="tips-list" id="tipsList"></ul>
+
+    <a href="./" class="back-link">← Back to Home</a>
+  </div>
+
+  <div class="footer">© 2026 Visit Guilin — myguilin.com</div>
+
+  <script>
+    // Load scenic data from JSON
+    fetch('data/scenic.json?v=20260708')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get('id');
+        var item = data.find(function(s) { return s.id === id; }) || data[0];
+
+        if (item) {
+          document.title = item.name + ' — Visit Guilin';
+          document.getElementById('heroImg').style.backgroundImage = "url('" + (item.img || '').replace('assets/images/','assets/images/md/') + "')";
+          document.getElementById('heroImg').textContent = '';
+          document.getElementById('tag').textContent = item.tag || '';
+          document.getElementById('name').textContent = item.name || '';
+          document.getElementById('subTitle').textContent = item.subTitle || '';
+          document.getElementById('desc').textContent = item.desc || '';
+
+          // Info cards
+          var infoHtml = '';
+          if (item.info) item.info.forEach(function(info) {
+            infoHtml += '<div class="info-card"><div class="icon">' + (info.icon || '') + '</div><div class="label">' + (info.label || '') + '</div><div class="value">' + (info.value || '') + '</div></div>';
+          });
+          document.getElementById('infoGrid').innerHTML = infoHtml;
+
+          // Attractions
+          var attrHtml = '';
+          if (item.attractions) item.attractions.forEach(function(a) {
+            attrHtml += '<div class="attraction-item"><span class="icon">' + (a.icon || '') + '</span><div><h4>' + (a.name || '') + '</h4><p>' + (a.desc || '') + '</p></div></div>';
+          });
+          document.getElementById('attractionsGrid').innerHTML = attrHtml;
+
+          // Tips
+          var tipsHtml = '';
+          if (item.tips) item.tips.forEach(function(t) {
+            tipsHtml += '<li>' + t + '</li>';
+          });
+          document.getElementById('tipsList').innerHTML = tipsHtml;
+        }
+      })
+      .catch(function(e) { console.error('Failed to load scenic data:', e); });
+  </script>
+</body>
+</html>
