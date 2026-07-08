@@ -50,6 +50,14 @@
       background-attachment: fixed;
     }
 
+    /* Reusable photo-band: same semi-transparent river gradient as the hero.
+       Apply together with an inline background-image (gradient + url) on the element. */
+    .band-bg {
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
     .card-hover {
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
@@ -456,7 +464,7 @@
   </section>
 
   <!-- Quick stats bar (under Hero) -->
-  <section class="bg-river py-8 border-t border-white/10">
+  <section class="band-bg py-8 border-t border-white/10" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.45) 0%, rgba(14,77,100,0.6) 50%, rgba(14,77,100,0.8) 100%), url('images/attraction-liriver.jpg');">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div><p class="font-display text-3xl text-gold">2,000+</p><p class="text-white/60 text-sm mt-1">Years of Fame</p></div>
       <div><p class="font-display text-3xl text-gold">8</p><p class="text-white/60 text-sm mt-1">Signature Attractions</p></div>
@@ -466,23 +474,23 @@
   </section>
 
   <!-- Home intro block (主题介绍) -->
-  <section class="py-20 px-6 bg-white">
+  <section class="band-bg py-20 px-6 text-white" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.55) 0%, rgba(14,77,100,0.7) 50%, rgba(14,77,100,0.88) 100%), url('images/attraction-yangshuo.jpg');">
     <div class="max-w-4xl mx-auto text-center fade-in">
-      <h2 class="font-display text-3xl md:text-4xl text-river mb-6">Welcome to Guilin</h2>
-      <p class="text-stone/70 leading-relaxed text-lg mb-6">
-        <strong class="text-river">Guilin</strong>, in Guangxi Zhuang Autonomous Region, is celebrated for the most beautiful landscapes in China. Its emerald karst peaks, the meandering <strong class="text-river">Li River</strong>, and misty terraced fields have inspired poets and painters for over a thousand years — immortalized in the saying <em>"桂林山水甲天下"</em> (Guilin's scenery is the best under heaven).
+      <h2 class="font-display text-3xl md:text-4xl mb-6">Welcome to Guilin</h2>
+      <p class="text-white/85 leading-relaxed text-lg mb-6">
+        <strong class="text-gold">Guilin</strong>, in Guangxi Zhuang Autonomous Region, is celebrated for the most beautiful landscapes in China. Its emerald karst peaks, the meandering <strong class="text-gold">Li River</strong>, and misty terraced fields have inspired poets and painters for over a thousand years — immortalized in the saying <em>"桂林山水甲天下"</em> (Guilin's scenery is the best under heaven).
       </p>
-      <p class="text-stone/70 leading-relaxed text-base mb-8">
-        As Guilin's <strong class="text-river">#1 inbound travel team</strong>, we've partnered with 100+ hotels and local agencies across the region, welcoming over 100,000 international visitors each year. Whether you seek nature, slow travel, or cultural immersion — we craft experiences that match your pace.
+      <p class="text-white/85 leading-relaxed text-base mb-8">
+        As Guilin's <strong class="text-gold">#1 inbound travel team</strong>, we've partnered with 100+ hotels and local agencies across the region, welcoming over 100,000 international visitors each year. Whether you seek nature, slow travel, or cultural immersion — we craft experiences that match your pace.
       </p>
       <!-- Quick links (链接 link) -->
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="#attraction" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🏔️ Attractions →</a>
-        <a href="#experience" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🎒 Experiences →</a>
-        <a href="#tour" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🗺️ Tours →</a>
-        <a href="#hotel" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🏨 Hotels →</a>
-        <a href="#food" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🍜 Food →</a>
-        <a href="#contact" class="px-5 py-2 bg-river hover:bg-river-light text-white rounded-full text-sm font-medium transition-colors">💬 Contact Us →</a>
+        <a href="#attraction" class="px-5 py-2 bg-white/15 hover:bg-white/25 rounded-full text-sm font-medium text-white transition-colors">🏔️ Attractions →</a>
+        <a href="#experience" class="px-5 py-2 bg-white/15 hover:bg-white/25 rounded-full text-sm font-medium text-white transition-colors">🎒 Experiences →</a>
+        <a href="#tour" class="px-5 py-2 bg-white/15 hover:bg-white/25 rounded-full text-sm font-medium text-white transition-colors">🗺️ Tours →</a>
+        <a href="#hotel" class="px-5 py-2 bg-white/15 hover:bg-white/25 rounded-full text-sm font-medium text-white transition-colors">🏨 Hotels →</a>
+        <a href="#food" class="px-5 py-2 bg-white/15 hover:bg-white/25 rounded-full text-sm font-medium text-white transition-colors">🍜 Food →</a>
+        <a href="#contact" class="px-5 py-2 bg-gold hover:bg-gold-dark text-white rounded-full text-sm font-medium transition-colors">💬 Contact Us →</a>
       </div>
     </div>
   </section>
@@ -972,18 +980,18 @@
         </div>
       </div>
 
-      <div class="mt-12 bg-river text-white rounded-2xl p-8 text-center fade-in">
-        <p class="text-white/80 mb-3">Dietary requirements? Vegetarian, halal, allergy-friendly — just let us know when booking your tour. We'll arrange everything.</p>
+      <div class="band-bg mt-12 rounded-2xl p-8 text-center fade-in text-white" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.5) 0%, rgba(14,77,100,0.65) 50%, rgba(14,77,100,0.8) 100%), url('images/food-shangpalace.jpg');">
+        <p class="text-white/90 mb-3">Dietary requirements? Vegetarian, halal, allergy-friendly — just let us know when booking your tour. We'll arrange everything.</p>
       </div>
     </div>
   </section>
 
   <!-- ========== 7. CONTACT US ============================================= -->
-  <section id="contact" class="py-24 px-6 bg-white">
+  <section id="contact" class="band-bg py-24 px-6 text-white" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.55) 0%, rgba(14,77,100,0.7) 50%, rgba(14,77,100,0.9) 100%), url('images/attraction-xingping.jpg');">
     <div class="max-w-4xl mx-auto text-center fade-in">
-      <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Let's Plan Together</p>
-      <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Ready for Your Guilin Adventure?</h2>
-      <p class="text-stone/70 text-lg mb-10 max-w-2xl mx-auto">
+      <p class="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-4">Let's Plan Together</p>
+      <h2 class="font-display text-4xl md:text-5xl text-white mb-6">Ready for Your Guilin Adventure?</h2>
+      <p class="text-white/85 text-lg mb-10 max-w-2xl mx-auto">
         Send us a message on WhatsApp or email. We'll reply within 24 hours with a personalized itinerary — no obligation, no pressure, no spam ever.
       </p>
 
@@ -992,13 +1000,13 @@
           <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp: +86 187 7735 8302
         </a>
-        <a href="mailto:willyumi2026@outlook.com" class="flex items-center justify-center gap-3 bg-white border-2 border-river text-river hover:bg-river hover:text-white font-semibold px-10 py-4 rounded-full transition-all duration-300 text-lg">
+        <a href="mailto:willyumi2026@outlook.com" class="flex items-center justify-center gap-3 bg-white/15 backdrop-blur-sm border-2 border-white/70 text-white hover:bg-white hover:text-river font-semibold px-10 py-4 rounded-full transition-all duration-300 text-lg">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           Email: willyumi2026@outlook.com
         </a>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-6 justify-center text-stone/60 text-sm">
+      <div class="flex flex-col sm:flex-row gap-6 justify-center text-white/70 text-sm">
         <div class="flex items-center gap-2"><span class="text-gold-dark">✓</span> Reply within 24 hours</div>
         <div class="flex items-center gap-2"><span class="text-gold-dark">✓</span> Free personalized itinerary</div>
         <div class="flex items-center gap-2"><span class="text-gold-dark">✓</span> No obligation, no spam</div>
