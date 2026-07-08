@@ -1,1431 +1,922 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>window._webp=(function(){var c=document.createElement('canvas');c.width=1;c.height=1;return c.toDataURL&&c.toDataURL('image/webp').indexOf('data:image/webp')===0})();function wp(p){return window._webp?p.replace(/\.(jpe?g|png)$/i,'.webp'):p}document.addEventListener('error',function(e){if(e.target.tagName==='IMG'&&e.target.src&&/\.webp$/i.test(e.target.src)){e.target.src=e.target.src.replace(/\.webp$/i,'.jpg')}},true)</script>
-  <title>Visit Guilin — Official Travel Guide for International Tourists</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="favicon.svg">
-  <meta name="description" content="Discover Guilin's stunning karst mountains, Li River cruise, ancient caves, and authentic Chinese culture. Your ultimate travel guide to one of China's most beautiful destinations." />
-  <meta name="theme-color" content="#1a4a6a" />
-  <meta http-equiv="Cache-Control" content="max-age=3600" />
-  <!-- Preload critical data for faster initial render -->
-  <link rel="preload" as="fetch" href="data/experience.json" crossorigin="anonymous" />
-  <link rel="preload" as="fetch" href="data/scenic.json" crossorigin="anonymous" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit Guilin — Your Complete Travel Guide to the Li River & Karst Peaks</title>
+  <meta name="description" content="Guilin travel guide & private tours for international travelers. Plan your trip with local experts — Li River cruises, karst peaks, Longji terraces, best time to visit, and how to get there.">
 
-  <!-- DNS Prefetch -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin />
-  
-  <!-- Preconnect for Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="assets/images/hero-liriver.jpg" /><link rel="preload" as="image" href="assets/images/hero-liriver.webp" type="image/webp" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet" />
-  </noscript>
-  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'display': ['Playfair Display', 'serif'],
+          },
+          colors: {
+            'river': '#0e4d64',
+            'river-light': '#156377',
+            'sand': '#f4f1ea',
+            'sand-dark': '#e6e0d4',
+            'gold': '#c9a96e',
+            'gold-dark': '#b08d4f',
+            'stone': '#3a3a3a',
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    /* ========== RESET & BASE ========== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
-      color: #1a1a1a;
-      background: #fff;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-    ul { list-style: none; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
 
-    /* ========== COLOR VARIABLES - Guilin Blue Theme ========== */
-    :root {
-      --blue-dark: #0d283f;
-      --blue-mid: #1a4a6a;
-      --blue-light: #2d7aa0;
-      --blue-accent: #52b8d8;
-      --gold: #b5882a;
-      --gold-light: #d4a843;
-      --cream: #f7f9fc;
-      --cream-dark: #e8ecf4;
-      --text-dark: #1a1a1a;
-      --text-mid: #4a4a4a;
-      --text-light: #888;
-      --border: #e0e6ee;
-      --white: #fff;
-      --shadow: rgba(0,0,0,0.1);
-      --nav-height: 64px;
+    .hero-bg {
+      background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%), url('images/hero-liriver.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
-    /* ========== HEADER ========== */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: var(--blue-dark);
-      height: var(--nav-height);
-      transition: background 0.3s, box-shadow 0.3s;
+    .card-hover {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
-    .header.scrolled {
-      background: rgba(13, 40, 63, 0.98);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
     }
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--white);
-    }
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-    .logo-cn {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 2px;
-    }
-    .logo-en {
-      font-size: 9px;
-      opacity: 0.7;
-      letter-spacing: 1px;
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .nav a {
-      color: rgba(255,255,255,0.8);
-      font-size: 13px;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav a:hover, .nav a.active {
-      color: var(--white);
-      background: rgba(255,255,255,0.1);
-    }
-    .mobile-menu-btn {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      padding: 8px;
-    }
-    .mobile-menu-btn span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .mobile-menu-btn.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .mobile-menu-btn.active span:nth-child(2) {
+
+    .fade-in {
       opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .mobile-menu-btn.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ========== MOBILE NAV ========== */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 280px;
-      height: 100vh;
-      background: var(--blue-dark);
-      z-index: 2000;
-      padding: 80px 24px 24px;
-      transition: right 0.3s ease;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 0.75rem;
     }
-    .mobile-nav.open { right: 0; }
-    .mobile-nav-close {
+    .gallery-item img {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border: none;
-      background: transparent;
-      color: white;
-      font-size: 28px;
-      cursor: pointer;
-    }
-    .mobile-nav a {
-      display: block;
-      color: white;
-      font-size: 18px;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .mobile-nav-overlay {
-      position: fixed;
-      top: 0;
+      bottom: -4px;
       left: 0;
+      width: 0;
+      height: 2px;
+      background: #c9a96e;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
       width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 1999;
+    }
+
+    /* ===== Three-layer mega-menu navigation ===== */
+    html { scroll-padding-top: 80px; }
+    section[id] { scroll-margin-top: 80px; }
+
+    .nav-item { position: relative; }
+    .dropdown-caret {
+      transition: transform 0.25s ease;
+    }
+    .nav-item:hover .dropdown-caret { transform: rotate(180deg); }
+
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: #ffffff;
+      border-radius: 0 0 1rem 1rem;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+      padding: 2.25rem 2rem;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      z-index: 60;
     }
-    .mobile-nav-overlay.open { opacity: 1; visibility: visible; }
-
-    /* ========== HERO ========== */
-    .hero {
-      height: 100vh;
-      min-height: 600px;
-      position: relative;
+    .nav-item:hover .mega-menu,
+    .nav-item:focus-within .mega-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .mega-menu::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+    .mega-col-title {
+      color: #b08d4f;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .mega-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #3a3a3a;
+      font-size: 0.9rem;
+      padding: 0.32rem 0;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .mega-link:hover { color: #0e4d64; padding-left: 0.3rem; }
+    .mega-feature {
+      border-radius: 0.85rem;
       overflow: hidden;
-    }
-    .hero-slides { position: absolute; inset: 0; }
-    .hero-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1s;
-    }
-    .hero-slide.active { opacity: 1; }
-    .hero-slide-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      will-change: background-image;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
-    }
-    .hero-content {
       position: relative;
-      z-index: 10;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .mega-feature .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,77,100,0.85) 0%, rgba(14,77,100,0) 60%);
+    }
+
+    /* ===== Quick guide cards ===== */
+    .quick-card {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .quick-card img {
+      width: 100%;
       height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quick-card:hover img { transform: scale(1.06); }
+    .quick-card .quick-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,77,100,0.85) 0%, rgba(14,77,100,0.1) 60%);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--white);
-      padding: 0 24px;
+      justify-content: flex-end;
+      padding: 1.25rem;
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(6px);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,0.2);
+
+    /* ===== Comparison table ===== */
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td {
+      text-align: left;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #e6e0d4;
+      font-size: 0.92rem;
     }
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--blue-accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', 'Georgia', serif;
-      font-size: clamp(36px, 5.5vw, 72px);
+    .compare-table thead th {
+      background: #0e4d64;
+      color: #fff;
       font-weight: 600;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-      line-height: 1.15;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+      letter-spacing: 0.02em;
     }
-    .hero-desc {
-      font-family: 'Cormorant Garamond', 'Georgia', serif;
-      font-size: clamp(16px, 1.4vw, 20px);
-      font-style: italic;
-      max-width: 520px;
-      opacity: 0.92;
-      margin-bottom: 32px;
-      line-height: 1.8;
-      letter-spacing: 0.3px;
-    }
-    .btn {
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--white);
-      box-shadow: 0 4px 16px rgba(181,136,42,0.3);
-    }
-    .btn-primary:hover { box-shadow: 0 6px 24px rgba(181,136,42,0.4); }
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.4);
-      color: var(--white);
-      backdrop-filter: blur(4px);
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); }
-    .hero-dots {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-    .hero-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.4);
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      border: none;
-    }
-    .hero-dot.active {
-      background: var(--gold);
-      transform: scale(1.2);
-    }
+    .compare-table tbody tr:nth-child(even) { background: #faf7f1; }
+    .compare-table tbody tr:hover { background: #f0ece2; }
 
-    /* ========== INFO BAR ========== */
-    .info-bar {
-      background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
-      color: var(--white);
-      padding: 20px 0;
-    }
-    .info-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-    .info-item { display: flex; align-items: center; gap: 12px; }
-    .info-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-    .info-email {
-      color: rgba(255,255,255,0.9);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .info-email:hover { color: #fff; text-decoration: underline; }
-    .info-label { font-size: 11px; opacity: 0.6; letter-spacing: 1px; }
-    .info-value { font-size: 15px; font-weight: 500; margin-top: 2px; }
-
-    /* ========== SECTIONS ========== */
-    .section {
-      padding: 80px 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-      content-visibility: auto;
-      contain-intrinsic-size: auto 500px;
-    }
-    .section-header { text-align: center; margin-bottom: 48px; }
-    .section-tag {
-      display: inline-block;
-      font-size: 11px;
-      color: var(--blue-accent);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      background: #f0f8ff;
-      padding: 4px 14px;
-      border-radius: 10px;
-    }
-    .section-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(24px, 3vw, 32px);
-      font-weight: 700;
-      color: var(--blue-dark);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-    .section-desc {
-      font-size: 14px;
-      color: var(--text-mid);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    /* ========== NEWS CAROUSEL ========== */
-    .news-carousel-wrapper {
+    .season-card {
+      border-radius: 1rem;
+      overflow: hidden;
       position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 16px;
+      min-height: 220px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
-    .news-carousel {
+    .season-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .season-card .season-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 55%);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
+    }
+
+    .tip-item {
       display: flex;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      will-change: transform;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 1px dashed #e6e0d4;
     }
-    .news-carousel-slide {
-      flex: 0 0 100%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      padding: 4px;
-    }
-    .news-carousel-card {
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--white);
-      box-shadow: 0 2px 12px var(--shadow);
-      transition: transform 0.25s, box-shadow 0.25s;
-      cursor: pointer;
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .news-carousel-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-    }
-    .news-carousel-img {
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-    .news-carousel-body { padding: 18px 20px 22px; }
-    .news-carousel-title { font-size: 16px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; line-height: 1.5; }
-    .news-carousel-text {
-      font-size: 13px;
-      color: var(--text-mid);
-      line-height: 1.6;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .news-carousel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+    .tip-item:last-child { border-bottom: none; }
+    .tip-icon {
+      flex-shrink: 0;
       width: 44px; height: 44px;
-      background: rgba(255,255,255,0.9);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-      z-index: 10;
-      border: none;
-      font-size: 20px;
-      color: var(--blue-mid);
-      opacity: 0;
-    }
-    .news-carousel-wrapper:hover .news-carousel-nav { opacity: 1; }
-    .news-carousel-nav:hover { background: var(--white); transform: translateY(-50%) scale(1.1); }
-    .news-carousel-nav.prev { left: 12px; }
-    .news-carousel-nav.next { right: 12px; }
-    .news-carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
-    .news-carousel-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(26,74,106,0.2); border: none; cursor: pointer;
-      transition: all 0.3s; padding: 0;
-    }
-    .news-carousel-dot.active { background: var(--blue-mid); width: 24px; border-radius: 4px; }
-    .news-carousel-dot:hover:not(.active) { background: rgba(26,74,106,0.4); }
-    .news-carousel-progress {
-      position: absolute; bottom: 0; left: 0;
-      height: 3px; background: var(--gold); width: 0%; z-index: 11;
-      transition: width 0.1s linear;
-    }
-    .news-date {
-      position: absolute; top: 12px; left: 12px;
-      background: rgba(0,0,0,0.55); color: #fff;
-      padding: 4px 10px; border-radius: 6px;
-      text-align: center; font-size: 12px; line-height: 1.3;
-      pointer-events: none;
-    }
-    .news-date-day { font-size: 18px; font-weight: 700; }
-    .news-tag {
-      display: inline-block; padding: 4px 12px; border-radius: 6px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
-    }
-    .news-tag.overview { background: #e8f5e9; color: #2e7d32; }
-    .news-tag.honor    { background: #fff8e1; color: #f57f17; }
-    .news-tag.geo      { background: #e3f2fd; color: #1565c0; }
-    .news-tag.eco      { background: #f3e5f5; color: #6a1b9a; }
-    .news-tag.avatar   { background: #e0f7fa; color: #00838f; }
-    .news-tag.announce { background: #fff3e0; color: #e65100; }
-    .news-tag.event    { background: #e8f5e9; color: #2e7d32; }
-    .news-tag.notice   { background: #e3f2fd; color: #1565c0; }
-
-    /* ========== SCENIC ========== */
-    #scenic { background: var(--cream); padding: 80px 24px; }
-    .scenic-inner { max-width: 1200px; margin: 0 auto; position: relative; }
-    .scenic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .scenic-card {
-      border-radius: 16px; overflow: hidden; position: relative;
-      min-height: 380px; cursor: pointer;
-    }
-    .scenic-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.4s; will-change: transform;
-    }
-    .scenic-card:hover .scenic-bg { transform: scale(1.05); }
-    .scenic-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-      display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 28px;
-      color: var(--white); z-index: 1;
-    }
-    .scenic-tag { font-size: 11px; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 6px; }
-    .scenic-name { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 600; margin-bottom: 6px; }
-    .scenic-desc { font-size: 13px; opacity: 0.8; line-height: 1.6; }
-    .scenic-sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
-    .scenic-link { margin-top: 12px; font-size: 12px; color: var(--gold); display: flex; align-items: center; gap: 4px; }
-    .pagination-container { display: flex; justify-content: center; gap: 10px; margin-top: 32px; }
-    .pagination-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(13, 40, 63, 0.2); border: none; cursor: pointer;
-      transition: all 0.3s;
-    }
-    .pagination-dot.active { background: var(--blue-mid); width: 28px; border-radius: 5px; }
-    .pagination-dot:hover:not(.active) { background: rgba(13, 40, 63, 0.4); }
-
-    .scenic-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.9); border-radius: 50%;
+      background: #0e4d64;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.2s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-      z-index: 10; border: none; font-size: 20px;
-      color: var(--blue-mid); opacity: 0;
     }
-    #scenic:hover .scenic-nav { opacity: 1; }
-    .scenic-nav:hover { background: var(--white); transform: translateY(-50%) scale(1.1); }
-    .scenic-nav.prev { left: 12px; }
-    .scenic-nav.next { right: 12px; }
-
-    /* ========== EXPERIENCE ========== */
-    .exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .exp-card {
-      border-radius: 14px; overflow: hidden; background: var(--white);
-      box-shadow: 0 2px 12px var(--shadow);
-      transition: transform 0.25s, box-shadow 0.25s; cursor: pointer;
-    }
-    .exp-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
-    .exp-img { height: 160px; overflow: hidden; }
-    .exp-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.4s; will-change: transform;
-    }
-    .exp-card:hover .exp-img img { transform: scale(1.1); }
-    .exp-body { padding: 16px 18px 20px; }
-    .exp-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
-    .exp-desc { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
-
-    /* ========== GALLERY ========== */
-    #gallery { background: var(--cream); padding: 80px 24px; }
-    .gallery-inner { max-width: 1200px; margin: 0 auto; }
-    .gallery-masonry { columns: 3; column-gap: 16px; }
-    .gallery-item { break-inside: avoid; margin-bottom: 16px; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; }
-    .gallery-item img { width: 100%; display: block; border-radius: 12px; }
-    .gallery-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
-      border-radius: 12px; display: flex;
-      align-items: flex-end; padding: 16px;
-      opacity: 0; transition: opacity 0.25s;
-    }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-title { font-size: 13px; color: var(--white); font-weight: 500; }
-
-    /* ========== TRANSPORT ========== */
-    .transport-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-    .transport-map {
-      border-radius: 16px; overflow: hidden;
-      background: linear-gradient(135deg, #e8f4fc, #cce4f0);
-      height: 400px; position: relative;
-    }
-    .transport-ways { display: flex; flex-direction: column; gap: 16px; }
-    .transport-card {
-      background: var(--white); border-radius: 12px; padding: 20px;
-      box-shadow: 0 2px 10px var(--shadow);
-      display: flex; align-items: flex-start; gap: 16px;
-      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
-    }
-    .transport-card:hover { transform: translateX(4px); box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
-    .transport-icon {
-      width: 44px; height: 44px; background: #f0f8ff; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0;
-    }
-    .transport-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
-    .transport-desc { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
-
-    /* ========== FOOTER ========== */
-    .footer {
-      background: var(--blue-dark); color: var(--white);
-      padding: 0 24px 30px; position: relative; overflow: hidden;
-    }
-    .footer::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, transparent 0%, rgba(193,154,107,0.6) 30%, rgba(193,154,107,0.9) 50%, rgba(193,154,107,0.6) 70%, transparent 100%);
-      z-index: 2;
-    }
-    .footer-mountains {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      pointer-events: none; z-index: 1;
-    }
-    .footer-mountains svg { display: block; width: 100%; height: auto; }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      position: relative; z-index: 2; padding-top: 56px;
-    }
-    .footer-hero {
-      text-align: center; margin-bottom: 48px;
-      display: flex; align-items: center; justify-content: center;
-      gap: 28px; flex-wrap: wrap;
-    }
-    .footer-hero-line {
-      flex: 1; min-width: 60px; max-width: 160px; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(193,154,107,0.5) 50%, rgba(193,154,107,0.9) 100%);
-    }
-    .footer-hero-line:last-child { background: linear-gradient(90deg, rgba(193,154,107,0.9) 0%, rgba(193,154,107,0.5) 50%, transparent 100%); }
-    .footer-tagline {
-      font-family: 'Lato', sans-serif; font-size: 40px; font-weight: 300;
-      letter-spacing: 2px; color: var(--white); text-transform: uppercase; white-space: nowrap;
-    }
-    .footer-tagline-sub {
-      display: block; width: 100%; text-align: center;
-      margin-top: -16px; margin-bottom: 48px; font-size: 14px;
-      font-weight: 300; letter-spacing: 3px; opacity: 0.55; text-transform: uppercase;
-    }
-    .footer-main { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; align-items: start; }
-    .footer-brand { display: flex; flex-direction: column; gap: 14px; }
-    .footer-logo { display: flex; align-items: center; gap: 12px; }
-    .footer-desc { font-size: 13px; opacity: 0.7; line-height: 1.8; }
-    .footer-social { display: flex; gap: 12px; }
-    .footer-social a {
-      width: 36px; height: 36px; background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.25s ease; font-size: 14px; text-decoration: none;
-    }
-    .footer-social a:hover {
-      background: rgba(193,154,107,0.2); border-color: rgba(193,154,107,0.4);
-      transform: translateY(-2px);
-    }
-    .footer-contact-card {
-      display: flex; flex-direction: column; gap: 16px;
-      padding: 24px 20px; background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
-      backdrop-filter: blur(4px);
-    }
-    .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; }
-    .footer-contact-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-    .footer-contact-text { font-size: 13px; opacity: 0.7; line-height: 1.6; color: var(--white); }
-    .footer-contact-link { text-decoration: none; transition: all 0.25s ease; }
-    .footer-contact-link:hover { opacity: 1; color: rgba(193,154,107,0.95); }
-    .footer-quick { text-align: right; padding-top: 4px; }
-    .footer-quick h4 { font-size: 13px; font-weight: 600; margin-bottom: 18px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.9; }
-    .footer-quick-nav { display: flex; flex-direction: column; gap: 4px; }
-    .footer-quick-nav a {
-      font-size: 13px; opacity: 0.55; transition: all 0.25s ease;
-      padding: 4px 0; text-decoration: none; color: var(--white);
-    }
-    .footer-quick-nav a:hover { opacity: 1; color: rgba(193,154,107,0.95); transform: translateX(-4px); }
-    .footer-divider {
-      height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.08) 80%, transparent 100%);
-      margin-bottom: 20px;
-    }
-    .footer-bottom { display: flex; justify-content: center; align-items: center; }
-    .footer-copy { font-size: 11px; opacity: 0.45; letter-spacing: 0.5px; }
-
-    /* ========== LIGHTBOX ========== */
-    .lightbox {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-      z-index: 2000; display: flex; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity 0.3s, visibility 0.3s; transform: translateZ(0);
-    }
-    .lightbox.open { opacity: 1; visibility: visible; pointer-events: auto; }
-    .lightbox-img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
-    .lightbox-close {
-      position: absolute; top: 20px; right: 20px; width: 44px; height: 44px;
-      background: rgba(255,255,255,0.1); border-radius: 50%; color: var(--white);
-      font-size: 20px; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
-    .lightbox-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%;
-      color: var(--white); font-size: 24px; display: flex;
-      align-items: center; justify-content: center; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-
-    /* ========== ANIMATIONS ========== */
-    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .news-carousel-slide { grid-template-columns: repeat(2, 1fr); }
-      .exp-grid { grid-template-columns: repeat(2, 1fr); }
-      .scenic-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-masonry { columns: 2; }
-      .footer-main { grid-template-columns: 1fr; gap: 32px; text-align: center; }
-      .footer-contact-card { max-width: 400px; margin: 0 auto; }
-      .footer-quick { text-align: center; }
-      .footer-quick-nav { align-items: center; }
-      .footer-quick-nav a:hover { transform: translateY(-2px); }
-      .footer-tagline { font-size: 30px; white-space: normal; }
-      .footer-hero-line { display: none; }
-      .back-to-top { right: 16px; bottom: 20px; }
-      .transport-layout { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 768px) {
-      .nav { display: none; }
-      .mobile-menu-btn { display: flex; }
-      .news-carousel-slide { grid-template-columns: 1fr; gap: 16px; }
-      .news-carousel-nav { opacity: 0.8; width: 40px; height: 40px; font-size: 18px; }
-      .news-carousel-nav.prev { left: 8px; }
-      .news-carousel-nav.next { right: 8px; }
-      .news-carousel-wrapper { border-radius: 12px; }
-      .exp-grid { grid-template-columns: 1fr; }
-      .scenic-grid { grid-template-columns: 1fr; }
-      .scenic-nav { opacity: 0.8; width: 40px; height: 40px; font-size: 18px; }
-      .scenic-nav.prev { left: 8px; }
-      .scenic-nav.next { right: 8px; }
-      .footer-main { grid-template-columns: 1fr; gap: 28px; }
-      .footer-tagline { font-size: 22px; }
-      .footer-tagline-sub { font-size: 11px; letter-spacing: 2px; }
-      .footer-hero { margin-bottom: 32px; }
-      .footer-contact-card { max-width: 100%; }
-      .back-to-top { width: 36px; height: 36px; right: 12px; bottom: 16px; }
-      .footer-inner { padding-top: 40px; }
-      .info-inner { gap: 24px; }
-    }
-    @media (max-width: 480px) {
-      .hero-title { font-size: 32px; }
-      .hero-desc { font-size: 14px; }
-      .info-inner { flex-direction: column; gap: 16px; }
-      .btn { padding: 10px 20px; font-size: 14px; }
-    }
-
-    /* ========== SKELETON ========== */
-    @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; }
-    .skeleton-card { border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 2px 12px var(--shadow); }
-    .skeleton-img { height: 180px; }
-    .skeleton-text { height: 16px; margin: 16px 20px 8px; border-radius: 4px; }
-    .skeleton-text-short { width: 60%; height: 14px; margin: 0 20px 18px; }
-
-    /* ========== FOCUS ========== */
-    :focus-visible { outline: 2px solid var(--blue-accent); outline-offset: 2px; }
-    .skip-link { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); background: var(--blue-dark); color: white; padding: 12px 24px; border-radius: 8px; z-index: 10000; transition: top 0.3s; }
-    .skip-link:focus { top: 10px; }
-
-    /* ========== BACK TO TOP ========== */
-    .back-to-top {
-      position: fixed; bottom: 30px; right: 30px;
-      width: 48px; height: 48px; background: var(--blue-mid);
-      color: white; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center; font-size: 20px;
-      cursor: pointer; opacity: 0; visibility: hidden;
-      transform: translateY(20px); transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(26,74,106,0.3); z-index: 900;
-    }
-    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-    .back-to-top:hover { background: var(--blue-dark); transform: translateY(-2px); }
-
-    /* ========== HERO NAV ARROWS ========== */
-    .hero-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 48px; height: 48px; background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-      border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; color: white; font-size: 24px;
-      cursor: pointer; transition: all 0.3s; opacity: 0;
-      border: 1px solid rgba(255,255,255,0.2); z-index: 10;
-    }
-    .hero:hover .hero-nav { opacity: 1; }
-    .hero-nav:hover { background: rgba(255,255,255,0.25); transform: translateY(-50%) scale(1.1); }
-    .hero-nav.prev { left: 30px; }
-    .hero-nav.next { right: 30px; }
-    .hero-pause {
-      position: absolute; bottom: 40px; right: 30px;
-      width: 36px; height: 36px; background: rgba(255,255,255,0.15);
-      border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; color: white; font-size: 14px;
-      cursor: pointer; opacity: 0; transition: opacity 0.3s;
-      z-index: 10; border: 1px solid rgba(255,255,255,0.2);
-    }
-    .hero:hover .hero-pause { opacity: 1; }
-
-    /* ========== LIGHTBOX ENHANCE ========== */
-    .lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); padding: 6px 16px; border-radius: 20px; color: white; font-size: 13px; z-index: 10; }
-    .lightbox-caption { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); color: white; font-size: 14px; text-align: center; max-width: 80%; opacity: 0.9; z-index: 10; }
-    .lightbox-img { transition: opacity 0.3s; }
-    .lightbox-img.changing { opacity: 0; }
-
   </style>
 </head>
-<body>
-  <a href="#header" class="skip-link">Skip to main content</a>
-  
-  <!-- ========== HEADER ========== -->
-  <header class="header" id="header">
-    <div class="header-inner">
-      <a href="#" class="logo">
-        <div class="logo-icon">🏔️</div>
-        <div class="logo-text">
-          <span class="logo-cn">Visit Guilin</span>
-          <span class="logo-en">MY GUILIN</span>
-        </div>
+<body class="bg-sand text-stone antialiased">
+
+  <!-- ========== Navigation (mind map: 7 main items) ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-sand-dark" style="height:64px;">
+    <div class="max-w-[1400px] mx-auto px-6 h-full flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2 shrink-0">
+        <span class="text-2xl">⛰</span>
+        <span class="font-display text-xl text-river tracking-wide">Visit Guilin</span>
       </a>
-      <nav class="nav" id="nav">
-        <a href="#news">Guilin Guide</a>
-        <a href="#scenic">Top Attractions</a>
-        <a href="#experience">Experiences</a>
-        <a href="#gallery">Gallery</a>
-        <a href="getting-here/">Getting Here</a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center h-full">
+        <ul class="flex items-center h-full">
+
+          <!-- 1. Home -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#home" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Home</a>
+          </li>
+
+          <!-- 2. Attraction (7 sub-items) -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#attraction" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Attraction
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:700px;">
+              <div class="grid grid-cols-2 gap-x-10 gap-y-1">
+                <div>
+                  <p class="mega-col-title">Guilin City &amp; Around</p>
+                  <a href="#attraction-elephant" class="mega-link">🐘 Elephant Trunk Hill (象鼻山)</a>
+                  <a href="#attraction-liriver" class="mega-link">🛶 Li River (漓江)</a>
+                  <a href="#attraction-reedflute" class="mega-link">🪨 Reed Flute Cave (芦笛岩)</a>
+                  <a href="#attraction-sevenstar" class="mega-link">⭐ Seven Star Park (七星公园)</a>
+                </div>
+                <div>
+                  <p class="mega-col-title">Countryside &amp; Beyond</p>
+                  <a href="#attraction-yangshuo" class="mega-link">🚲 Yangshuo &amp; West Street (阳朔)</a>
+                  <a href="#attraction-longji" class="mega-link">🌾 Longji Rice Terraces (龙脊)</a>
+                  <a href="#attraction-tworivers" class="mega-link">🌉 Two Rivers &amp; Four Lakes (两江四湖)</a>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <a href="#attraction" class="inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">
+                  View All Attractions →
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <!-- 3. Experience (3 sub-items) -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#experience" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Experience
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:520px;">
+              <div class="grid grid-cols-3 gap-8">
+                <div>
+                  <a href="#exp-liriver" class="mega-feature block">
+                    <img src="images/exp-liriver.jpg" alt="" class="h-28 w-full object-cover">
+                    <div class="overlay"></div>
+                    <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Li River<br>Cruise</span>
+                  </a>
+                </div>
+                <div>
+                  <a href="#exp-cycling" class="mega-feature block">
+                    <img src="images/exp-cycling.jpg" alt="" class="h-28 w-full object-cover">
+                    <div class="overlay"></div>
+                    <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Countryside<br>Cycling</span>
+                  </a>
+                </div>
+                <div>
+                  <a href="#exp-cormorant" class="mega-feature block">
+                    <img src="images/exp-cormorant.jpg" alt="" class="h-28 w-full object-cover">
+                    <div class="overlay"></div>
+                    <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Cormorant<br>Fishing</span>
+                  </a>
+                </div>
+              </div>
+              <div class="mt-4 grid grid-cols-3 gap-4 text-center">
+                <a href="#exp-liriver" class="text-xs text-stone/70 hover:text-river">Li River Cruise</a>
+                <a href="#exp-cycling" class="text-xs text-stone/70 hover:text-river">Yangshuo Cycling</a>
+                <a href="#exp-cormorant" class="text-xs text-stone/70 hover:text-river">Cormorant Show</a>
+              </div>
+            </div>
+          </li>
+
+          <!-- 4. Things to do & Tour (4 sub-items) -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#tour" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Things to do &amp; Tour
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:600px;">
+              <div class="grid grid-cols-2 gap-8">
+                <div>
+                  <p class="mega-col-title">Top Ranked</p>
+                  <a href="#tour-ranking" class="mega-link">🏆 Top 8 Must-See Spots</a>
+                  <p class="mega-col-title mt-4">Tour Types</p>
+                  <a href="#tour-day" class="mega-link">📅 Day Tours</a>
+                  <a href="#tour-private-card" class="mega-link">🎒 Private Tours</a>
+                  <a href="#tour-vip-card" class="mega-link">💎 VIP Tours</a>
+                </div>
+                <div>
+                  <p class="mega-col-title">Featured</p>
+                  <a href="#tour" class="mega-feature block mb-3">
+                    <img src="images/tour-featured.jpg" alt="" class="h-28 w-full object-cover">
+                    <div class="overlay"></div>
+                    <span class="absolute bottom-2 left-3 text-white text-sm font-semibold">All Tours →</span>
+                  </a>
+                  <a href="#tour-private-card" class="mega-link text-river font-semibold">Most Popular: Private Guide + Car</a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 5. Hotel -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Hotel</a>
+          </li>
+
+          <!-- 6. Food -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Food</a>
+          </li>
+
+          <!-- 7. Contact us -->
+          <li class="nav-item h-full flex items-center">
+            <a href="#contact" class="nav-link text-sm font-semibold text-river hover:bg-river hover:text-white px-4 h-full flex items-center rounded-full transition-colors">Contact us</a>
+          </li>
+        </ul>
       </nav>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-        <span></span><span></span><span></span>
+
+      <!-- Right CTA -->
+      <div class="hidden lg:flex items-center shrink-0">
+        <a href="https://wa.me/8618777358302" target="_blank" class="flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors duration-300">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+          WhatsApp
+        </a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button class="lg:hidden text-river" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-sand-dark px-6 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
+      <a href="#home" class="block text-stone font-semibold py-2">1. Home</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">2. Attraction</p>
+      <a href="#attraction" class="block text-stone/80 py-1 pl-3 text-sm">All Attractions</a>
+      <a href="#attraction-elephant" class="block text-stone/80 py-1 pl-3 text-sm">Elephant Trunk Hill</a>
+      <a href="#attraction-liriver" class="block text-stone/80 py-1 pl-3 text-sm">Li River</a>
+      <a href="#attraction-reedflute" class="block text-stone/80 py-1 pl-3 text-sm">Reed Flute Cave</a>
+      <a href="#attraction-sevenstar" class="block text-stone/80 py-1 pl-3 text-sm">Seven Star Park</a>
+      <a href="#attraction-yangshuo" class="block text-stone/80 py-1 pl-3 text-sm">Yangshuo</a>
+      <a href="#attraction-longji" class="block text-stone/80 py-1 pl-3 text-sm">Longji Terraces</a>
+      <a href="#attraction-tworivers" class="block text-stone/80 py-1 pl-3 text-sm">Two Rivers &amp; Four Lakes</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">3. Experience</p>
+      <a href="#exp-liriver" class="block text-stone/80 py-1 pl-3 text-sm">Li River Cruise</a>
+      <a href="#exp-cycling" class="block text-stone/80 py-1 pl-3 text-sm">Countryside Cycling</a>
+      <a href="#exp-cormorant" class="block text-stone/80 py-1 pl-3 text-sm">Cormorant Fishing</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">4. Things to do &amp; Tour</p>
+      <a href="#tour-ranking" class="block text-stone/80 py-1 pl-3 text-sm">Top 8 Must-See Spots</a>
+      <a href="#tour-day" class="block text-stone/80 py-1 pl-3 text-sm">Day Tours</a>
+      <a href="#tour-private-card" class="block text-stone/80 py-1 pl-3 text-sm">Private Tours</a>
+      <a href="#tour-vip-card" class="block text-stone/80 py-1 pl-3 text-sm">VIP Tours</a>
+      <a href="#hotel" class="block text-stone font-semibold py-2 pt-3">5. Hotel</a>
+      <a href="#food" class="block text-stone font-semibold py-2">6. Food</a>
+      <a href="#contact" class="block text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</a>
+      <a href="https://wa.me/8618777358302" target="_blank" class="block text-center bg-river text-white font-semibold py-2.5 rounded-full mt-3">WhatsApp Us</a>
     </div>
   </header>
 
-  <!-- ========== MOBILE NAV ========== -->
-  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-  <nav class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
-    <a href="#news">Guilin Guide</a>
-    <a href="#scenic">Top Attractions</a>
-    <a href="#experience">Experiences</a>
-    <a href="#gallery">Gallery</a>
-    <a href="getting-here/">Getting Here</a>
-  </nav>
+  <!-- ============================================================ -->
+  <!-- PAGE SECTIONS — Mind Map Structure: 7 Main Areas               -->
+  <!-- ============================================================ -->
 
-  <!-- ========== HERO ========== -->
-  <section class="hero" id="hero">
-    <div class="hero-slides" id="heroSlides"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content" id="heroContent">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>UNESCO World Heritage · South China Karst</span>
+  <!-- ========== 1. HOME — Hero + Theme Intro + Promo + Links ========== -->
+  <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+    <div class="text-center px-6 max-w-4xl">
+      <p class="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-6 fade-in">Karst Landscape of China</p>
+      <h1 class="font-display text-5xl md:text-7xl text-white leading-tight mb-8 fade-in">
+        Where Mountains<br>&amp; Rivers Become Poetry
+      </h1>
+      <p class="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto mb-10 fade-in">
+        Discover Guilin's legendary karst peaks and the misty Li River — the landscape that inspired a thousand Chinese paintings and the phrase <em>"Guilin's scenery is the best under heaven."</em> Experience it with the local team that knows every bend of the river.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+        <a href="#tour" class="bg-gold hover:bg-gold-dark text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 text-lg">
+          Explore Tours →
+        </a>
+        <a href="#attraction" class="border-2 border-white/60 hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 text-lg">
+          See Attractions →
+        </a>
       </div>
-      <h1 class="hero-title" id="heroTitle">Visit Guilin</h1>
-      <p class="hero-desc" id="heroDesc">Guilin's scenery is the finest under heaven. Discover karst mountains, the legendary Li River, ancient caves, and authentic Chinese culture.</p>
     </div>
-    <div class="hero-dots" id="heroDots"></div>
-    <button class="hero-nav prev" aria-label="Previous slide">&#8249;</button>
-    <button class="hero-nav next" aria-label="Next slide">&#8250;</button>
-    <button class="hero-pause" aria-label="Pause autoplay">&#9208;</button>
-  </section>
-
-  <!-- ========== INFO BAR ========== -->
-  <section class="info-bar">
-    <div class="info-inner">
-      <div class="info-item">
-        <div class="info-icon">🎫</div>
-        <div>
-          <div class="info-label">Starting From</div>
-          <div class="info-value">¥200 / Day</div>
-        </div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🕐</div>
-        <div>
-          <div class="info-label">Opening Hours</div>
-          <div class="info-value">08:00 – 17:30</div>
-        </div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Location</div>
-          <div class="info-value">Guilin, Guangxi, China</div>
-        </div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">📧</div>
-        <div>
-          <div class="info-label">Contact</div>
-          <div class="info-value"><a href="mailto:info@myguilin.com" class="info-email">info@myguilin.com</a></div>
-        </div>
-      </div>
+    <!-- Video placeholder note -->
+    <p class="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest fade-in">🎬 PROMO VIDEO COMING SOON</p>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg width="30" height="30" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24" class="opacity-60"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </section>
 
-  <!-- ========== NEWS ========== -->
-  <section class="section" id="news">
-    <div class="section-header">
-      <div class="section-tag">GUILIN GUIDE</div>
-        <h2 class="section-title">Everything You Need to Know</h2>
-        <p class="section-desc">Essential information about visiting Guilin — from UNESCO recognition to travel tips</p>
-    </div>
-    <div class="news-carousel-wrapper" id="newsCarouselWrapper">
-      <div class="news-carousel" id="newsCarousel"></div>
-      <button class="news-carousel-nav prev" id="newsCarouselPrev" aria-label="Previous slide">&#8249;</button>
-      <button class="news-carousel-nav next" id="newsCarouselNext" aria-label="Next slide">&#8250;</button>
-      <div class="news-carousel-progress" id="newsCarouselProgress"></div>
-    </div>
-    <div class="news-carousel-dots" id="newsCarouselDots"></div>
-  </section>
-
-  <!-- ========== SCENIC ========== -->
-  <section id="scenic">
-    <div class="scenic-inner">
-      <div class="section-header">
-        <div class="section-tag">TOP ATTRACTIONS</div>
-        <h2 class="section-title">Must-See in Guilin</h2>
-        <p class="section-desc">From iconic hills to underground caves — nature's masterpieces await you</p>
-      </div>
-      <div class="scenic-grid" id="scenicGrid"></div>
-      <button class="scenic-nav prev" id="scenicNavPrev" aria-label="Previous page">&#8249;</button>
-      <button class="scenic-nav next" id="scenicNavNext" aria-label="Next page">&#8250;</button>
-      <div class="pagination-container" id="scenicPagination"></div>
+  <!-- Quick stats bar (under Hero) -->
+  <section class="bg-river py-8 border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div><p class="font-display text-3xl text-gold">2,000+</p><p class="text-white/60 text-sm mt-1">Years of Fame</p></div>
+      <div><p class="font-display text-3xl text-gold">7</p><p class="text-white/60 text-sm mt-1">Signature Attractions</p></div>
+      <div><p class="font-display text-3xl text-gold">83 km</p><p class="text-white/60 text-sm mt-1">Li River Scenic Stretch</p></div>
+      <div><p class="font-display text-3xl text-gold">100K+</p><p class="text-white/60 text-sm mt-1">Guests / Year</p></div>
     </div>
   </section>
 
-  <!-- ========== EXPERIENCE ========== -->
-  <section class="section" id="experience">
-    <div class="section-header">
-        <div class="section-tag">EXPERIENCES</div>
-        <h2 class="section-title">Things to Do</h2>
-        <p class="section-desc">Explore Guilin in unique and memorable ways</p>
+  <!-- Home intro block (主题介绍) -->
+  <section class="py-20 px-6 bg-white">
+    <div class="max-w-4xl mx-auto text-center fade-in">
+      <h2 class="font-display text-3xl md:text-4xl text-river mb-6">Welcome to Guilin</h2>
+      <p class="text-stone/70 leading-relaxed text-lg mb-6">
+        <strong class="text-river">Guilin</strong>, in Guangxi Zhuang Autonomous Region, is celebrated for the most beautiful landscapes in China. Its emerald karst peaks, the meandering <strong class="text-river">Li River</strong>, and misty terraced fields have inspired poets and painters for over a thousand years — immortalized in the saying <em>"桂林山水甲天下"</em> (Guilin's scenery is the best under heaven).
+      </p>
+      <p class="text-stone/70 leading-relaxed text-base mb-8">
+        As Guilin's <strong class="text-river">#1 inbound travel team</strong>, we've partnered with 100+ hotels and local agencies across the region, welcoming over 100,000 international visitors each year. Whether you seek nature, slow travel, or cultural immersion — we craft experiences that match your pace.
+      </p>
+      <!-- Quick links (链接 link) -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="#attraction" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🏔️ Attractions →</a>
+        <a href="#experience" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🎒 Experiences →</a>
+        <a href="#tour" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🗺️ Tours →</a>
+        <a href="#hotel" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🏨 Hotels →</a>
+        <a href="#food" class="px-5 py-2 bg-sand hover:bg-sand-dark rounded-full text-sm font-medium text-river transition-colors">🍜 Food →</a>
+        <a href="#contact" class="px-5 py-2 bg-river hover:bg-river-light text-white rounded-full text-sm font-medium transition-colors">💬 Contact Us →</a>
+      </div>
     </div>
-    <div class="exp-grid" id="expGrid"></div>
   </section>
 
-  <!-- ========== GALLERY ========== -->
-  <section id="gallery">
-    <div class="gallery-inner">
-      <div class="section-header">
-        <div class="section-tag">GALLERY</div>
-        <h2 class="section-title">Photo Gallery</h2>
-        <p class="section-desc">Capturing the breathtaking beauty of Guilin</p>
+  <!-- ========== 2. ATTRACTION — 7 Scenic Spots =========================== -->
+  <section id="attraction" class="py-24 px-6 bg-sand">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Explore</p>
+        <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Top Attractions in Guilin</h2>
+        <p class="text-stone/70 text-lg max-w-2xl mx-auto">Seven must-see destinations — from the iconic Elephant Trunk Hill to the mirror-like Longji terraces.</p>
       </div>
-      <div class="gallery-masonry" id="galleryMasonry"></div>
-    </div>
-  </section>
 
-  <!-- ========== TRANSPORT ========== -->
-  <section class="section" id="transport">
-      <div class="section-header">
-        <div class="section-tag">TRANSPORT</div>
-        <h2 class="section-title">Getting Here</h2>
-        <p class="section-desc">Multiple ways to reach Guilin from anywhere in the world</p>
-      </div>
-    <div class="transport-layout">
-      <div class="transport-map">
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=110.17%2C25.15%2C110.42%2C25.35&amp;layer=mapnik&amp;marker=25.2744%2C110.299"
-          style="width:100%;height:100%;border:none;"
-          loading="lazy"
-          title="Guilin location map"
-        ></iframe>
-        <div style="position:absolute;bottom:12px;right:12px;">
-          <a href="getting-here/" style="display:inline-block;padding:8px 16px;background:rgba(255,255,255,0.95);border-radius:8px;text-decoration:none;font-size:13px;font-weight:500;color:#2d7aa0;box-shadow:0 2px 8px rgba(0,0,0,0.12);">View detailed map →</a>
-        </div>
-      </div>
-      <div class="transport-ways">
-        <div class="transport-card">
-          <div class="transport-icon">✈️</div>
-          <div>
-            <h4 class="transport-title">By Plane</h4>
-            <p class="transport-desc">Guilin Liangjiang International Airport (KWL), with flights to major Chinese cities and international hubs.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <!-- 1. Elephant Trunk Hill -->
+        <div id="attraction-elephant" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-elephant.jpg" alt="Elephant Trunk Hill" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-river/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">City Icon</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Elephant Trunk Hill</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">The symbol of Guilin — a limestone hill shaped like an elephant dipping its trunk into the Li River. Most magical at sunrise when morning mist rises from the water.</p>
           </div>
         </div>
-        <div class="transport-card">
-          <div class="transport-icon">🚄</div>
-          <div>
-            <h4 class="transport-title">By Train (High-Speed)</h4>
-            <p class="transport-desc">Guilin Station, North Station & West Station on the high-speed rail network. ~2.5 hrs from Guangzhou.</p>
+
+        <!-- 2. Li River -->
+        <div id="attraction-liriver" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-liriver.jpg" alt="Li River" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-gold/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">The Crown Jewel</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Li River (漓江)</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">An 83 km ribbon of jade-green water between Guilin and Yangshuo, lined with surreal karst peaks. The cruise past the "20-yuan" viewpoint is the most photographed scene in China.</p>
           </div>
         </div>
-        <div class="transport-card">
-          <div class="transport-icon">🚌</div>
-          <div>
-            <h4 class="transport-title">By Bus</h4>
-            <p class="transport-desc">Long-distance buses connect Guilin to Yangshuo (~1.5 hrs), Longji Terraces, and nearby cities.</p>
+
+        <!-- 3. Reed Flute Cave -->
+        <div id="attraction-reedflute" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-reedflute.jpg" alt="Reed Flute Cave" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-purple-700/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">Underground Wonder</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Reed Flute Cave</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">A 180-million-year-old limestone cave filled with multicolored stalactites, stone pillars, and an underground lake — dramatically lit to feel like a natural palace.</p>
           </div>
         </div>
-        <div class="transport-card">
-          <div class="transport-icon">🚗</div>
-          <div>
-            <h4 class="transport-title">By Car / Taxi</h4>
-            <p class="transport-desc">Well-connected highway network. Taxis and ride-sharing apps widely available throughout the city.</p>
+
+        <!-- 4. Yangshuo & West Street -->
+        <div id="attraction-yangshuo" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-yangshuo.jpg" alt="Yangshuo West Street" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-emerald-600/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">Vibrant Town</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Yangshuo &amp; West Street</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">A laid-back riverside town wrapped in peaks. West Street blends cafes, bars, and local life — the backpacker heart of Guilin and gateway to the countryside.</p>
           </div>
         </div>
+
+        <!-- 5. Longji Rice Terraces -->
+        <div id="attraction-longji" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-longji.jpg" alt="Longji Rice Terraces" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-orange-500/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">Hidden Gem</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Longji Rice Terraces</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">Zigzag terraces carved into mountain slopes by Zhuang & Yao minorities over 650 years. Mirror-like fields — breathtaking in spring flood and golden autumn.</p>
+          </div>
+        </div>
+
+        <!-- 6. Seven Star Park -->
+        <div id="attraction-sevenstar" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-sevenstar.jpg" alt="Seven Star Park" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-blue-600/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">Family Friendly</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Seven Star Park</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">Guilin's largest city park: karst peaks, the famous Camel Hill, caves, a small zoo, and the elegant Flower Bridge over a lotus pond. Perfect for a relaxed stroll.</p>
+          </div>
+        </div>
+
+        <!-- 7. Two Rivers & Four Lakes -->
+        <div id="attraction-tworivers" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/attraction-tworivers.jpg" alt="Two Rivers and Four Lakes" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3 bg-indigo-600/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">Night View</div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-xl text-river mb-2">Two Rivers &amp; Four Lakes</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">A network of lakes and rivers around the city, best seen on an evening cruise past the illuminated Sun & Moon Pagodas reflected in still water. Pure romance.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="footer-mountains" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 120 L0 80 Q60 55 120 72 Q180 48 240 65 Q300 35 360 52 Q420 25 480 40 Q540 15 600 30 Q660 10 720 25 Q780 5 840 20 Q900 0 960 15 Q1020 0 1080 14 Q1140 2 1200 16 Q1260 5 1320 20 Q1380 8 1440 22 L1440 120 Z" fill="rgba(255,255,255,0.03)"/>
-        <path d="M0 120 L0 92 Q80 70 160 85 Q240 68 320 80 Q400 62 480 73 Q560 56 640 66 Q720 52 800 62 Q880 48 960 57 Q1040 46 1120 54 Q1200 44 1280 52 Q1360 46 1440 51 L1440 120 Z" fill="rgba(255,255,255,0.05)"/>
-        <path d="M0 120 L0 105 Q120 88 240 97 Q360 84 480 91 Q600 80 720 86 Q840 76 960 82 Q1080 74 1200 79 Q1320 74 1440 77 L1440 120 Z" fill="rgba(193,154,107,0.08)"/>
-      </svg>
-    </div>
-
-    <div class="footer-inner">
-      <div class="footer-hero">
-        <div class="footer-hero-line"></div>
-        <h2 class="footer-tagline">Guilin's Scenery is Best Under Heaven</h2>
-        <p class="footer-tagline-sub">桂林山水甲天下 — Discover the wonder</p>
-        <div class="footer-hero-line"></div>
+  <!-- ========== 3. EXPERIENCE — 3 Types ============================== -->
+  <section id="experience" class="py-24 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Immerse Yourself</p>
+        <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Experiences You Can't Miss</h2>
+        <p class="text-stone/70 text-lg max-w-2xl mx-auto">Three ways to connect with Guilin's soul — choose yours.</p>
       </div>
 
-      <div class="footer-main">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <div class="logo-icon">🏔️</div>
-            <div class="logo-text">
-              <span class="logo-cn">Visit Guilin</span>
-              <span class="logo-en">MY GUILIN</span>
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Li River Cruise -->
+        <div id="exp-liriver" class="group relative min-h-[420px] rounded-3xl overflow-hidden shadow-lg fade-in">
+          <img src="images/exp-liriver.jpg" alt="Li River Cruise Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-river via-river/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full mb-3">NATURE LOVER</span>
+            <h3 class="font-display text-3xl mb-3">Li River Cruise</h3>
+            <p class="text-white/85 text-sm leading-relaxed mb-4">Board a comfortable cruise from Guilin to Yangshuo, drifting past the legendary peaks and the famous "20-yuan" landscape. The single most iconic Guilin experience.</p>
+            <ul class="text-white/75 text-sm space-y-1">
+              <li>☀️ Morning mist on the river</li>
+              <li>🚢 4-hour scenic cruise</li>
+              <li>📸 The "20-yuan viewpoint" photo</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Countryside Cycling -->
+        <div id="exp-cycling" class="group relative min-h-[420px] rounded-3xl overflow-hidden shadow-lg fade-in">
+          <img src="images/exp-cycling.jpg" alt="Countryside Cycling Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-emerald-900 via-emerald-900/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <span class="inline-block bg-emerald-400/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full mb-3">ACTIVE</span>
+            <h3 class="font-display text-3xl mb-3">Countryside Cycling</h3>
+            <p class="text-white/85 text-sm leading-relaxed mb-4">Pedal through emerald rice fields and under towering peaks on flat country roads around Yangshuo. The most romantic, free-spirited way to feel Guilin's countryside.</p>
+            <ul class="text-white/75 text-sm space-y-1">
+              <li>🚲 Flat riverside bike trails</li>
+              <li>🌾 Yulong River bamboo raft add-on</li>
+              <li>🏞️ Moon Hill &amp; Big Banyan Tree</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Cormorant Fishing -->
+        <div id="exp-cormorant" class="group relative min-h-[420px] rounded-3xl overflow-hidden shadow-lg fade-in">
+          <img src="images/exp-cormorant.jpg" alt="Cormorant Fishing Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-amber-900 via-amber-900/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <span class="inline-block bg-amber-400/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full mb-3">CULTURE</span>
+            <h3 class="font-display text-3xl mb-3">Cormorant Fishing</h3>
+            <p class="text-white/85 text-sm leading-relaxed mb-4">Watch fishermen and their trained cormorants catch fish by firelight on the Li River at dusk — a centuries-old tradition and the shot on every Guilin postcard.</p>
+            <ul class="text-white/75 text-sm space-y-1">
+              <li>🐦 Trained cormorant birds</li>
+              <li>🔥 Evening firelight scene</li>
+              <li>📷 Iconic postcard photo</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. THINGS TO DO & TOUR ================================== -->
+  <section id="tour" class="py-24 px-6 bg-sand">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Sub-section: Top 8 Ranking -->
+      <div id="tour-ranking" class="mb-24">
+        <div class="text-center mb-12 fade-in">
+          <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Don't Miss These</p>
+          <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Top 8 Must-See Spots</h2>
+          <p class="text-stone/70 text-lg max-w-2xl mx-auto">Ranked by popularity among our 100K+ guests.</p>
+        </div>
+        <div class="overflow-x-auto fade-in">
+          <table class="compare-table rounded-xl overflow-hidden shadow-sm">
+            <thead><tr><th>#</th><th>Spot</th><th>Highlight</th><th>Time</th><th>Vibe</th></tr></thead>
+            <tbody>
+              <tr><td class="font-bold text-gold-dark">1</td><td class="font-semibold text-river">Li River Cruise</td><td>Karst panorama, 20-yuan view</td><td>4 hrs</td><td>🏞️ Epic</td></tr>
+              <tr><td class="font-bold text-gold-dark">2</td><td class="font-semibold text-river">Elephant Trunk Hill</td><td>City symbol, riverside</td><td>1–2 hrs</td><td>🐘 Iconic</td></tr>
+              <tr><td class="font-bold text-gold-dark">3</td><td class="font-semibold text-river">Yangshuo West Street</td><td>Cafes, bars, nightlife</td><td>2–3 hrs</td><td>🎉 Lively</td></tr>
+              <tr><td class="font-bold text-gold-dark">4</td><td class="font-semibold text-river">Longji Terraces</td><td>Mirror rice fields</td><td>Half day</td><td>🌾 Breathtaking</td></tr>
+              <tr><td class="font-bold text-gold-dark">5</td><td class="font-semibold text-river">Reed Flute Cave</td><td>Lit stalactites, lake</td><td>1–2 hrs</td><td>🪨 Mystical</td></tr>
+              <tr><td class="font-bold text-gold-dark">6</td><td class="font-semibold text-river">Yulong River Raft</td><td>Bamboo rafting, countryside</td><td>2 hrs</td><td>🚣 Serene</td></tr>
+              <tr><td class="font-bold text-gold-dark">7</td><td class="font-semibold text-river">Two Rivers Night Cruise</td><td>City lights, pagodas</td><td>1–2 hrs</td><td>🌉 Romantic</td></tr>
+              <tr><td class="font-bold text-gold-dark">8</td><td class="font-semibold text-river">Seven Star Park</td><td>Caves, Camel Hill</td><td>2–3 hrs</td><td>⭐ Family</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sub-section: Day / Private / VIP Tours -->
+      <div id="tour-day">
+        <div class="text-center mb-12 fade-in">
+          <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Choose Your Style</p>
+          <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Tour Packages</h2>
+        </div>
+
+        <!-- Tour type tabs/cards -->
+        <div class="grid lg:grid-cols-3 gap-8">
+
+          <!-- Day Tour -->
+          <div id="tour-day-card" class="bg-white rounded-2xl p-8 shadow-sm card-hover fade-in">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 bg-sand rounded-full flex items-center justify-center text-2xl">📅</div>
+              <div><h3 class="font-display text-2xl text-river">Day Tour</h3><p class="text-stone/50 text-sm">One-day highlights</p></div>
             </div>
+            <p class="text-stone/70 text-sm mb-4">Perfect if you're short on time. Hit the biggest sights in one action-packed day with a private guide and driver.</p>
+            <ul class="text-stone/60 text-sm space-y-2 mb-6">
+              <li>✓ Li River cruise (Guilin–Yangshuo)</li>
+              <li>✓ Yangshuo West Street stroll</li>
+              <li>✓ Elephant Trunk Hill photo stop</li>
+              <li>✓ Private car + English guide</li>
+              <li>✓ Hotel pickup &amp; drop-off</li>
+            </ul>
+            <p class="font-display text-2xl text-river mb-1">From <span class="text-gold">$99</span>/person</p>
+            <a href="#contact" class="mt-4 inline-block w-full text-center bg-river hover:bg-river-light text-white font-semibold py-3 rounded-full transition-colors">Inquire Now →</a>
           </div>
-          <p class="footer-desc">Your official travel guide to one of China's most beautiful destinations. UNESCO World Heritage Site, featured on China's 20 yuan banknote, and home to the world-famous Li River cruise.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="WeChat" title="WeChat">💬</a>
-            <a href="#" aria-label="Instagram" title="Instagram">📷</a>
-            <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
-          </div>
-        </div>
 
-        <div class="footer-contact-card">
-          <div class="footer-contact-item">
-            <span class="footer-contact-icon">📍</span>
-            <span class="footer-contact-text">Guilin City<br>Guangxi Zhuang Autonomous Region, China</span>
+          <!-- Private Tour -->
+          <div id="tour-private-card" class="bg-white rounded-2xl p-8 shadow-sm card-hover fade-in ring-2 ring-gold/30">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-2xl">🎒</div>
+              <div><h3 class="font-display text-2xl text-river">Private Tour</h3><p class="text-gold-dark text-sm font-medium">Most Popular ★</p></div>
+            </div>
+            <p class="text-stone/70 text-sm mb-4">Fully customized to your pace and interests. Your own guide, car, and flexible itinerary. The way 90% of our guests travel.</p>
+            <ul class="text-stone/60 text-sm space-y-2 mb-6">
+              <li>✓ Customizable 3–7 day itinerary</li>
+              <li>✓ Private English-speaking guide</li>
+              <li>✓ Private vehicle throughout</li>
+              <li>✓ 4★ hotel accommodation</li>
+              <li>✓ All entrance tickets included</li>
+            </ul>
+            <p class="font-display text-2xl text-river mb-1">From <span class="text-gold">$499</span>/person</p>
+            <a href="#contact" class="mt-4 inline-block w-full text-center bg-gold hover:bg-gold-dark text-white font-semibold py-3 rounded-full transition-colors">Inquire Now →</a>
           </div>
-          <div class="footer-contact-item">
-            <span class="footer-contact-icon">📧</span>
-            <a href="mailto:info@myguilin.com" class="footer-contact-text footer-contact-link">info@myguilin.com</a>
-          </div>
-        </div>
 
-        <div class="footer-quick">
-          <h4>Quick Links</h4>
-          <nav class="footer-quick-nav">
-            <a href="#news">Guilin Guide</a>
-            <a href="#scenic">Top Attractions</a>
-            <a href="#experience">Experiences</a>
-            <a href="#gallery">Gallery</a>
-            <a href="getting-here/">Getting Here</a>
-          </nav>
+          <!-- VIP Tour -->
+          <div id="tour-vip-card" class="bg-white rounded-2xl p-8 shadow-sm card-hover fade-in">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 bg-river/10 rounded-full flex items-center justify-center text-2xl">💎</div>
+              <div><h3 class="font-display text-2xl text-river">VIP Tour</h3><p class="text-stone/50 text-sm">Ultimate experience</p></div>
+            </div>
+            <p class="text-stone/70 text-sm mb-4">Skip every line, enjoy premium hotels, exclusive access spots, and white-glove service. For travelers who want only the best.</p>
+            <ul class="text-stone/60 text-sm space-y-2 mb-6">
+              <li>✓ Fast-track entry (skip lines)</li>
+              <li>✓ 5★ luxury hotel suite</li>
+              <li>✓ Premium dining experiences</li>
+              <li>✓ Longji terraces helicopter option</li>
+              <li>✓ Personal concierge 24/7</li>
+            </ul>
+            <p class="font-display text-2xl text-river mb-1">From <span class="text-gold">$1,599</span>/person</p>
+            <a href="#contact" class="mt-4 inline-block w-full text-center bg-river hover:bg-river-light text-white font-semibold py-3 rounded-full transition-colors">Inquire Now →</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Visit Guilin — myguilin.com</p>
+    </div>
+  </section>
+
+  <!-- ========== 5. HOTEL ================================================= -->
+  <section id="hotel" class="py-24 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Where to Stay</p>
+        <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Partner Hotels</h2>
+        <p class="text-stone/70 text-lg max-w-2xl mx-auto">We work with 100+ hotels across Guilin and Yangshuo — from riverside boutiques to mountain eco-lodges. Tell us your preference, we'll book the best rate.</p>
+      </div>
+
+      <!-- Hotel categories -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-hover bg-sand rounded-2xl p-8 text-center fade-in">
+          <div class="text-4xl mb-4">🏞️</div>
+          <h3 class="font-display text-xl text-river mb-2">Yangshuo Riverside</h3>
+          <p class="text-stone/60 text-sm mb-4">Wake up to karst peaks and the Yulong River. Boutique hotels and guesthouses nestled in Yangshuo's countryside — the most scenic base.</p>
+          <p class="text-gold-dark font-medium text-sm">From $70 / night</p>
+        </div>
+        <div class="card-hover bg-sand rounded-2xl p-8 text-center fade-in">
+          <div class="text-4xl mb-4">🏙️</div>
+          <h3 class="font-display text-xl text-river mb-2">Guilin City Center</h3>
+          <p class="text-stone/60 text-sm mb-4">Full-service hotels downtown, steps from the Li River and Two Rivers night cruise. Easy access to restaurants, shopping, and transit.</p>
+          <p class="text-gold-dark font-medium text-sm">From $45 / night</p>
+        </div>
+        <div class="card-hover bg-sand rounded-2xl p-8 text-center fade-in">
+          <div class="text-4xl mb-4">🌾</div>
+          <h3 class="font-display text-xl text-river mb-2">Longji Eco-Lodges</h3>
+          <p class="text-stone/60 text-sm mb-4">Sustainable stays inside Zhuang & Yao villages. Wooden terrace-view rooms, farm-to-table meals, and genuine minority hospitality.</p>
+          <p class="text-gold-dark font-medium text-sm">From $55 / night</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-in">
+        <p class="text-stone/50 text-sm mb-3">Not sure which hotel fits? We'll recommend based on your itinerary — <strong class="text-river">just message us on WhatsApp</strong>.</p>
+        <a href="#contact" class="inline-block border-2 border-river text-river hover:bg-river hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300">Get Hotel Recommendations →</a>
       </div>
     </div>
+  </section>
 
-    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+  <!-- ========== 6. FOOD ==================================================== -->
+  <section id="food" class="py-24 px-6 bg-sand">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Taste Guilin</p>
+        <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Local Food & Cuisine</h2>
+        <p class="text-stone/70 text-lg max-w-2xl mx-auto">Guilin sits in Guangxi, home to a cuisine all its own — rice noodles, river fish, taro, and the fragrance of sweet osmanthus. Bold, fresh, and unforgettable.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover fade-in text-center">
+          <div class="text-3xl mb-3">🍜</div>
+          <h3 class="font-display text-lg text-river mb-2">Guilin Rice Noodles</h3>
+          <p class="text-stone/60 text-sm">桂林米粉 — the city's beloved breakfast: silky rice noodles in savory broth with crispy pork and pickles. Eat it standing at a street stall like a local.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover fade-in text-center">
+          <div class="text-3xl mb-3">🐟</div>
+          <h3 class="font-display text-lg text-river mb-2">Yangshuo Beer Fish</h3>
+          <p class="text-stone/60 text-sm">啤酒鱼 — fresh Li River fish braised in local beer with tomatoes and peppers. Yangshuo's signature dish, sweet, tangy, and rich.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover fade-in text-center">
+          <div class="text-3xl mb-3">🍲</div>
+          <h3 class="font-display text-lg text-river mb-2">Lipu Taro & Pork</h3>
+          <p class="text-stone/60 text-sm">荔浦芋扣肉 — steamed taro and pork belly layered into a melt-in-the-mouth casserole. A festive Guangxi classic you won't find elsewhere.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm card-hover fade-in text-center">
+          <div class="text-3xl mb-3">🌼</div>
+          <h3 class="font-display text-lg text-river mb-2">Osmanthus Sweets</h3>
+          <p class="text-stone/60 text-sm">桂花 — Guilin's city flower. Try osmanthus tea, sweet wine, and lotus-root candy, fragrant with the scent of golden autumn blossoms.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-river text-white rounded-2xl p-8 text-center fade-in">
+        <p class="text-white/80 mb-3">Dietary requirements? Vegetarian, halal, allergy-friendly — just let us know when booking your tour. We'll arrange everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. CONTACT US ============================================= -->
+  <section id="contact" class="py-24 px-6 bg-white">
+    <div class="max-w-4xl mx-auto text-center fade-in">
+      <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Let's Plan Together</p>
+      <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Ready for Your Guilin Adventure?</h2>
+      <p class="text-stone/70 text-lg mb-10 max-w-2xl mx-auto">
+        Send us a message on WhatsApp or email. We'll reply within 24 hours with a personalized itinerary — no obligation, no pressure, no spam ever.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="https://wa.me/8618777358302" target="_blank" class="flex items-center justify-center gap-3 bg-river hover:bg-river-light text-white font-semibold px-10 py-4 rounded-full transition-all duration-300 text-lg">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp: +86 187 7735 8302
+        </a>
+        <a href="mailto:willyumi2026@outlook.com" class="flex items-center justify-center gap-3 bg-white border-2 border-river text-river hover:bg-river hover:text-white font-semibold px-10 py-4 rounded-full transition-all duration-300 text-lg">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email: willyumi2026@outlook.com
+        </a>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center text-stone/60 text-sm">
+        <div class="flex items-center gap-2"><span class="text-gold-dark">✓</span> Reply within 24 hours</div>
+        <div class="flex items-center gap-2"><span class="text-gold-dark">✓</span> Free personalized itinerary</div>
+        <div class="flex items-center gap-2"><span class="text-gold-dark">✓</span> No obligation, no spam</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="bg-river text-white/70 py-12 px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-10">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">⛰</span>
+            <span class="font-display text-lg text-white">Visit Guilin</span>
+          </div>
+          <p class="text-sm leading-relaxed">
+            Your trusted local partner for exploring the Li River karst landscape.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-medium text-sm mb-4 uppercase tracking-wide">Explore</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#attraction" class="hover:text-gold transition-colors">Attractions</a></li>
+            <li><a href="#experience" class="hover:text-gold transition-colors">Experiences</a></li>
+            <li><a href="#tour" class="hover:text-gold transition-colors">Tours &amp; Itineraries</a></li>
+            <li><a href="#hotel" class="hover:text-gold transition-colors">Hotels</a></li>
+            <li><a href="#food" class="hover:text-gold transition-colors">Local Food</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-medium text-sm mb-4 uppercase tracking-wide">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li>WhatsApp: +86 187 7735 8302</li>
+            <li>Email: willyumi2026@outlook.com</li>
+            <li>Reply within 24 hours</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-medium text-sm mb-4 uppercase tracking-wide">Follow</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-gold rounded-full flex items-center justify-center transition-colors">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" class="text-white"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-gold rounded-full flex items-center justify-center transition-colors">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" class="text-white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-gold rounded-full flex items-center justify-center transition-colors">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" class="text-white"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-sm text-white/40">
+        <p>&copy; 2026 Visit Guilin. All rights reserved.</p>
+        <p class="mt-1">Guilin, Guangxi Zhuang Autonomous Region &bull; Li River Karst Landscape, China</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- ========== LIGHTBOX ========== -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">‹</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery image">
-    <button class="lightbox-nav lightbox-next" onclick="lightboxNext()">›</button>
-  </div>
-
-  <!-- ========== JavaScript ========== -->
-  <script defer>
-    /* ========== APP STATE ========== */
-    var AppState = { scenicPage: 1, heroSlider: null, currentSlide: 0, heroAutoplay: true };
-    var ScenicCarouselState = { timer: null, delay: 5000, isPaused: false, touchStartX: 0, touchEndX: 0 };
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      var div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
+  <!-- ========== Scripts ========== -->
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
     }
 
-    /* ========== DATA LOADING ========== */
-    var newsData = [], heroData = { slides: [] }, siteConfig = {};
-
-    function loadData() {
-      var v = '20260708';
-      return Promise.all([
-        fetch('data/news.json?v=' + v).then(function(r) { return r.json(); }).then(function(d) { newsData = d; }).catch(function(e) { console.error('news.json:', e); }),
-        fetch('data/scenic.json?v=' + v).then(function(r) { return r.json(); }).then(function(d) { scenicData = d; }).catch(function(e) { console.error('scenic.json:', e); }),
-        fetch('data/experience.json?v=' + v).then(function(r) { return r.json(); }).then(function(d) { expData = d; }).catch(function(e) { console.error('experience.json:', e); }),
-        fetch('data/gallery.json?v=' + v).then(function(r) { return r.json(); }).then(function(d) { galleryData = d; }).catch(function(e) { console.error('gallery.json:', e); }),
-        fetch('data/hero.json?v=' + v).then(function(r) { return r.json(); }).then(function(d) { heroData = d; }).catch(function(e) { console.error('hero.json:', e); }),
-        fetch('data/site-config.json?v=' + v).then(function(r) { return r.json(); }).then(function(d) { siteConfig = d; }).catch(function(e) { console.error('site-config.json:', e); })
-      ]);
-    }
-
-    /* ========== NEWS CAROUSEL STATE ========== */
-    var NewsCarouselState = { currentSlide: 0, totalSlides: 0, autoplayTimer: null, progressTimer: null, autoplayDelay: 5000, isPaused: false, touchStartX: 0, touchEndX: 0 };
-
-    /* ========== HERO RENDER ========== */
-    function renderHero() {
-      var container = document.getElementById('heroSlides'), dotsContainer = document.getElementById('heroDots');
-      if (!container || !dotsContainer) return;
-      var slides = heroData.slides || [];
-      if (slides.length === 0) return;
-      container.innerHTML = slides.map(function(s, i) {
-        var mdSrc = wp((s.img || '').replace('assets/images/', 'assets/images/md/'));
-        return '<div class="hero-slide ' + (i === 0 ? 'active' : '') + '">' +
-          '<div class="hero-slide-bg" style="background-image:url(\'' + mdSrc + '\')" data-full="' + wp(s.img || '') + '"></div>' +
-          '</div>';
-      }).join('');
-      dotsContainer.innerHTML = slides.map(function(s, i) {
-        return '<button class="hero-dot ' + (i === 0 ? 'active' : '') + '" data-slide="' + i + '"></button>';
-      }).join('');
-      updateHeroText(0);
-      AppState.currentSlide = 0;
-      setTimeout(function() {
-        var allBgs = container.querySelectorAll('.hero-slide-bg[data-full]');
-        allBgs.forEach(function(bg) {
-          var fullSrc = bg.dataset.full;
-          if (fullSrc) { var preloader = new Image(); preloader.onload = function() { bg.style.backgroundImage = 'url(\'' + fullSrc + '\')'; }; preloader.src = fullSrc; }
-        });
-      }, 2000);
-    }
-
-    function updateHeroText(index) {
-      var slides = heroData.slides || [];
-      if (!slides[index]) return;
-      var s = slides[index];
-      var titleEl = document.getElementById('heroTitle');
-      var descEl = document.getElementById('heroDesc');
-      if (titleEl) titleEl.textContent = s.title || 'Visit Guilin';
-      if (descEl) descEl.textContent = s.subtitle || "Guilin's scenery is the finest under heaven.";
-    }
-
-    /* ========== NEWS CAROUSEL ========== */
-    function renderNewsCarousel(resetSlide) {
-      if (resetSlide === undefined) resetSlide = true;
-      var carousel = document.getElementById('newsCarousel'), dotsContainer = document.getElementById('newsCarouselDots');
-      if (!carousel || !dotsContainer) return;
-      if (!newsData || newsData.length === 0) { NewsCarouselState.totalSlides = 0; carousel.innerHTML = ''; dotsContainer.innerHTML = ''; stopNewsAutoplay(); return; }
-      var cardsPerSlide = window.innerWidth < 768 ? 1 : (window.innerWidth <= 1024 ? 2 : 3);
-      var totalSlides = Math.ceil(newsData.length / cardsPerSlide);
-      NewsCarouselState.totalSlides = totalSlides;
-      if (resetSlide) NewsCarouselState.currentSlide = 0;
-      var html = '';
-      for (var i = 0; i < totalSlides; i++) {
-        html += '<div class="news-carousel-slide">';
-        var startIdx = i * cardsPerSlide, endIdx = Math.min(startIdx + cardsPerSlide, newsData.length);
-        for (var j = startIdx; j < endIdx; j++) {
-          var item = newsData[j];
-          html += '<a href="news-detail.html?id=' + j + '" class="news-carousel-card">';
-          var newsImgSrc = window.innerWidth < 768 ? item.img.replace('assets/images/','assets/images/thumb/') : item.img.replace('assets/images/','assets/images/md/');
-          html += '<div class="news-carousel-img" style="background-image: url(\'' + encodeURI(escapeHtml(newsImgSrc)) + '\')">';
-          html += '<div class="news-date"><div class="news-date-day">' + escapeHtml(item.date.day) + '</div><div>' + escapeHtml(item.date.month) + '</div></div>';
-          html += '<div class="news-tag">' + escapeHtml(item.tag.toUpperCase()) + '</div></div>';
-          html += '<div class="news-carousel-body"><h3 class="news-carousel-title">' + escapeHtml(item.titleEn) + '</h3>';
-          html += '<p class="news-carousel-text">' + escapeHtml(item.descEn) + '</p></div></a>';
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-        html += '</div>';
-      }
-      carousel.innerHTML = html;
-      dotsContainer.innerHTML = '';
-      for (var k = 0; k < totalSlides; k++) dotsContainer.innerHTML += '<button class="news-carousel-dot' + (k === 0 ? ' active' : '') + '" data-slide="' + k + '" aria-label="Go to slide ' + (k+1) + '"></button>';
-      stopNewsAutoplay(); startNewsAutoplay();
-    }
-
-    function goToNewsSlide(index) {
-      if (NewsCarouselState.totalSlides <= 1 || NewsCarouselState.totalSlides === 0) return;
-      var carousel = document.getElementById('newsCarousel'); if (!carousel) return;
-      NewsCarouselState.currentSlide = index;
-      carousel.style.transform = 'translateX(-' + (index * 100) + '%)';
-      document.querySelectorAll('.news-carousel-dot').forEach(function(dot, i) { dot.classList.toggle('active', i === index); });
-      if (!NewsCarouselState.isPaused) { stopNewsAutoplay(); startNewsAutoplay(); }
-    }
-    function nextNewsSlide() { if (NewsCarouselState.totalSlides <= 0) return; goToNewsSlide((NewsCarouselState.currentSlide + 1) % NewsCarouselState.totalSlides); }
-    function prevNewsSlide() { if (NewsCarouselState.totalSlides <= 0) return; goToNewsSlide((NewsCarouselState.currentSlide - 1 + NewsCarouselState.totalSlides) % NewsCarouselState.totalSlides); }
-    function startNewsAutoplay() { stopNewsAutoplay(); NewsCarouselState.autoplayTimer = setInterval(nextNewsSlide, NewsCarouselState.autoplayDelay); startProgressBar(); }
-    function stopNewsAutoplay() { if (NewsCarouselState.autoplayTimer) { clearInterval(NewsCarouselState.autoplayTimer); NewsCarouselState.autoplayTimer = null; } stopProgressBar(); }
-    function startProgressBar() { stopProgressBar(); var progress = document.getElementById('newsCarouselProgress'); if (!progress) return; var startTime = Date.now(); NewsCarouselState.progressTimer = setInterval(function() { if (NewsCarouselState.isPaused) return; var pct = Math.min((Date.now() - startTime) / NewsCarouselState.autoplayDelay * 100, 100); progress.style.width = pct + '%'; }, 50); }
-    function stopProgressBar() { if (NewsCarouselState.progressTimer) { clearInterval(NewsCarouselState.progressTimer); NewsCarouselState.progressTimer = null; } var p = document.getElementById('newsCarouselProgress'); if (p) p.style.width = '0%'; }
-    function pauseNewsCarousel() { NewsCarouselState.isPaused = true; stopNewsAutoplay(); }
-    function resumeNewsCarousel() { NewsCarouselState.isPaused = false; startNewsAutoplay(); }
-    function handleNewsTouchStart(e) { NewsCarouselState.touchStartX = e.touches[0].clientX; pauseNewsCarousel(); }
-    function handleNewsTouchMove(e) { NewsCarouselState.touchEndX = e.touches[0].clientX; }
-    function handleNewsTouchEnd() { if (NewsCarouselState.touchStartX === 0) { resumeNewsCarousel(); return; } var diff = NewsCarouselState.touchStartX - NewsCarouselState.touchEndX; if (diff > 50) nextNewsSlide(); else if (diff < -50) prevNewsSlide(); window._newsSwiped = true; setTimeout(function() { window._newsSwiped = false; }, 500); resumeNewsCarousel(); }
-
-    /* ========== EXPERIENCE ========== */
-    function renderExperience() {
-      var grid = document.getElementById('expGrid'), html = '';
-      expData.forEach(function(item) {
-        var thumb = wp(item.img.replace('assets/images/', 'assets/images/thumb/'));
-        var mid = wp(item.img.replace('assets/images/', 'assets/images/md/'));
-        var full = wp(item.img);
-        html += '<a href="experience-detail.html?id=' + escapeHtml(item.id) + '" class="exp-card">';
-        html += '<div class="exp-img"><img src="' + encodeURI(escapeHtml(thumb)) + '" srcset="' + encodeURI(escapeHtml(thumb)) + ' 400w, ' + encodeURI(escapeHtml(mid)) + ' 1200w, ' + encodeURI(escapeHtml(full)) + ' 2400w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" alt="' + escapeHtml(item.titleEn) + '" loading="lazy" decoding="async" width="400" height="267"></div>';
-        html += '<div class="exp-body"><h4 class="exp-title">' + escapeHtml(item.titleEn) + '</h4><p class="exp-desc">' + escapeHtml(item.descEn) + '</p></div></a>';
       });
-      grid.innerHTML = html;
-    }
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    /* ========== SCENIC ========== */
-    function renderScenic() {
-      try {
-        var container = document.getElementById('scenicGrid'), pagination = document.getElementById('scenicPagination');
-        if (!container || !pagination) return;
-        if (!scenicData || scenicData.length === 0) { container.innerHTML = ''; pagination.innerHTML = ''; stopScenicAutoplay(); return; }
-        var itemsPerPage = 3, totalPages = Math.ceil(scenicData.length / itemsPerPage);
-        var currentPage = AppState.scenicPage || 1;
-        if (currentPage > totalPages) { currentPage = 1; AppState.scenicPage = 1; }
-        var startIdx = (currentPage - 1) * itemsPerPage, endIdx = Math.min(startIdx + itemsPerPage, scenicData.length), pageItems = scenicData.slice(startIdx, endIdx);
-        var html = '';
-        pageItems.forEach(function(item) {
-          if (!item || !item.id) return;
-          html += '<a href="scenic-detail.html?id=' + escapeHtml(item.id) + '" class="scenic-card fade-up">';
-          var scenicImgSrc = window.innerWidth < 768 ? wp(item.img.replace('assets/images/','assets/images/thumb/')) : (window.innerWidth <= 1024 ? wp(item.img.replace('assets/images/','assets/images/md/')) : wp(item.img));
-          html += '<div class="scenic-bg" style="background-image: url(\'' + encodeURI(escapeHtml(scenicImgSrc)) + '\')"></div>';
-          html += '<div class="scenic-overlay"><div class="scenic-tag">' + escapeHtml(item.tag || '') + '</div>';
-          html += '<h3 class="scenic-name">' + escapeHtml(item.name || '') + '</h3>';
-          html += '<p class="scenic-sub">' + escapeHtml(item.subTitle || '') + '</p>';
-          html += '<p class="scenic-desc">' + escapeHtml(item.desc || '') + '</p>';
-          html += '<span class="scenic-link">Explore More →</span></div></a>';
-        });
-        container.innerHTML = html;
-        container.querySelectorAll('.fade-up').forEach(function(el) { el.classList.add('visible'); });
-        var dotsHtml = '';
-        for (var i = 1; i <= totalPages; i++) dotsHtml += '<button class="pagination-dot' + (i === currentPage ? ' active' : '') + '" onclick="goToScenicPage(' + i + ')" aria-label="Page ' + i + '"></button>';
-        pagination.innerHTML = dotsHtml;
-        startScenicAutoplay();
-      } catch(e) { console.error('[renderScenic] ERROR:', e.message); }
-    }
-
-    function goToScenicPage(page) {
-      var totalPages = Math.ceil((scenicData || []).length / 3);
-      if (totalPages <= 0) return;
-      if (page < 1) page = totalPages; if (page > totalPages) page = 1;
-      AppState.scenicPage = page; renderScenic();
-    }
-    function nextScenicPage() { var t = Math.ceil((scenicData||[]).length/3); if(t<=1)return; var n=(AppState.scenicPage||1)+1;if(n>t)n=1;goToScenicPage(n); }
-    function prevScenicPage() { var t=Math.ceil((scenicData||[]).length/3);if(t<=1)return;var p=(AppState.scenicPage||1)-1;if(p<1)p=t;goToScenicPage(p); }
-    function startScenicAutoplay() { stopScenicAutoplay(); var t=Math.ceil((scenicData||[]).length/3);if(t<=1)return; ScenicCarouselState.timer=setInterval(function(){if(!ScenicCarouselState.isPaused)nextScenicPage();},ScenicCarouselState.delay); }
-    function stopScenicAutoplay() {if(ScenicCarouselState.timer){clearInterval(ScenicCarouselState.timer);ScenicCarouselState.timer=null;}}
-
-    /* ========== GALLERY ========== */
-    function renderGallery() {
-      var masonry = document.getElementById('galleryMasonry'), html = '';
-      galleryData.forEach(function(item) {
-        html += '<div class="gallery-item" onclick="openLightbox(' + galleryData.indexOf(item) + ')">';
-        var src = wp(item.img);
-        html += '<img src="' + encodeURI(escapeHtml(src)) + '" alt="' + escapeHtml(item.title || 'Gallery photo') + '" loading="lazy" decoding="async">';
-        html += '<div class="gallery-overlay"><span class="gallery-title">' + escapeHtml(item.title || '') + '</span></div></div>';
-      });
-      masonry.innerHTML = html;
-    }
-
-    /* ========== LIGHTBOX ========== */
-    var lightboxIndex = 0;
-    function openLightbox(idx) {
-      lightboxIndex = idx;
-      var lb = document.getElementById('lightbox'), img = document.getElementById('lightboxImg');
-      if (!lb || !img) return;
-      img.src = encodeURI(wp(galleryData[idx].img));
-      lb.classList.add('open');
-    }
-    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-    function lightboxPrev() { lightboxIndex = (lightboxIndex - 1 + galleryData.length) % galleryData.length; updateLightbox(); }
-    function lightboxNext() { lightboxIndex = (lightboxIndex + 1) % galleryData.length; updateLightbox(); }
-    function updateLightbox() {
-      var img = document.getElementById('lightboxImg');
-      img.classList.add('changing');
-      setTimeout(function() { img.src = encodeURI(wp(galleryData[lightboxIndex].img)); img.classList.remove('changing'); }, 150);
-    }
-
-    /* ========== HEADER SCROLL EFFECT ========== */
-    window.addEventListener('scroll', function() {
-      var header = document.querySelector('.header');
-      if (header) header.classList.toggle('scrolled', window.scrollY > 50);
-      var btn = document.querySelector('.back-to-top');
-      if (btn) btn.classList.toggle('visible', window.scrollY > 500);
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      observer.observe(el);
     });
 
-    /* ========== HERO SLIDER ========== */
-    function nextHeroSlide() {
-      var slides = heroData.slides || []; if (slides.length <= 1) return;
-      AppState.currentSlide = (AppState.currentSlide + 1) % slides.length;
-      updateHeroSlide();
-    }
-    function prevHeroSlide() {
-      var slides = heroData.slides || []; if (slides.length <= 1) return;
-      AppState.currentSlide = (AppState.currentSlide - 1 + slides.length) % slides.length;
-      updateHeroSlide();
-    }
-    function updateHeroSlide() {
-      var all = document.querySelectorAll('.hero-slide'), dots = document.querySelectorAll('.hero-dot');
-      all.forEach(function(s, i) { s.classList.toggle('active', i === AppState.currentSlide); });
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === AppState.currentSlide); });
-      updateHeroText(AppState.currentSlide);
-    }
-    function toggleHeroPause() {
-      AppState.heroAutoplay = !AppState.heroAutoplay;
-      var btn = document.querySelector('.hero-pause');
-      if (btn) btn.textContent = AppState.heroAutoplay ? '⏸' : '▶';
-      if (AppState.heroAutoplay) startHeroAutoplay(); else stopHeroAutoplay();
-    }
-    var heroTimer = null;
-    function startHeroAutoplay() { stopHeroAutoplay(); heroTimer = setInterval(nextHeroSlide, 5000); }
-    function stopHeroAutoplay() { if (heroTimer) { clearInterval(heroTimer); heroTimer = null; } }
-
-    /* ========== MOBILE MENU ========== */
-    document.addEventListener('DOMContentLoaded', function() {
-      var menuBtn = document.getElementById('mobileMenuBtn');
-      var mobileNav = document.getElementById('mobileNav');
-      var overlay = document.getElementById('mobileNavOverlay');
-      var closeBtn = document.getElementById('mobileNavClose');
-
-      if (menuBtn && mobileNav) {
-        menuBtn.addEventListener('click', function() {
-          menuBtn.classList.add('active'); mobileNav.classList.add('open');
-          if (overlay) overlay.classList.add('open');
-        });
-      }
-      function closeMobile() {
-        if (menuBtn) menuBtn.classList.remove('active');
-        if (mobileNav) mobileNav.classList.remove('open');
-        if (overlay) overlay.classList.remove('open');
-      }
-      if (closeBtn) closeBtn.addEventListener('click', closeMobile);
-      if (overlay) overlay.addEventListener('click', closeMobile);
-
-      // Nav links close mobile
-      document.querySelectorAll('.mobile-nav a').forEach(function(a) {
-        a.addEventListener('click', closeMobile);
+    setTimeout(() => {
+      document.querySelectorAll('.hero-bg .fade-in').forEach((el) => {
+        el.classList.add('visible');
       });
-    });
-
-    /* ========== INIT ========== */
-    loadData().then(function() {
-      renderHero();
-      renderNewsCarousel();
-      renderExperience();
-      renderScenic();
-      renderGallery();
-
-      // Hero navigation
-      document.querySelector('.hero-nav.next') && document.querySelector('.hero-nav.next').addEventListener('click', function() { nextHeroSlide(); stopHeroAutoplay(); if(AppState.heroAutoplay)startHeroAutoplay(); });
-      document.querySelector('.hero-nav.prev') && document.querySelector('.hero-nav.prev').addEventListener('click', function() { prevHeroSlide(); stopHeroAutoplay(); if(AppState.heroAutoplay)startHeroAutoplay(); });
-      document.querySelector('.hero-pause') && document.querySelector('.hero-pause').addEventListener('click', toggleHeroPause);
-      document.querySelectorAll('.hero-dot').forEach(function(dot) {
-        dot.addEventListener('click', function() { AppState.currentSlide = parseInt(this.dataset.slide); updateHeroSlide(); stopHeroAutoplay(); if(AppState.heroAutoplay)startHeroAutoplay(); });
-      });
-
-      // News navigation
-      document.getElementById('newsCarouselNext') && document.getElementById('newsCarouselNext').addEventListener('click', function() { nextNewsSlide(); });
-      document.getElementById('newsCarouselPrev') && document.getElementById('newsCarouselPrev').addEventListener('click', function() { prevNewsSlide(); });
-      document.querySelectorAll('.news-carousel-dot').forEach(function(dot) {
-        dot.addEventListener('click', function() { goToNewsSlide(parseInt(this.dataset.slide)); });
-      });
-      var newsWrapper = document.getElementById('newsCarouselWrapper');
-      if (newsWrapper) {
-        newsWrapper.addEventListener('touchstart', handleNewsTouchStart, {passive:true});
-        newsWrapper.addEventListener('touchmove', handleNewsTouchMove, {passive:true});
-        newsWrapper.addEventListener('touchend', handleNewsTouchEnd);
-        newsWrapper.addEventListener('mouseenter', pauseNewsCarousel);
-        newsWrapper.addEventListener('mouseleave', resumeNewsCarousel);
-      }
-
-      // Scenic navigation
-      document.getElementById('scenicNavNext') && document.getElementById('scenicNavNext').addEventListener('click', nextScenicPage);
-      document.getElementById('scenicNavPrev') && document.getElementById('scenicNavPrev').addEventListener('click', prevScenicPage);
-
-      var scenicSection = document.getElementById('scenic');
-      if (scenicSection) {
-        scenicSection.addEventListener('touchstart', handleScenicTouchStart, {passive:true});
-        scenicSection.addEventListener('touchmove', handleScenicTouchMove, {passive:true});
-        scenicSection.addEventListener('touchend', handleScenicTouchEnd);
-        scenicSection.addEventListener('mouseenter', pauseScenicAutoplay);
-        scenicSection.addEventListener('mouseleave', resumeScenicAutoplay);
-      }
-
-      // Start hero autoplay
-      if (heroData.slides && heroData.slides.length > 1) startHeroAutoplay();
-
-      // Handle bfcache
-      window.addEventListener('pageshow', function(e) {
-        if (e.persisted) { loadData().then(function() { renderHero(); renderNewsCarousel(); renderExperience(); renderScenic(); renderGallery(); }); }
-      });
-
-      // Scroll animations
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
-    });
+    }, 200);
   </script>
+
 </body>
 </html>
