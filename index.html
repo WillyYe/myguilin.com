@@ -37,10 +37,7 @@
   <link rel="stylesheet" href="fonts/fonts.css">
 
   <!-- Preload LCP hero image for faster first paint -->
-  <link rel="preload" as="image" href="images/hero-liriver.webp" fetchpriority="high">
-
-  <!-- Lucide Icons (vendored locally — pinned v1.23.0, zero third-party runtime deps) -->
-  <script src="js/lucide.min.js" defer></script>
+  <link rel="preload" as="image" href="images/hero-liriver.avif" fetchpriority="high">
 
   <style>
     html { scroll-behavior: smooth; }
@@ -485,7 +482,8 @@
   <!-- ========== 1. HOME — Hero + Theme Intro + Promo + Links ========== -->
   <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <picture>
-      <source srcset="images/hero-liriver-800.webp 800w, images/hero-liriver.webp 1600w" sizes="100vw" type="image/webp">
+      <source type="image/avif" srcset="images/hero-liriver-800.avif 800w, images/hero-liriver.avif 1600w" sizes="100vw">
+      <source type="image/webp" srcset="images/hero-liriver-800.webp 800w, images/hero-liriver.webp 1600w" sizes="100vw">
       <img src="images/hero-liriver.jpg" alt="The Li River winding through misty karst peaks near Guilin at dawn" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high" decoding="async">
     </picture>
     <div class="absolute inset-0" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%);"></div>
@@ -884,7 +882,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-river/90 via-river/40 to-transparent"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
           <span class="inline-flex items-center gap-2 text-white/80 text-xs font-medium tracking-widest uppercase mb-3">
-            <i data-lucide="bed-double" class="w-4 h-4"></i> Where to Stay
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg> Where to Stay
           </span>
           <h3 class="font-display text-2xl md:text-3xl mb-2">Hotels &amp; Stays</h3>
           <p class="text-white/85 text-sm mb-6">5-star resorts · boutique inns · budget hostels</p>
@@ -897,7 +895,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-river/90 via-river/40 to-transparent"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
           <span class="inline-flex items-center gap-2 text-white/80 text-xs font-medium tracking-widest uppercase mb-3">
-            <i data-lucide="utensils" class="w-4 h-4"></i> Taste Guilin
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg> Taste Guilin
           </span>
           <h3 class="font-display text-2xl md:text-3xl mb-2">Restaurants &amp; Food</h3>
           <p class="text-white/85 text-sm mb-6">Fine dining · local favorites · street food gems</p>
@@ -1025,11 +1023,6 @@
 
   <!-- ========== Scripts ========== -->
   <script>
-    // Render Lucide icons once the deferred CDN script is ready (non-render-blocking)
-    window.addEventListener('DOMContentLoaded', () => {
-      if (typeof lucide !== 'undefined') lucide.createIcons();
-    });
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
