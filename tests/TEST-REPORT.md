@@ -6,15 +6,15 @@
 
 ## ✅ 总体结论
 
-**可发布（Release-ready）**，仅 1 项性能优化作为发布前建议。
+**可发布（Release-ready）**，性能目标全部达成。
 
 | 测试层 | 结果 | 说明 |
 |--------|------|------|
 | 静态审计（结构/资源/语义） | **20 PASS / 0 FAIL / 0 WARN** | 无断图、无死链、标题层级合规 |
-| 功能 E2E（Playwright 真实浏览器） | **19 PASS / 1 FAIL** | 仅 FCP 略超软目标（架构性，非缺陷） |
+| 功能 E2E（Playwright 真实浏览器） | **20 PASS / 0 FAIL** | 全绿（含 FCP 达标） |
 | 可访问性（axe-core WCAG 2.1 AA） | **0 critical / 0 serious** | 全绿 |
 | 视觉回归（桌面+移动截图） | **已生成** | `tests/screenshots/` |
-| 性能（Core Web Vitals） | CLS=0.000 优；FCP≈1.9s 近达标 | LCP 需 Lighthouse 权威测 |
+| 性能（Core Web Vitals） | CLS=0.000 优；**FCP=104ms** | LCP 需 Lighthouse 权威测 |
 
 ---
 
@@ -68,16 +68,19 @@
 | 16 | axe 无 serious 违规 | ✓ |
 | 17 | CLS < 0.1 | ✓ (0.000) |
 | 18 | 加载无严重 console/page 错误 | ✓ |
-| 19 | FCP < 1800ms | ✗ (1912ms，见下) |
+| 19 | FCP < 1800ms | ✓ (104ms) |
 
 ---
 
 ## ⚠️ 剩余项（非阻断，发布前建议）
 
-### PERF-1：FCP ≈ 1.9s（略超 1.8s 软目标）
-- **根因**：页面用 `cdn.tailwindcss.com`（浏览器端 JIT 编译 Tailwind），脚本阻塞首次绘制。这是**架构级**性能问题，非页面内容问题。
-- **建议（发布前 #1 动作）**：用构建工具把 Tailwind 预编译为**精简静态 CSS** 文件（purge 后通常 <30KB），替换 CDN `<script>`。预计 FCP 可降至 <1s，LCP 同步受益。
-- **影响**：在当前弱网下首屏约慢 0.5–1s；对 MVP 可接受，但上线前务必处理。
+### ✅ PERF-1：Tailwind CDN → 预编译 CSS（已完成，FCP 1912ms → 104ms）
+- **做法**：新增 `tailwind.config.js`（与原内联 config 一致，并把 `stone` 定义为含 `DEFAULT` 的色阶对象，修复了原 config 把 `stone:#3a3a3a` 扁平色覆盖默认 `stone-600` 等级的隐患）+ `src/input.css` + `package.json`（`npm run build:css`）；`tailwindcss` CLI 产出 `tailwind.css`（22.6KB，minified）。`index.html` 用 `<link rel="stylesheet" href="tailwind.css">` 替换 CDN `<script>` 与内联 `tailwind.config`。
+- **连带优化**：
+  - 新增 `favicon.svg` 并 `<link rel="icon">`，消除浏览器自动请求 `/favicon.ico` 的 404 控制台报错。
+  - Google Fonts 改为 `media="print" onload` 非阻塞加载（`display=swap` 保证文字不 invisible）。
+  - Lucide 图标脚本加 `defer`，`lucide.createIcons()` 移入 `DOMContentLoaded`，消除最后一个阻塞解析的 CDN 依赖。
+- **结果**：页面已无渲染阻塞的 CDN 依赖；FCP 从 1912ms → **104ms**，浏览器套件 20/0、0 控制台错误、axe 0/0、CLS 0.000。
 
 ### PERF-2：LCP 需 Lighthouse 权威测量
 - headless chromium 对「CSS 背景图 hero」不暴露 LCP 性能条目，自动化脚本取不到（已标记为 harness 限制，非失败）。
@@ -92,7 +95,7 @@
 - [x] 可访问性 WCAG 2.1 AA 零违规
 - [x] 视觉回归截图已生成（桌面/移动）
 - [x] 图片体积达标
-- [ ] **【发布前必做】** Tailwind 预编译替换 CDN（PERF-1）
+- [x] **Tailwind 预编译替换 CDN**（PERF-1 已完成，FCP 1912ms→104ms）
 - [ ] **【发布前建议】** Lighthouse 跑一次确认 LCP/TBT（PERF-2）
 - [ ] 二级页 `hotels.html` / `restaurants.html` 建好后，把入口卡 `#hotel`/`#food` 换回真实链接
 - [ ] 社交链接换成真实账号主页
@@ -103,8 +106,10 @@
 
 - 测试脚本：`tests/static-audit.mjs`、`tests/browser-test.mjs`
 - 视觉回归截图：`tests/screenshots/`（desktop-full / desktop-tour / desktop-hotelfood / mobile-menu / mobile-full）
+- Tailwind 构建：`tailwind.config.js` + `src/input.css` → `tailwind.css`（`npm run build:css`，需 `tailwindcss`）
 - 运行方式：
   ```bash
+  npm run build:css            # 改动样式后重新生成 tailwind.css
   node tests/static-audit.mjs
-  node tests/browser-test.mjs   # 需 chromium + axe-core（见 tests 目录 node_modules 软链）
+  node tests/browser-test.mjs   # 自带本地 HTTP server 提供服务（避免 file:// 的 CORS 问题），需 chromium + axe-core
   ```

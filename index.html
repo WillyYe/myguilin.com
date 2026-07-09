@@ -5,39 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visit Guilin — Your Complete Travel Guide to the Li River & Karst Peaks</title>
   <meta name="description" content="Guilin travel guide & private tours for international travelers. Plan your trip with local experts — Li River cruises, karst peaks, Longji terraces, best time to visit, and how to get there.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS (precompiled — rebuild with: npm run build:css) -->
+  <link rel="stylesheet" href="tailwind.css">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Fonts loaded non-render-blocking: paint with fallback immediately, swap to web font when ready (display=swap) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'sans': ['Inter', 'system-ui', 'sans-serif'],
-            'display': ['Playfair Display', 'serif'],
-          },
-          colors: {
-            'river': '#0e4d64',
-            'river-light': '#156377',
-            'sand': '#f4f1ea',
-            'sand-dark': '#e6e0d4',
-            'gold': '#c9a96e',
-            'gold-dark': '#7a5f24',
-            'stone': '#3a3a3a',
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Lucide Icons (deferred — non-render-blocking) -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <style>
     html { scroll-behavior: smooth; }
@@ -973,9 +954,10 @@
 
   <!-- ========== Scripts ========== -->
   <script>
-    if (typeof lucide !== 'undefined') {
-      lucide.createIcons();
-    }
+    // Render Lucide icons once the deferred CDN script is ready (non-render-blocking)
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

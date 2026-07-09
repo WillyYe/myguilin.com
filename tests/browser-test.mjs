@@ -9,7 +9,27 @@ import fs from 'fs';
 
 const require = createRequire(import.meta.url);
 const ROOT = process.cwd();
-const BASE = process.env.BASE || ('file://' + path.resolve(ROOT, 'index.html'));
+const http = require('http');
+const MIME = {
+  '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json',
+  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml',
+  '.webp': 'image/webp', '.ico': 'image/x-icon', '.woff2': 'font/woff2',
+};
+// Serve over HTTP so the local tailwind.css (and other assets) load correctly.
+// file:// blocks same-origin stylesheet fetches (CORS), which would break the visual test.
+const ASSET_SERVER = http.createServer((req, res) => {
+  let urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
+  if (urlPath === '/') urlPath = '/index.html';
+  const filePath = path.join(ROOT, urlPath);
+  if (!filePath.startsWith(ROOT) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+    res.statusCode = 404; return res.end('not found');
+  }
+  res.setHeader('Content-Type', MIME[path.extname(filePath)] || 'application/octet-stream');
+  fs.createReadStream(filePath).pipe(res);
+});
+await new Promise(r => ASSET_SERVER.listen(0, '127.0.0.1', r));
+const PORT = ASSET_SERVER.address().port;
+const BASE = process.env.BASE || (`http://127.0.0.1:${PORT}/index.html`);
 const AXE = '/Users/Zhuanz/.workbuddy/binaries/node/workspace/node_modules/axe-core/axe.min.js';
 const SHOT_DIR = path.join(ROOT, 'tests', 'screenshots');
 fs.mkdirSync(SHOT_DIR, { recursive: true });
@@ -28,7 +48,7 @@ page.on('pageerror', e => consoleErrors.push('pageerror: ' + e.message));
 
 console.log('→ loading', BASE);
 await page.goto(BASE, { waitUntil: 'load', timeout: 60000 });
-// give CDN Tailwind / fonts / lucide time to settle
+// give Tailwind (local) / fonts / lucide (CDN) time to settle
 await page.waitForTimeout(2500);
 // force fade-in elements visible for accurate screenshots
 await page.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
@@ -192,6 +212,7 @@ ok('FCP < 1800ms (good)', cwv.fcp > 0 && cwv.fcp < 1800, `${Math.round(cwv.fcp)}
 ok('No severe console / page errors on load', consoleErrors.length === 0, consoleErrors.slice(0, 3).join(' | '));
 
 await browser.close();
+ASSET_SERVER.close();
 
 // ---------- report ----------
 console.log('\n===== myguilin First-Level Page — Comprehensive Browser Test =====');
