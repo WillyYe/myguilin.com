@@ -30,7 +30,7 @@ const ASSET_SERVER = http.createServer((req, res) => {
 await new Promise(r => ASSET_SERVER.listen(0, '127.0.0.1', r));
 const PORT = ASSET_SERVER.address().port;
 const BASE = process.env.BASE || (`http://127.0.0.1:${PORT}/index.html`);
-const AXE = '/Users/Zhuanz/.workbuddy/binaries/node/workspace/node_modules/axe-core/axe.min.js';
+const AXE = require.resolve('axe-core/axe.min.js');
 const SHOT_DIR = path.join(ROOT, 'tests', 'screenshots');
 fs.mkdirSync(SHOT_DIR, { recursive: true });
 
@@ -38,8 +38,13 @@ const results = [];
 const ok = (name, cond, detail = '') => { results.push({ name, pass: !!cond, detail }); };
 const consoleErrors = [];
 
-const CHROME = process.env.CHROME_PATH || '/Users/Zhuanz/Library/Caches/ms-playwright/chromium-1228/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
-const browser = await chromium.launch({ executablePath: CHROME, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+// CHROME_PATH lets you point at a specific Chrome build; otherwise Playwright
+// auto-resolves the browser it installed via `npx playwright install chromium`
+// (works both locally and in CI).
+const CHROME = process.env.CHROME_PATH;
+const launchOpts = { args: ['--no-sandbox', '--disable-setuid-sandbox'] };
+if (CHROME) launchOpts.executablePath = CHROME;
+const browser = await chromium.launch(launchOpts);
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
 const page = await ctx.newPage();
 

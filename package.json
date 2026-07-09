@@ -4,9 +4,14 @@
   "private": true,
   "description": "Guilin travel guide static site — Tailwind precompiled for production",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify"
+    "build:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify",
+    "test:static": "node tests/static-audit.mjs",
+    "test:e2e": "node tests/browser-test.mjs",
+    "test": "npm run test:static && npm run test:e2e"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^3.4.19",
+    "playwright": "^1.61.1",
+    "axe-core": "^4.12.1"
   }
 }

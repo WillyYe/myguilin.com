@@ -217,3 +217,74 @@
 
 ### 测试工具增强（scripts/，可复现）
 - `scripts/verify-external.mjs`：起本地 server + Playwright 加载，断言① 无任何第三方运行时请求（unpkg 等）② `window.lucide` 已定义且渲染出 `<svg>` 图标 ③ skip-link 与 `<main>` 地标存在 ④ JSON-LD 可解析 ⑤ 模拟 `reducedMotion:reduce` 后 `.fade-in` 仍可见——把「零依赖 + 无障碍」从人工结论变成自动卡点。
+
+---
+
+## 🌐 线上验收审计（2026-07-09 第五轮，针对 `https://myguilin.com/`）
+
+用真实浏览器（Playwright Chromium）对**已部署的线上站**做综合体检，覆盖功能/资源/MIME/字体/Lucide/零外部依赖/SEO/JSON-LD/地标/axe/CWV/响应头/移动端（375px）。脚本：`scripts/audit-prod.mjs`。
+
+### 结果：14/16 通过
+| 维度 | 结果 |
+|------|------|
+| 无破图（24 张图 naturalWidth>0） | ✅ 全加载 |
+| Inter / Playfair 字体应用 | ✅ hero font-family = "Playfair Display", serif |
+| Lucide 渲染为真实 `<svg>` | ✅ 2 个 |
+| 运行时零外部依赖 | ✅ 仅同源请求 |
+| OG×7 / Twitter / canonical / theme-color / JSON-LD / 基础 SEO | ✅ 全齐（lang=en, title/desc 规范） |
+| 语义地标 + skip-link + 单 h1 | ✅ |
+| **axe WCAG 2.1 AA** | ✅ **0 违规 / 0 严重**（正式注入 axe-core 测得，非静默通过） |
+| CLS | ✅ **0.000** |
+| LCP / FCP（容器参考值） | ⚠️ 本轮 1300ms / 896ms；同脚本历史 688ms / 600ms、更早 3596ms / 2012ms —— **容器噪声极大，不作准，需海外 Lighthouse 复测** |
+| 无 console 错误 | ✅ |
+| 移动端（375px）无横向溢出 + hero 加载 | ✅ scrollW=375=winW |
+
+### ⚠️ 真问题：`_headers` 在 GitHub Pages 未生效（2 项 FAIL）
+实测 `myguilin.com` 响应头：
+- 首页仅 `cache-control: max-age=600`（**GitHub Pages 默认值**）；`Referrer-Policy` / `X-Content-Type-Options` / `X-Frame-Options` / `Permissions-Policy` / `Content-Security-Policy` **全部缺失**
+- woff2 / webp 的 `content-type` 正确（`font/woff2`、`image/webp`）且字体带 `access-control-allow-origin: *`——但这是 **GitHub Pages 默认行为**，非 `_headers` 功劳
+- 文件 `_headers` 访问返回 404（不被当静态文件，也**不被处理**）
+
+> **结论**：我第四轮写的安全响应头 + 不可变长缓存，在 GitHub Pages 平台上是**死代码**——GitHub Pages 不认 `_headers`（那是 Netlify / Cloudflare Pages 的约定）。字体能加载、功能全绿，靠的是平台默认，不是那份配置。
+
+### 修正方案（二选一）
+1. **接入 Cloudflare（推荐）**：把 `myguilin.com` DNS 切到 Cloudflare，用其 Transform Rules（Modify Response Header，免费版可用）下发安全头 + 自定义缓存；**同时** Cloudflare 全球 CDN 比 GitHub Pages 更稳、对国内/海外都更可达，顺手解决「GitHub Pages 国内访问不稳」的隐患。
+2. **保持 GitHub Pages 并移除误导**：删除 `_headers`（或改名备注仅适用于 Netlify/CF），在文档里如实标注「此平台无法下发安全头」。
+
+### 剩余优化空间（非本轮范围，按优先级）
+- 🔴 **安全响应头 + 不可变缓存**：依赖平台能力，需 Cloudflare 或换 Cloudflare Pages / Netlify。
+- 🔴 **权威性能数字**：接 Lighthouse CI（海外 runner）对 LCP/TBT/CLS 设门禁，替代容器里的不可靠测量。
+- 🟡 **字体 preload**：现已 preload hero 图，未 preload 首屏关键字体（Inter 400 / Playfair 400），可再压 FCP。
+- 🟡 **跨浏览器 E2E**：目前只测 Chromium，未验证 WebKit(Safari)/Firefox；移除 iOS `fixed` 后建议在 Safari 复验 INP。
+- 🟡 **视觉回归基线**：`tests/screenshots/` 被 gitignore，CI 无法做基线 diff，需提交基线或接 Percy/Chromatic。
+- 🟢 **二级页** `hotels.html` / `restaurants.html`、**社交真实链接**、**隐私分析 + GDPR 同意**、**CI 自动跑测试套件**。
+
+---
+
+## ⚙️ 工程化收尾（2026-07-09 第六轮）：CI + Lighthouse 门禁
+
+把"测试全绿"从人工结论变成**每次 push/PR 的自动门禁**，并用海外 runner 的 Lighthouse 拿**权威性能数字**（替代容器内噪声极大的 CWV 测量）。
+
+### 改动清单
+- **`.github/workflows/ci.yml`**（新建）：两个 job
+  - `test`：checkout → `npm install` → `npx playwright install --with-deps chromium` → 跑 `npm run test:static` + `npm run test:e2e`（即原有 static-audit + Playwright E2E/a11y/CWV）。
+  - `lighthouse`：用 `treosh/lighthouse-ci-action@v12`，以 `staticDistDir: ./` 起静态服务并对构建产物跑 Lighthouse，按 `lighthouserc.json` 设门禁。
+  - 触发：`push` 到 `main` 与所有 `pull_request`；`concurrency` 取消进行中的旧 run。
+- **`lighthouserc.json`**（新建）：断言阈值
+  - 硬门槛（error）：`largest-contentful-paint ≤ 2500ms`、`cumulative-layout-shift ≤ 0.1`、`categories:accessibility ≥ 0.9`
+  - 软门槛（warn，不阻断）：`total-blocking-time ≤ 300ms`、`categories:performance ≥ 0.85`、`categories:best-practices ≥ 0.9`
+  - 把 LCP/CLS 设硬门槛是因为二者确定性强（已知 LCP<1.3s、CLS=0）；TBT/总分在 CI 上会抖动，故只 warn 防误杀。
+- **`package.json`**：补 `devDependencies`（`playwright ^1.61.1`、`axe-core ^4.12.1`）+ 脚本 `test:static` / `test:e2e` / `test`；并生成 `package-lock.json` 供 CI 复现安装。
+- **测试脚本可移植化（关键前提）**：CI 在 ubuntu 上跑，原脚本里写死的 Mac 绝对路径会直接崩，已改为可移植：
+  - `tests/browser-test.mjs`：`AXE` 由硬编码路径改为 `require.resolve('axe-core/axe.min.js')`；Chrome 改为「`CHROME_PATH` 有则用、无则交给 Playwright 自动解析（`npx playwright install` 装的浏览器）」。
+  - `scripts/verify-prod.mjs`、`scripts/visual-diff.mjs`：同样去掉硬编码 Mac 路径，改用 `CHROME_PATH` 可选 + Playwright 自动解析。
+  - `scripts/audit-prod.mjs` 此前已可移植（用 `require.resolve` + 无硬编码 CHROME），无需改。
+
+### 本地验证（推送前）
+- `npm run test:static` → **19 pass / 0 fail / 1 warn**（与历史一致）
+- `npm run test:e2e`（带 `CHROME_PATH` 指向本地 Chrome）→ **20 pass / 0 fail**，axe 经 `require.resolve` 正确注入、LCP=164ms、CLS=0
+- 可移植性修复使同一套脚本在 Mac 本地与 ubuntu CI 都能跑，无需改代码。
+
+### 门禁效果
+- 任何人改了 `src/input.css` 忘 `npm run build:css`、或误加破图/降级 a11y、或把 LCP 打回 2.5s 以上 → **PR 自动红**，合并前拦截。
+- Lighthouse 在 GitHub 海外 runner 跑，结果贴近真实外国游客视角，且每次可对比趋势。

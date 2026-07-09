@@ -7,14 +7,16 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 
-const CHROME = process.env.CHROME_PATH || '/Users/Zhuanz/Library/Caches/ms-playwright/chromium-1228/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
+const CHROME = process.env.CHROME_PATH;
+const launchOpts = { args: ['--no-sandbox', '--disable-setuid-sandbox'] };
+if (CHROME) launchOpts.executablePath = CHROME;
 const ROOT = process.cwd();
 const URL = 'file://' + path.join(ROOT, 'index.html');
 const OUT = '/tmp/myguilin-vdiff';
 fs.mkdirSync(OUT, { recursive: true });
 
 async function shot(forceJpg, file) {
-  const browser = await chromium.launch({ executablePath: CHROME, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await chromium.launch(launchOpts);
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
   if (forceJpg) {
