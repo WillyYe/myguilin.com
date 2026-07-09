@@ -69,10 +69,19 @@ else fail.push({ name: 'Image payload exceeds 2.5MB budget', detail: `${totalKB}
 const over200 = [...refImgs].filter(i => { const p = path.join(ROOT, i); return fs.existsSync(p) && fs.statSync(p).size > 200 * 1024; });
 if (over200.length) warn.push({ name: 'Individual images >200KB (review compression)', detail: over200.map(i => `${i} ${Math.round(fs.statSync(path.join(ROOT, i)).size / 1024)}KB`).join(', ') });
 
-// ---- T8: dead files (exclude reserved sub-page assets) ----
+// ---- T8: dead files (exclude reserved sub-page assets + WebP siblings) ----
+// A .jpg is considered referenced if it is referenced directly, OR if a
+// same-named .webp/.avif is referenced (the .jpg is then the <picture> fallback).
+const webpRefs = new Set();
+for (const m of html.matchAll(/(?:src|url)\(\s*['"]?(images\/[A-Za-z0-9_.\/-]+\.(?:webp|avif))['"]?\s*\)/g)) webpRefs.add(m[1]);
+for (const m of html.matchAll(/src="(images\/[A-Za-z0-9_.\/-]+\.(?:webp|avif))"/g)) webpRefs.add(m[1]);
 const allFiles = fs.readdirSync(imagesDir).filter(f => f.endsWith('.jpg'));
 const reserved = allFiles.filter(f => /^(hotel-|food-)/.test(f));
-const dead = allFiles.filter(f => !refImgs.has('images/' + f) && !/^(hotel-|food-)/.test(f));
+const isReferenced = (f) =>
+  refImgs.has('images/' + f) ||
+  webpRefs.has('images/' + f.replace(/\.jpg$/, '.webp')) ||
+  webpRefs.has('images/' + f.replace(/\.jpg$/, '.avif'));
+const dead = allFiles.filter(f => !isReferenced(f) && !/^(hotel-|food-)/.test(f));
 if (dead.length) warn.push({ name: 'Unreferenced image files on disk', detail: dead.join(', ') + ` | reserved for sub-pages: ${reserved.length}` });
 else pass.push({ name: 'No stray dead image files (excluding sub-page reserves)' });
 
