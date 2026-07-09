@@ -6,37 +6,68 @@
   <title>Visit Guilin — Your Complete Travel Guide to the Li River & Karst Peaks</title>
   <meta name="description" content="Guilin travel guide & private tours for international travelers. Plan your trip with local experts — Li River cruises, karst peaks, Longji terraces, best time to visit, and how to get there.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Canonical + theme -->
+  <link rel="canonical" href="https://myguilin.com/">
+  <meta name="theme-color" content="#0e4d64">
+  <meta name="color-scheme" content="light">
+
+  <!-- Open Graph (social sharing previews) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Visit Guilin">
+  <meta property="og:title" content="Visit Guilin — Your Complete Travel Guide to the Li River & Karst Peaks">
+  <meta property="og:description" content="Guilin travel guide & private tours for international travelers. Plan your trip with local experts — Li River cruises, karst peaks, Longji terraces, best time to visit, and how to get there.">
+  <meta property="og:url" content="https://myguilin.com/">
+  <meta property="og:image" content="https://myguilin.com/images/hero-liriver.webp">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Visit Guilin — Your Complete Travel Guide to the Li River & Karst Peaks">
+  <meta name="twitter:description" content="Guilin travel guide & private tours for international travelers. Li River cruises, karst peaks, Longji terraces — plan with local experts.">
+  <meta name="twitter:image" content="https://myguilin.com/images/hero-liriver.webp">
 
   <!-- Tailwind CSS (precompiled — rebuild with: npm run build:css) -->
   <link rel="stylesheet" href="tailwind.css">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fonts loaded non-render-blocking: paint with fallback immediately, swap to web font when ready (display=swap) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
+  <!-- Fonts: self-hosted woff2 (zero third-party requests, GDPR-friendly) -->
+  <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
 
-  <!-- Lucide Icons (deferred — non-render-blocking) -->
-  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <!-- Preload LCP hero image for faster first paint -->
+  <link rel="preload" as="image" href="images/hero-liriver.webp" fetchpriority="high">
+
+  <!-- Lucide Icons (vendored locally — pinned v1.23.0, zero third-party runtime deps) -->
+  <script src="js/lucide.min.js" defer></script>
 
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; }
 
-    .hero-bg {
-      background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%), url('images/hero-liriver.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+    /* Skip-to-content link: visually hidden until focused (keyboard / screen reader users) */
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 100;
+      background: #0e4d64;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: top 0.2s ease;
     }
+    .skip-link:focus { top: 1rem; outline: 3px solid #c9a96e; }
+
+    /* hero image is now a real img element inside #home (see markup) */
 
     /* Reusable photo-band: same semi-transparent river gradient as the hero.
        Apply together with an inline background-image (gradient + url) on the element. */
     .band-bg {
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
     }
 
     .card-hover {
@@ -55,6 +86,14 @@
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Respect users who prefer reduced motion (WCAG 2.3.3) */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fade-in { opacity: 1; transform: none; transition: none; }
+      .fade-in.visible { opacity: 1; transform: none; }
+      .animate-bounce { animation: none; }
     }
 
     .gallery-item {
@@ -225,8 +264,31 @@
       display: flex; align-items: center; justify-content: center;
     }
   </style>
+
+  <!-- Structured data: helps Google show rich results (destination cards, ratings) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Visit Guilin",
+    "url": "https://myguilin.com/",
+    "description": "Guilin travel guide & private tours for international travelers — Li River cruises, karst peaks, Longji terraces, best time to visit, and how to get there.",
+    "image": "https://myguilin.com/images/hero-liriver.webp",
+    "logo": "https://myguilin.com/favicon.svg",
+    "telephone": "+8618777358302",
+    "areaServed": "Guilin, Guangxi, China",
+    "touristType": "International travelers",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Guilin",
+      "addressRegion": "Guangxi",
+      "addressCountry": "CN"
+    }
+  }
+  </script>
 </head>
 <body class="bg-sand text-stone antialiased">
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ========== Navigation (mind map: 7 main items) ========== -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-sand-dark" style="height:64px;">
@@ -288,28 +350,28 @@
               <div class="grid grid-cols-4 gap-4">
                 <div>
                   <a href="#exp-liriver" class="mega-feature block">
-                    <img src="images/exp-liriver.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async">
+                    <picture><source srcset="images/exp-liriver.webp" type="image/webp"><img src="images/exp-liriver.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Li River<br>Cruise</span>
                   </a>
                 </div>
                 <div>
                   <a href="#exp-cycling" class="mega-feature block">
-                    <img src="images/exp-cycling.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async">
+                    <picture><source srcset="images/exp-cycling.webp" type="image/webp"><img src="images/exp-cycling.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Countryside<br>Cycling</span>
                   </a>
                 </div>
                 <div>
                   <a href="#exp-longji" class="mega-feature block">
-                    <img src="images/exp-longji.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async">
+                    <picture><source srcset="images/exp-longji.webp" type="image/webp"><img src="images/exp-longji.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Longji<br>Trekking</span>
                   </a>
                 </div>
                 <div>
                   <a href="#exp-cormorant" class="mega-feature block">
-                    <img src="images/exp-cormorant.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async">
+                    <picture><source srcset="images/exp-cormorant.webp" type="image/webp"><img src="images/exp-cormorant.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Cormorant<br>Fishing</span>
                   </a>
@@ -343,7 +405,7 @@
                 <div>
                   <p class="mega-col-title">Featured</p>
                   <a href="#tour" class="mega-feature block mb-3">
-                    <img src="images/tour-featured.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async">
+                    <picture><source srcset="images/tour-featured.webp" type="image/webp"><img src="images/tour-featured.jpg" alt="" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-sm font-semibold">All Tours →</span>
                   </a>
@@ -414,13 +476,20 @@
     </div>
   </header>
 
+  <main id="main" tabindex="-1">
+
   <!-- ============================================================ -->
   <!-- PAGE SECTIONS — Mind Map Structure: 7 Main Areas               -->
   <!-- ============================================================ -->
 
   <!-- ========== 1. HOME — Hero + Theme Intro + Promo + Links ========== -->
-  <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
-    <div class="text-center px-6 max-w-4xl">
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <picture>
+      <source srcset="images/hero-liriver-800.webp 800w, images/hero-liriver.webp 1600w" sizes="100vw" type="image/webp">
+      <img src="images/hero-liriver.jpg" alt="The Li River winding through misty karst peaks near Guilin at dawn" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="absolute inset-0" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%);"></div>
+    <div class="text-center px-6 max-w-4xl relative z-10">
       <p class="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-6 fade-in">Karst Landscape of China</p>
       <h1 class="font-display text-5xl md:text-7xl text-white leading-tight mb-8 fade-in">
         Where Mountains<br>&amp; Rivers Become Poetry
@@ -430,14 +499,14 @@
       </p>
     </div>
     <!-- Video placeholder note -->
-    <p class="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-widest fade-in">🎬 PROMO VIDEO COMING SOON</p>
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+    <p class="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-widest fade-in z-10">🎬 PROMO VIDEO COMING SOON</p>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-10">
       <svg width="30" height="30" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24" class="opacity-60"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </section>
 
   <!-- Quick stats bar (under Hero) -->
-  <section class="band-bg py-10 border-t border-white/10" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.45) 0%, rgba(14,77,100,0.6) 50%, rgba(14,77,100,0.8) 100%), url('images/attraction-liriver.jpg');">
+  <section class="band-bg py-10 border-t border-white/10" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.45) 0%, rgba(14,77,100,0.6) 50%, rgba(14,77,100,0.8) 100%), url('images/attraction-liriver.webp');">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div><p class="font-display text-3xl text-gold">2,000+</p><p class="text-white/80 text-sm mt-1">Years of Fame</p></div>
       <div><p class="font-display text-3xl text-gold">8</p><p class="text-white/80 text-sm mt-1">Signature Attractions</p></div>
@@ -447,7 +516,7 @@
   </section>
 
   <!-- Home intro block (主题介绍) -->
-  <section class="band-bg py-20 px-6 text-white relative overflow-hidden" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.42) 0%, rgba(14,77,100,0.60) 45%, rgba(14,77,100,0.85) 100%), url('images/band-elephant.jpg');">
+  <section class="band-bg py-20 px-6 text-white relative overflow-hidden" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.42) 0%, rgba(14,77,100,0.60) 45%, rgba(14,77,100,0.85) 100%), url('images/band-elephant.webp');">
     <!-- decorative accent -->
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
@@ -508,7 +577,7 @@
         <!-- #1 Li River -->
         <div id="attraction-liriver" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-liriver.jpg" alt="Li River" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-liriver.webp" type="image/webp"><img src="images/attraction-liriver.jpg" alt="Li River" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-river text-white text-xs font-medium px-2.5 py-1 rounded-full">🏞️ Epic</div>
           </div>
           <div class="p-5">
@@ -520,7 +589,7 @@
         <!-- #2 Elephant Trunk Hill -->
         <div id="attraction-elephant" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-elephant.jpg" alt="Elephant Trunk Hill" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-elephant.webp" type="image/webp"><img src="images/attraction-elephant.jpg" alt="Elephant Trunk Hill" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-river/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🐘 Iconic</div>
           </div>
           <div class="p-5">
@@ -532,7 +601,7 @@
         <!-- #3 Yangshuo West Street -->
         <div id="attraction-yangshuo" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-yangshuo.jpg" alt="Yangshuo West Street" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-yangshuo.webp" type="image/webp"><img src="images/attraction-yangshuo.jpg" alt="Yangshuo West Street" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-emerald-600/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🎉 Lively</div>
           </div>
           <div class="p-5">
@@ -544,7 +613,7 @@
         <!-- #4 Longji Rice Terraces -->
         <div id="attraction-longji" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-longji.jpg" alt="Longji Rice Terraces" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-longji.webp" type="image/webp"><img src="images/attraction-longji.jpg" alt="Longji Rice Terraces" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-orange-500/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🌾 Breathtaking</div>
           </div>
           <div class="p-5">
@@ -556,7 +625,7 @@
         <!-- #5 Reed Flute Cave -->
         <div id="attraction-reedflute" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-reedflute.jpg" alt="Reed Flute Cave" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-reedflute.webp" type="image/webp"><img src="images/attraction-reedflute.jpg" alt="Reed Flute Cave" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-purple-700/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🪨 Mystical</div>
           </div>
           <div class="p-5">
@@ -568,7 +637,7 @@
         <!-- #6 Yulong River Rafting -->
         <div id="attraction-yulong" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-yulong.jpg" alt="Yulong River Bamboo Rafting" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-yulong.webp" type="image/webp"><img src="images/attraction-yulong.jpg" alt="Yulong River Bamboo Rafting" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-teal-600/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🚣 Serene</div>
           </div>
           <div class="p-5">
@@ -580,7 +649,7 @@
         <!-- #7 Two Rivers & Four Lakes -->
         <div id="attraction-tworivers" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-tworivers.jpg" alt="Two Rivers and Four Lakes" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <picture><source srcset="images/attraction-tworivers.webp" type="image/webp"><img src="images/attraction-tworivers.jpg" alt="Two Rivers and Four Lakes" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-indigo-600/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🌉 Romantic</div>
           </div>
           <div class="p-5">
@@ -592,7 +661,7 @@
         <!-- #8 Xingping Ancient Town -->
         <div id="attraction-xingping" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in">
           <div class="relative h-52 overflow-hidden">
-            <img src="images/attraction-xingping.jpg" alt="Xingping Ancient Town" loading="lazy" class="w-full h-full object-cover" decoding="async">
+            <picture><source srcset="images/attraction-xingping.webp" type="image/webp"><img src="images/attraction-xingping.jpg" alt="Xingping Ancient Town" loading="lazy" class="w-full h-full object-cover" decoding="async"></picture>
             <div class="absolute top-3 left-3 bg-amber-700/90 text-white text-xs font-medium px-2.5 py-1 rounded-full">🏘️ Timeless</div>
           </div>
           <div class="p-5">
@@ -618,7 +687,7 @@
 
         <!-- Li River Cruise -->
         <div id="exp-liriver" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-liriver.jpg" alt="Li River Cruise Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+          <picture><source srcset="images/exp-liriver.webp" type="image/webp"><img src="images/exp-liriver.jpg" alt="Li River Cruise Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-river/90 via-river/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">NATURE LOVER</span>
@@ -629,7 +698,7 @@
 
         <!-- Countryside Cycling -->
         <div id="exp-cycling" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-cycling.jpg" alt="Countryside Cycling Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+          <picture><source srcset="images/exp-cycling.webp" type="image/webp"><img src="images/exp-cycling.jpg" alt="Countryside Cycling Experience" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/90 via-emerald-900/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-emerald-400/30 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">ACTIVE</span>
@@ -640,7 +709,7 @@
 
         <!-- Longji Terraces Trekking -->
         <div id="exp-longji" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-longji.jpg" alt="Longji Terraces Trekking" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async">
+          <picture><source srcset="images/exp-longji.webp" type="image/webp"><img src="images/exp-longji.jpg" alt="Longji Terraces Trekking" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-amber-900/90 via-amber-900/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-amber-400/30 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">ADVENTURE</span>
@@ -651,7 +720,7 @@
 
         <!-- Cormorant Fishing at Dusk -->
         <div id="exp-cormorant" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-cormorant.jpg" alt="Cormorant Fishing at Dusk" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async">
+          <picture><source srcset="images/exp-cormorant.webp" type="image/webp"><img src="images/exp-cormorant.jpg" alt="Cormorant Fishing at Dusk" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-amber-900/90 via-amber-900/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-amber-400/30 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">CULTURE</span>
@@ -662,7 +731,7 @@
 
         <!-- Yulong Bamboo Raft -->
         <div id="exp-bamboo" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-bamboo.jpg" alt="Yulong River Bamboo Raft" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async">
+          <picture><source srcset="images/exp-bamboo.webp" type="image/webp"><img src="images/exp-bamboo.jpg" alt="Yulong River Bamboo Raft" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-river/90 via-river/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">SERENE</span>
@@ -673,7 +742,7 @@
 
         <!-- Rock Climbing -->
         <div id="exp-climb" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-climb.jpg" alt="Yangshuo Rock Climbing" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async">
+          <picture><source srcset="images/exp-climb.webp" type="image/webp"><img src="images/exp-climb.jpg" alt="Yangshuo Rock Climbing" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-slate-800/90 via-slate-800/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-slate-400/30 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">THRILLING</span>
@@ -684,7 +753,7 @@
 
         <!-- Cooking Class -->
         <div id="exp-cook" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-cook.jpg" alt="Guilin Cooking Class" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async">
+          <picture><source srcset="images/exp-cook.webp" type="image/webp"><img src="images/exp-cook.jpg" alt="Guilin Cooking Class" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-orange-900/90 via-orange-900/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-orange-400/30 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">AUTHENTIC</span>
@@ -695,7 +764,7 @@
 
         <!-- Xianggong Hill Sunrise -->
         <div id="exp-xianggong" class="group relative min-h-[380px] rounded-3xl overflow-hidden shadow-lg fade-in">
-          <img src="images/exp-xianggong.jpg" alt="Xianggong Hill Sunrise Viewpoint" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async">
+          <picture><source srcset="images/exp-xianggong.webp" type="image/webp"><img src="images/exp-xianggong.jpg" alt="Xianggong Hill Sunrise Viewpoint" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" decoding="async"></picture>
           <div class="absolute inset-0 bg-gradient-to-t from-yellow-900/90 via-yellow-900/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
             <span class="inline-block bg-yellow-400/30 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">SCENIC</span>
@@ -811,7 +880,7 @@
     <div class="max-w-5xl mx-auto flex flex-col gap-6">
 
       <a href="#hotel" id="hotel" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block scroll-mt-20">
-        <img src="images/attraction-liriver.jpg" alt="Hotels in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+        <picture><source srcset="images/attraction-liriver.webp" type="image/webp"><img src="images/attraction-liriver.jpg" alt="Hotels in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"></picture>
         <div class="absolute inset-0 bg-gradient-to-t from-river/90 via-river/40 to-transparent"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
           <span class="inline-flex items-center gap-2 text-white/80 text-xs font-medium tracking-widest uppercase mb-3">
@@ -824,7 +893,7 @@
       </a>
 
       <a href="#food" id="food" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block scroll-mt-20">
-        <img src="images/exp-cook.jpg" alt="Restaurants in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+        <picture><source srcset="images/exp-cook.webp" type="image/webp"><img src="images/exp-cook.jpg" alt="Restaurants in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"></picture>
         <div class="absolute inset-0 bg-gradient-to-t from-river/90 via-river/40 to-transparent"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
           <span class="inline-flex items-center gap-2 text-white/80 text-xs font-medium tracking-widest uppercase mb-3">
@@ -840,7 +909,7 @@
   </section>
 
   <!-- ========== 7. CONTACT US ============================================= -->
-  <section id="contact" class="band-bg py-20 px-6 text-white" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.55) 0%, rgba(14,77,100,0.7) 50%, rgba(14,77,100,0.9) 100%), url('images/attraction-xingping.jpg');">
+  <section id="contact" class="band-bg py-20 px-6 text-white" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.55) 0%, rgba(14,77,100,0.7) 50%, rgba(14,77,100,0.9) 100%), url('images/attraction-xingping.webp');">
     <div class="max-w-4xl mx-auto text-center fade-in">
       <p class="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-4">Let's Plan Together</p>
       <h2 class="font-display text-4xl md:text-5xl text-white mb-6">Ready for Your Guilin Adventure?</h2>
@@ -866,6 +935,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ========== Footer ========== -->
   <footer class="bg-river text-white/85 py-12 px-6 border-t border-white/10">
