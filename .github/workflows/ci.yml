@@ -36,9 +36,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Lighthouse against built site
+      # Measure the LIVE deployed site from the CI runner (US) = real overseas baseline.
+      # NOTE: treosh/lighthouse-ci-action@v12 dropped the `staticDistDir` input; use `urls`.
+      - name: Lighthouse against live site (overseas baseline)
         uses: treosh/lighthouse-ci-action@v12
         with:
-          staticDistDir: ./
+          urls: https://myguilin.com/
           configPath: ./lighthouserc.json
           uploadArtifacts: true
