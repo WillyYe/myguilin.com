@@ -915,91 +915,40 @@
     </div>
   </section>
 
-  <!-- ========== 5. HOTEL & FOOD ============================================ -->
-    <!-- ========== 5a. HOTEL ========== -->
-    <section id="hotel" class="py-20 px-6 bg-white scroll-mt-20">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-14 fade-in">
-          <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Where to Stay</p>
-          <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Hotels &amp; Stays</h2>
-          <p class="text-stone-600 text-lg max-w-2xl mx-auto">From 5-star riverfront resorts to boutique guesthouses in Yangshuo's countryside — pick the base that fits your trip.</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/hotel-shangrila.webp" type="image/webp"><img src="images/hotel-shangrila.jpg" alt="Shangri-La Hotel Guilin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Shangri-La Guilin</h3>
-              <p class="text-xs text-stone-600 mb-2">5★ · Li River waterfront</p>
-              <p class="text-sm text-stone/75 leading-relaxed">Riverfront gardens running down to the Li River, 15 minutes from downtown Guilin.</p>
-            </div>
-          </article>
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/hotel-sheraton.webp" type="image/webp"><img src="images/hotel-sheraton.jpg" alt="Sheraton Guilin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Sheraton Guilin</h3>
-              <p class="text-xs text-stone-600 mb-2">5★ · City center</p>
-              <p class="text-sm text-stone/75 leading-relaxed">Reliable international standard on the Li River, walkable to the lakes and night-cruise piers.</p>
-            </div>
-          </article>
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/hotel-yangshuo-retreat.webp" type="image/webp"><img src="images/hotel-yangshuo-retreat.jpg" alt="Yangshuo country retreat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Yangshuo Retreat</h3>
-              <p class="text-xs text-stone-600 mb-2">4★ · Countryside</p>
-              <p class="text-sm text-stone/75 leading-relaxed">Boutique resort among karst peaks outside Yangshuo — the best base for biking and rafting.</p>
-            </div>
-          </article>
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/hotel-bravo.webp" type="image/webp"><img src="images/hotel-bravo.jpg" alt="Hotel Bravo Guilin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Hotel Bravo</h3>
-              <p class="text-xs text-stone-600 mb-2">4★ · Near railway station</p>
-              <p class="text-sm text-stone/75 leading-relaxed">Comfortable mid-range pick close to Guilin's high-speed rail station for easy arrivals.</p>
-            </div>
-          </article>
-        </div>
-        <div class="text-center mt-10 fade-in">
-          <a href="https://wa.me/8618777358302" target="_blank" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white font-semibold px-8 py-3.5 rounded-full transition-colors duration-300">Get a tailored hotel recommendation →</a>
-        </div>
-      </div>
-    </section>
+    <!-- ========== 5. HOTEL & FOOD (entry cards — details on sub-pages) ====== -->
+  <section class="py-20 px-6 bg-stone-50/50">
+    <div class="max-w-5xl mx-auto flex flex-col gap-6">
 
-    <!-- ========== 5b. FOOD ========== -->
-    <section id="food" class="py-20 px-6 bg-sand scroll-mt-20">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-14 fade-in">
-          <p class="text-gold-dark text-sm font-medium tracking-[0.2em] uppercase mb-4">Taste Guilin</p>
-          <h2 class="font-display text-4xl md:text-5xl text-river mb-6">Food &amp; Local Flavors</h2>
-          <p class="text-stone-600 text-lg max-w-2xl mx-auto">Guilin's kitchen is bold, sour, and fragrant — here are the dishes every visitor should try.</p>
+      <a href="#hotel" id="hotel" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+        <img src="images/attraction-liriver.webp" alt="Hotels in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+        <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/25 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
+          <span class="inline-flex items-center gap-2 text-white/60 text-xs font-medium tracking-widest uppercase mb-3">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/><path d="M18 8v9"/></svg>
+            Where to Stay
+          </span>
+          <h3 class="font-display text-2xl md:text-3xl mb-2">Hotels &amp; Stays</h3>
+          <p class="text-white/70 text-sm mb-6">5-star resorts · boutique inns · budget hostels</p>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/35 rounded-full px-5 py-2 group-hover:bg-white group-hover:text-river transition-colors">Browse All &rarr;</span>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/food-shangpalace.webp" type="image/webp"><img src="images/food-shangpalace.jpg" alt="Guilin beer fish" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Beer Fish (啤酒鱼)</h3>
-              <p class="text-sm text-stone/75 leading-relaxed">Yangshuo's signature — fresh river fish braised in beer with tomatoes and peppers. Best eaten along West Street.</p>
-            </div>
-          </article>
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/food-chunji.webp" type="image/webp"><img src="images/food-chunji.jpg" alt="Guilin rice noodles" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Guilin Rice Noodles (桂林米粉)</h3>
-              <p class="text-sm text-stone/75 leading-relaxed">The city's beloved breakfast — silky noodles in savory broth with fried peanuts, scallions, and chili oil. Eat standing up, like a local.</p>
-            </div>
-          </article>
-          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm fade-in group">
-            <div class="relative h-48 overflow-hidden"><picture><source srcset="images/food-luanle.webp" type="image/webp"><img src="images/food-luanle.jpg" alt="Lipu taro braised pork" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async"></picture></div>
-            <div class="p-5">
-              <h3 class="font-display text-lg text-river mb-1">Lipu Taro Pork (荔浦芋扣肉)</h3>
-              <p class="text-sm text-stone/75 leading-relaxed">A festive classic — layers of taro and pork belly steamed until meltingly soft, sweet and savory at once.</p>
-            </div>
-          </article>
+      </a>
+
+      <a href="#food" id="food" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+        <img src="images/exp-cook.webp" alt="Restaurants in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+        <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/25 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
+          <span class="inline-flex items-center gap-2 text-white/60 text-xs font-medium tracking-widest uppercase mb-3">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15c-1.1 0-2-.9-2-2V2"/><path d="M19 2v13c0 1.1-.9 2-2 2h0a2 2 0 0 1-2-2V2"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+            Taste Guilin
+          </span>
+          <h3 class="font-display text-2xl md:text-3xl mb-2">Restaurants &amp; Food</h3>
+          <p class="text-white/70 text-sm mb-6">Fine dining · local favorites · street food gems</p>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/35 rounded-full px-5 py-2 group-hover:bg-white group-hover:text-river transition-colors">Browse All &rarr;</span>
         </div>
-        <div class="text-center mt-10 fade-in">
-          <a href="https://wa.me/8618777358302" target="_blank" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white font-semibold px-8 py-3.5 rounded-full transition-colors duration-300">Ask us for restaurant picks →</a>
-        </div>
-      </div>
-    </section>
+      </a>
+
+    </div>
+  </section>
 
   <!-- ========== 7. CONTACT US ============================================= -->
   <section id="contact" class="band-bg py-20 px-6 text-white" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.55) 0%, rgba(14,77,100,0.7) 50%, rgba(14,77,100,0.9) 100%), url('images/attraction-xingping.webp');">
@@ -1078,7 +1027,7 @@
         </div>
       </div>
       <div class="border-t border-white/10 pt-6 text-center text-sm text-white/70">
-        <p>&copy; 2026 Visit Guilin. All rights reserved.</p>
+        <p>&copy; 2026 Visit Guilin. All rights reserved. <a href="credits.html" class="underline hover:text-gold ml-2">Image Credits</a></p>
         <p class="mt-1">Guilin, Guangxi Zhuang Autonomous Region &bull; Li River Karst Landscape, China</p>
       </div>
     </div>

@@ -547,7 +547,7 @@ function renderPage(a) {
         </div>
       </div>
       <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70">
-        <p>&copy; 2026 ${SITE.name}. All rights reserved.</p>
+        <p>&copy; 2026 ${SITE.name}. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a></p>
         <p>Li River Karst Landscape, Guilin, Guangxi, China</p>
       </div>
     </div>
@@ -652,7 +652,7 @@ const FOOTER_HTML = `
         </div>
       </div>
       <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70">
-        <p>&copy; 2026 ${SITE.name}. All rights reserved.</p>
+        <p>&copy; 2026 ${SITE.name}. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a></p>
         <p>Li River Karst Landscape, Guilin, Guangxi, China</p>
       </div>
     </div>
@@ -1031,11 +1031,12 @@ function buildSitemap() {
     ...attractions.map(urlFor),
     `  <url>\n    <loc>${SITE.url}/guides/index.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
     ...guides.map(urlForGuide),
+    `  <url>\n    <loc>${SITE.url}/credits.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.3</priority>\n  </url>`,
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="${IMG_NS}">\n${pages.join('\n')}\n</urlset>\n`;
 }
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap(), 'utf8');
-console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + 2} URLs + image entries)`);
+console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + 3} URLs + image entries)`);
 
 // Disallow build/test artifacts + the (empty) admin area; guide crawlers to the canonical host.
 // AI training/search crawlers are explicitly allowed so LLMs can read and recommend the site.

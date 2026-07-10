@@ -16,24 +16,24 @@
       <image:title>Li River — hero</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-xingping.webp</image:loc>
-      <image:title>Xingping ancient street with traditional shops</image:title>
+      <image:loc>https://myguilin.com/images/attraction-liriver.webp</image:loc>
+      <image:title>Li River waterfront at Xingping</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:loc>https://myguilin.com/images/exp-cormorant.webp</image:loc>
+      <image:title>Cormorant fisherman on a bamboo raft on the Li River</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yulong.webp</image:loc>
-      <image:title>Yulong River bamboo rafting</image:title>
+      <image:loc>https://myguilin.com/images/exp-xianggong.webp</image:loc>
+      <image:title>Karst peaks above the Li River from Xianggong Mountain</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-tworivers.webp</image:loc>
-      <image:title>Sun and Moon Pagodas in Guilin city</image:title>
+      <image:loc>https://myguilin.com/images/web-liriver-village.webp</image:loc>
+      <image:title>A riverside village along the Li River</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-elephant.webp</image:loc>
-      <image:title>Elephant Trunk Hill in Guilin city</image:title>
+      <image:loc>https://myguilin.com/images/web-yangshuo-countryside.webp</image:loc>
+      <image:title>Cruise boats on the Li River among karst peaks</image:title>
     </image:image>
   </url>
   <url>
@@ -50,20 +50,20 @@
       <image:title>Elephant Trunk Hill park view</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-tworivers.webp</image:loc>
-      <image:title>Sun and Moon Pagodas at night</image:title>
+      <image:loc>https://myguilin.com/images/web-elephant-night.webp</image:loc>
+      <image:title>Elephant Trunk Hill lit at night</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst landscape</image:title>
+      <image:loc>https://myguilin.com/images/web-tworivers-bridge.webp</image:loc>
+      <image:title>Sun and Moon Pagodas near Elephant Hill</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-reedflute.webp</image:loc>
-      <image:title>Reed Flute Cave formations</image:title>
+      <image:title>Reed Flute Cave near Elephant Hill</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:loc>https://myguilin.com/images/attraction-tworivers.webp</image:loc>
+      <image:title>Sun and Moon Pagodas on Shanhu Lake</image:title>
     </image:image>
   </url>
   <url>
@@ -76,24 +76,24 @@
       <image:title>Yangshuo &amp; West Street — hero</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://myguilin.com/images/web-yulong-karst.webp</image:loc>
+      <image:title>Yangshuo karst countryside</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cycling.webp</image:loc>
+      <image:title>Countryside cycling near Yangshuo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-climb.webp</image:loc>
+      <image:title>Karst rock climbing near Yangshuo</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://myguilin.com/images/attraction-yulong.webp</image:loc>
-      <image:title>Yulong River countryside</image:title>
+      <image:title>Yulong River scenery near Yangshuo</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-xingping.webp</image:loc>
       <image:title>Xingping ancient town near Yangshuo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/exp-cycling.webp</image:loc>
-      <image:title>Countryside cycling</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/exp-climb.webp</image:loc>
-      <image:title>Karst climbing</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst panorama</image:title>
     </image:image>
   </url>
   <url>
@@ -110,20 +110,20 @@
       <image:title>Longji terraced fields</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst landscape</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/band-elephant.webp</image:loc>
-      <image:title>Elephant Trunk Hill in Guilin</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yulong.webp</image:loc>
-      <image:title>Yulong River scenery</image:title>
+      <image:loc>https://myguilin.com/images/web-longji-jinkeng.webp</image:loc>
+      <image:title>Jinkeng rice terraces at Longji</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:title>Yangshuo West Street — a common stop with Longji</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/attraction-reedflute.webp</image:loc>
+      <image:title>Reed Flute Cave — near Guilin, on the way back from Longji</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/attraction-elephant.webp</image:loc>
+      <image:title>Elephant Trunk Hill — Guilin city symbol, easy stop after Longji</image:title>
     </image:image>
   </url>
   <url>
@@ -136,24 +136,24 @@
       <image:title>Reed Flute Cave — hero</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://myguilin.com/images/web-reedflute-2.webp</image:loc>
+      <image:title>Reed Flute Cave interior</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-reedflute-3.webp</image:loc>
+      <image:title>Reed Flute Cave stalactites</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-reedflute-4.webp</image:loc>
+      <image:title>Reed Flute Cave underground lake</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://myguilin.com/images/attraction-elephant.webp</image:loc>
-      <image:title>Elephant Trunk Hill</image:title>
+      <image:title>Elephant Trunk Hill near Reed Flute Cave</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/band-elephant.webp</image:loc>
-      <image:title>Elephant Trunk Hill park</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst scenery</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/attraction-tworivers.webp</image:loc>
-      <image:title>Sun and Moon Pagodas at night</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:loc>https://myguilin.com/images/web-tworivers-bridge.webp</image:loc>
+      <image:title>Sun and Moon Pagodas near Reed Flute Cave</image:title>
     </image:image>
   </url>
   <url>
@@ -167,23 +167,19 @@
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/exp-bamboo.webp</image:loc>
-      <image:title>Bamboo raft on calm water</image:title>
+      <image:title>Bamboo raft on the Yulong River</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:title>Yangshuo West Street — base for Yulong trips</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/exp-cycling.webp</image:loc>
-      <image:title>Riverside bike path</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst panorama</image:title>
+      <image:title>Riverside bike loop near the Yulong River</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-xingping.webp</image:loc>
-      <image:title>Xingping ancient town</image:title>
+      <image:title>Xingping ancient town near the Yulong River</image:title>
     </image:image>
   </url>
   <url>
@@ -196,24 +192,24 @@
       <image:title>Two Rivers &amp; Four Lakes — hero</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://myguilin.com/images/web-tworivers-nightcruise.webp</image:loc>
+      <image:title>Two Rivers and Four Lakes night cruise</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-tworivers-bridge.webp</image:loc>
+      <image:title>Sun and Moon Pagodas reflection on Shanhu Lake</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://myguilin.com/images/attraction-elephant.webp</image:loc>
-      <image:title>Elephant Trunk Hill</image:title>
+      <image:title>Elephant Trunk Hill near the lakes</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/band-elephant.webp</image:loc>
-      <image:title>Elephant Trunk Hill park view</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst landscape</image:title>
+      <image:loc>https://myguilin.com/images/web-elephant-night.webp</image:loc>
+      <image:title>Elephant Trunk Hill at night near the lakes</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-reedflute.webp</image:loc>
-      <image:title>Reed Flute Cave formations</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:title>Reed Flute Cave near the lakes</image:title>
     </image:image>
   </url>
   <url>
@@ -226,24 +222,24 @@
       <image:title>Xingping Ancient Town — hero</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/hero-liriver.webp</image:loc>
-      <image:title>Li River karst panorama near Xingping</image:title>
+      <image:loc>https://myguilin.com/images/web-xingping-bend.webp</image:loc>
+      <image:title>Karst peaks above the Li River near Xingping</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-liriver.webp</image:loc>
-      <image:title>Riverside wharf sunset</image:title>
+      <image:title>Xingping riverside wharf on the Li River</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/exp-liriver.webp</image:loc>
-      <image:title>Cormorant on a bamboo raft on the Li River</image:title>
+      <image:loc>https://myguilin.com/images/exp-cormorant.webp</image:loc>
+      <image:title>Cormorant fisherman on the Li River near Xingping</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://myguilin.com/images/attraction-yulong.webp</image:loc>
-      <image:title>Yulong River scenery</image:title>
+      <image:loc>https://myguilin.com/images/exp-xianggong.webp</image:loc>
+      <image:title>Xianggong Mountain overlook of the Li River near Xingping</image:title>
     </image:image>
     <image:image>
       <image:loc>https://myguilin.com/images/attraction-yangshuo.webp</image:loc>
-      <image:title>Yangshuo West Street at night</image:title>
+      <image:title>Yangshuo West Street — a nearby base for Xingping</image:title>
     </image:image>
   </url>
   <url>
@@ -287,5 +283,11 @@
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myguilin.com/credits.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

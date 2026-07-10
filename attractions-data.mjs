@@ -31,9 +31,9 @@ export const attractions = [
     highlights: [
       { img: 'hero-liriver', title: 'Li River Panorama', sub: '漓江 · Karst peaks from above', text: 'A sweeping aerial view of the river winding through sugar-loaf limestone towers — the classic Guilin landscape.' },
       { img: 'attraction-liriver', title: 'Xingping Riverfront', sub: '兴坪码头 · Sunset at the pier', text: 'Tour boats dock at Xingping’s waterfront as the sun sets behind the limestone towers — a quiet end to the river journey.' },
-      { img: 'exp-liriver', title: 'Cormorant Raft Scene', sub: '鸬鹚竹筏 · Li River heritage', text: 'Bamboo rafts and cormorants remain an iconic sight on the Li River — a scene rooted in centuries of local fishing tradition.' },
-      { img: 'attraction-yangshuo', title: 'Yangshuo West Street', sub: '阳朔西街 · End of the cruise', text: 'The cruise ends in Yangshuo, where lantern-lit West Street is the place to eat, drink, and plan the next day’s countryside ride.' },
-      { img: 'attraction-yulong', title: 'Yulong River Countryside', sub: '遇龙河 · The quieter tributary', text: 'Just outside Yangshuo, the Yulong River offers smaller bamboo rafts, misty bamboo banks, and a more intimate karst landscape.' },
+      { img: 'exp-cormorant', title: 'Cormorant Raft Scene', sub: '鸬鹚竹筏 · Li River heritage', text: 'A traditional cormorant fisherman poles a bamboo raft on the Li River, with karst peaks rising behind him — a scene rooted in centuries of local fishing culture.' },
+      { img: 'web-xingping-bend', title: 'Karst Peaks above Xingping', sub: '兴坪峰丛 · The 20-yuan backdrop', text: 'The knife-sharp limestone towers that line the Li River near Xingping, the same peaks that appear on China’s ¥20 note.' },
+      { img: 'exp-xianggong', title: 'Xianggong Mountain Overlook', sub: '相公山 · Sunrise panorama', text: 'A high viewpoint above the Li River catches first light on the karst towers and the river’s silver ribbon.' },
     ],
     routes: [
       {
@@ -85,11 +85,11 @@ export const attractions = [
     ticketNote: 'Prices are reference values for international travelers and may change by season. Bamboo rafts do not operate during heavy rain or flood warnings. Foreign tourists must bring a passport — it’s checked at the pier.',
     gallery: [
       { img: 'hero-liriver', alt: 'Li River winding through karst peaks' },
-      { img: 'attraction-xingping', alt: 'Xingping ancient street with traditional shops' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
-      { img: 'attraction-yulong', alt: 'Yulong River bamboo rafting' },
-      { img: 'attraction-tworivers', alt: 'Sun and Moon Pagodas in Guilin city' },
-      { img: 'attraction-elephant', alt: 'Elephant Trunk Hill in Guilin city' },
+      { img: 'attraction-liriver', alt: 'Li River waterfront at Xingping' },
+      { img: 'exp-cormorant', alt: 'Cormorant fisherman on a bamboo raft on the Li River' },
+      { img: 'exp-xianggong', alt: 'Karst peaks above the Li River from Xianggong Mountain' },
+      { img: 'web-liriver-village', alt: 'A riverside village along the Li River' },
+      { img: 'web-yangshuo-countryside', alt: 'Cruise boats on the Li River among karst peaks' },
     ],
     faqs: [
       { q: 'How long is the Li River cruise, and where does it start and end?', a: 'The classic cruise is 83&nbsp;km (about 4–5 hours) from Zhujiang Pier outside Guilin to Yangshuo town. Boats depart between 8:30 and 9:30 AM, and you arrive in Yangshuo around 1:30–2:30 PM. Shorter bamboo raft options (1–1.5 hours) run on the Xingping section.' },
@@ -137,8 +137,8 @@ export const attractions = [
     highlights: [
       { img: 'attraction-elephant', title: 'The Elephant Arch', sub: '象鼻 · The trunk & reflection', text: 'The natural limestone arch at the waterline is the money shot. Stand on the riverside path for the perfect “elephant drinking” silhouette with its reflection.' },
       { img: 'band-elephant', title: 'Riverside Park', sub: '象山公园 · Easy stroll', text: 'Shady walkways and gardens wrap around the hill. The flat, family-friendly park takes 1–2 hours to explore.' },
-      { img: 'attraction-tworivers', title: 'Sun & Moon Pagodas', sub: '日月双塔 · Nearby on Shanhu Lake', text: 'A short walk from the hill, the gold-and-silver pagodas light up on the water at night — a classic Guilin evening sight.' },
-      { img: 'hero-liriver', title: 'Li River Karst Scenery', sub: '漓江山水 · From the city', text: 'The Li River flows past Guilin’s city center; the same limestone peaks you see here continue all the way to Yangshuo.' },
+      { img: 'web-elephant-night', title: 'Elephant Hill at Night', sub: '象鼻山夜景 · Gold on the water', text: 'After dark, colored lights turn the hill golden and its reflection shimmers on the Li River.' },
+      { img: 'web-tworivers-bridge', title: 'Sun & Moon Pagodas', sub: '日月双塔 · 10-min walk', text: 'A gold and a silver pagoda light up on Shanhu Lake, an easy evening add-on to Elephant Hill.' },
       { img: 'attraction-reedflute', title: 'Reed Flute Cave', sub: '芦笛岩 · 20 min away', text: 'A 180-million-year-old limestone cave with lit stalactites and an underground lake — easy to pair with Elephant Hill in one morning.' },
     ],
     routes: [
@@ -189,10 +189,10 @@ export const attractions = [
     gallery: [
       { img: 'attraction-elephant', alt: 'Elephant Trunk Hill by day' },
       { img: 'band-elephant', alt: 'Elephant Trunk Hill park view' },
-      { img: 'attraction-tworivers', alt: 'Sun and Moon Pagodas at night' },
-      { img: 'hero-liriver', alt: 'Li River karst landscape' },
-      { img: 'attraction-reedflute', alt: 'Reed Flute Cave formations' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
+      { img: 'web-elephant-night', alt: 'Elephant Trunk Hill lit at night' },
+      { img: 'web-tworivers-bridge', alt: 'Sun and Moon Pagodas near Elephant Hill' },
+      { img: 'attraction-reedflute', alt: 'Reed Flute Cave near Elephant Hill' },
+      { img: 'attraction-tworivers', alt: 'Sun and Moon Pagodas on Shanhu Lake' },
     ],
     faqs: [
       { q: 'How much time do I need at Elephant Trunk Hill?', a: 'About 1–2 hours for a relaxed walk through the park, the Water Moon Cave, and the hilltop pagoda. Add an hour if you stay for the night light show.' },
@@ -239,10 +239,10 @@ export const attractions = [
     ],
     highlights: [
       { img: 'attraction-yangshuo', title: 'West Street (西街)', sub: '千年老街 · The social heart', text: 'A 1,400-year-old pedestrian lane packed with cafes, bars, and shops. Lively by day, electric by night.' },
-      { img: 'attraction-yulong', title: 'Yulong River Countryside', sub: '遇龙河 · Bike & raft', text: 'Flat riverside paths and bamboo rafts just outside town — the most peaceful karst scenery near Yangshuo.' },
+      { img: 'web-yulong-karst', title: 'Yangshuo Karst Countryside', sub: '阳朔田园 · Peaks & paddies', text: 'The town is ringed by cone-shaped limestone towers, rice fields, and villages — the landscape that makes Yangshuo unforgettable.' },
       { img: 'exp-cycling', title: 'Countryside Cycling', sub: '骑行 · Flat trails', text: 'Rent a bike (¥20–30/day) and loop through villages, rice paddies, and Moon Hill. Safe, flat, and gorgeous.' },
-      { img: 'attraction-xingping', title: 'Xingping Ancient Town', sub: '兴坪 · 30 min away', text: 'A 1,700-year-old town on the Li River, directly opposite the famous ¥20 banknote karst view.' },
       { img: 'exp-climb', title: 'Karst Rock Climbing', sub: '攀岩 · World-class', text: 'Yangshuo is Asia’s top sport-climbing destination, with routes for every level on the surrounding towers.' },
+      { img: 'attraction-xingping', title: 'Xingping Ancient Town', sub: '兴坪 · 30 min away', text: 'A 1,700-year-old town on the Li River, directly opposite the famous ¥20 banknote karst view.' },
     ],
     routes: [
       {
@@ -292,11 +292,11 @@ export const attractions = [
     ticketNote: 'Yangshuo town itself is free to wander. Paid items are the show, rafting, and individual viewpoints. The night show price varies hugely by seat section — book through your hotel for the best rate.',
     gallery: [
       { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
-      { img: 'attraction-yulong', alt: 'Yulong River countryside' },
+      { img: 'web-yulong-karst', alt: 'Yangshuo karst countryside' },
+      { img: 'exp-cycling', alt: 'Countryside cycling near Yangshuo' },
+      { img: 'exp-climb', alt: 'Karst rock climbing near Yangshuo' },
+      { img: 'attraction-yulong', alt: 'Yulong River scenery near Yangshuo' },
       { img: 'attraction-xingping', alt: 'Xingping ancient town near Yangshuo' },
-      { img: 'exp-cycling', alt: 'Countryside cycling' },
-      { img: 'exp-climb', alt: 'Karst climbing' },
-      { img: 'hero-liriver', alt: 'Li River karst panorama' },
     ],
     faqs: [
       { q: 'Should I stay in Yangshuo or just visit for the day?', a: 'Stay at least one night. The countryside at sunrise and West Street at night are the best parts, and the Li River cruise already delivers you here in the afternoon — it would be a shame to leave the same day.' },
@@ -344,9 +344,9 @@ export const attractions = [
     highlights: [
       { img: 'attraction-longji', title: 'The Terraces Themselves', sub: '龙脊梯田 · Hand-carved', text: 'Ribbons of field climbing the mountainside — a 650-year-old landscape still farmed by Zhuang and Yao families.' },
       { img: 'exp-longji', title: 'Longji Terraced Fields', sub: '梯田四季 · Year-round', text: 'The same layered hillsides in a different season: flooded silver in spring, lush green in summer, or gold in autumn.' },
-      { img: 'attraction-yulong', title: 'Yulong River Countryside', sub: '遇龙河 · Near Yangshuo', text: 'After the terraces, head south to Yangshuo for flat riverside rides and bamboo rafts among smaller karst peaks.' },
-      { img: 'hero-liriver', title: 'Li River Karst Scenery', sub: '漓江山水 · Guilin to Yangshuo', text: 'The classic river journey between Guilin and Yangshuo pairs perfectly with a Longji trip in the same week.' },
-      { img: 'band-elephant', title: 'Elephant Trunk Hill', sub: '象鼻山 · Guilin city', text: 'Guilin’s emblematic hill sits at the Li River confluence — an easy stop on the way to or from the terraces.' },
+      { img: 'web-longji-jinkeng', title: 'Jinkeng Dazhai Terraces', sub: '金坑大寨 · Sea of clouds', text: 'The higher Jinkeng area offers vast terraces and famous sunrise sea-of-clouds views above Red Yao villages.' },
+      { img: 'attraction-yangshuo', title: 'Yangshuo Countryside', sub: '阳朔田园 · Combine with Longji', text: 'Many travelers pair the terraces with Yangshuo’s karst peaks in the same trip.' },
+      { img: 'attraction-reedflute', title: 'Reed Flute Cave', sub: '芦笛岩 · On the way back', text: 'A cool Guilin cave visit fits neatly on the return drive from Longji.' },
     ],
     routes: [
       {
@@ -397,10 +397,10 @@ export const attractions = [
     gallery: [
       { img: 'attraction-longji', alt: 'Longji rice terraces' },
       { img: 'exp-longji', alt: 'Longji terraced fields' },
-      { img: 'hero-liriver', alt: 'Li River karst landscape' },
-      { img: 'band-elephant', alt: 'Elephant Trunk Hill in Guilin' },
-      { img: 'attraction-yulong', alt: 'Yulong River scenery' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
+      { img: 'web-longji-jinkeng', alt: 'Jinkeng rice terraces at Longji' },
+      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street — a common stop with Longji' },
+      { img: 'attraction-reedflute', alt: 'Reed Flute Cave — near Guilin, on the way back from Longji' },
+      { img: 'attraction-elephant', alt: 'Elephant Trunk Hill — Guilin city symbol, easy stop after Longji' },
     ],
     faqs: [
       { q: 'When is the best time to see the terraces?', a: 'Two windows: May–June, when the fields are flooded and mirror the sky (quiet, silvery), and late September–October, when the rice turns gold (the classic postcard, but busy and pricier). Avoid midsummer heat and deep winter cold.' },
@@ -447,10 +447,10 @@ export const attractions = [
     ],
     highlights: [
       { img: 'attraction-reedflute', title: 'The Crystal Palace', sub: '水晶宫 · The showpiece', text: 'A vast chamber with a stage-like rock floor and a ceiling of hanging stalactites — the cave’s theatrical centerpiece.' },
+      { img: 'web-reedflute-3', title: 'Stalactite Forest', sub: '石笋森林 · Lit formations', text: 'Colorful lights pick out stone pillars and hanging formations inside the cave.' },
+      { img: 'web-reedflute-4', title: 'Underground Mirror Lake', sub: '地下湖 · Reflections', text: 'A still underground lake doubles the lit stalactites in a perfect mirror.' },
       { img: 'attraction-elephant', title: 'Elephant Trunk Hill', sub: '象鼻山 · 20 min away', text: 'Guilin’s city emblem sits where the Li and Peach Blossom rivers meet — easy to pair with the cave in one morning.' },
-      { img: 'band-elephant', title: 'Elephant Trunk Hill Park', sub: '象山公园 · Riverside stroll', text: 'Shady gardens and a riverside path frame the famous hill; the classic “elephant drinking” photo is free from the east bank.' },
-      { img: 'hero-liriver', title: 'Li River Karst Scenery', sub: '漓江山水 · From Guilin to Yangshuo', text: 'The same karst peaks that surround the cave continue down the Li River — the reason most travelers come to Guilin.' },
-      { img: 'attraction-tworivers', title: 'Sun & Moon Pagodas', sub: '日月双塔 · City center lakes', text: 'A gold and a silver pagoda light up on Shanhu Lake at night — the signature sight on an evening lakeside walk.' },
+      { img: 'web-tworivers-bridge', title: 'Sun & Moon Pagodas', sub: '日月双塔 · City center lakes', text: 'A gold and a silver pagoda light up on Shanhu Lake at night — the signature sight on an evening lakeside walk.' },
     ],
     routes: [
       {
@@ -498,11 +498,11 @@ export const attractions = [
     ticketNote: 'Prices are reference values and may shift by season. The cave is fully accessible and stroller/wheelchair friendly on the main path. Photography is allowed without flash.',
     gallery: [
       { img: 'attraction-reedflute', alt: 'Reed Flute Cave formations' },
-      { img: 'attraction-elephant', alt: 'Elephant Trunk Hill' },
-      { img: 'band-elephant', alt: 'Elephant Trunk Hill park' },
-      { img: 'hero-liriver', alt: 'Li River karst scenery' },
-      { img: 'attraction-tworivers', alt: 'Sun and Moon Pagodas at night' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
+      { img: 'web-reedflute-2', alt: 'Reed Flute Cave interior' },
+      { img: 'web-reedflute-3', alt: 'Reed Flute Cave stalactites' },
+      { img: 'web-reedflute-4', alt: 'Reed Flute Cave underground lake' },
+      { img: 'attraction-elephant', alt: 'Elephant Trunk Hill near Reed Flute Cave' },
+      { img: 'web-tworivers-bridge', alt: 'Sun and Moon Pagodas near Reed Flute Cave' },
     ],
     faqs: [
       { q: 'How long does a visit take?', a: 'About one hour for the 500-meter lit walkway. Add time for photos and the souvenir plaza outside. It’s an easy, flat, fully indoor visit.' },
@@ -552,7 +552,7 @@ export const attractions = [
       { img: 'exp-bamboo', title: 'Bamboo Rafting', sub: '竹筏漂流 · Quiet stretch', text: 'A raft carrying two visitors poles along a green river lined with bamboo and karst peaks — the Yulong experience in one frame.' },
       { img: 'attraction-yangshuo', title: 'West Street at Night', sub: '西街 · Yangshuo base', text: 'Yangshuo’s 1,400-year-old pedestrian street is where most travelers stay, eat, and book their Yulong raft trip.' },
       { img: 'exp-cycling', title: 'Riverside Bike Loop', sub: '骑行 · Combine', text: 'Raft down, then bike back through paddies and hamlets on flat paths. The perfect Yangshuo morning.' },
-      { img: 'hero-liriver', title: 'Li River Karst Scenery', sub: '漓江山水 · The bigger river', text: 'The Yulong is a tributary of the Li River; the same dramatic karst towers rise along both waterways.' },
+      { img: 'attraction-xingping', title: 'Xingping Ancient Town', sub: '兴坪 · Nearby', text: 'The historic Li River town is an easy stop when basing yourself in Yangshuo for the Yulong.' },
     ],
     routes: [
       {
@@ -602,11 +602,10 @@ export const attractions = [
     ticketNote: 'Rafts seat two and run on a set section; prices are reference values and rise in peak season. Rafts pause during heavy rain or high water for safety. Bring your passport — it may be checked.',
     gallery: [
       { img: 'attraction-yulong', alt: 'Yulong River bamboo raft' },
-      { img: 'exp-bamboo', alt: 'Bamboo raft on calm water' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
-      { img: 'exp-cycling', alt: 'Riverside bike path' },
-      { img: 'hero-liriver', alt: 'Li River karst panorama' },
-      { img: 'attraction-xingping', alt: 'Xingping ancient town' },
+      { img: 'exp-bamboo', alt: 'Bamboo raft on the Yulong River' },
+      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street — base for Yulong trips' },
+      { img: 'exp-cycling', alt: 'Riverside bike loop near the Yulong River' },
+      { img: 'attraction-xingping', alt: 'Xingping ancient town near the Yulong River' },
     ],
     faqs: [
       { q: 'How is the Yulong different from the Li River cruise?', a: 'The Yulong is a smaller, shallower tributary with bamboo rafts instead of big cruise boats. You sit low on the water near the karst, it’s quieter and more intimate, and it’s much cheaper — but shorter (1–1.5 h vs 4–5 h).' },
@@ -653,10 +652,10 @@ export const attractions = [
     ],
     highlights: [
       { img: 'attraction-tworivers', title: 'Sun & Moon Pagodas', sub: '日月双塔 · On Shanhu Lake', text: 'A gold and a silver pagoda that light up on the water at night — Guilin’s most photographed evening sight.' },
+      { img: 'web-tworivers-nightcruise', title: 'Night Cruise View', sub: '夜游两江四湖 · Illuminated ring', text: 'A night boat passes the twin pagodas, lit bridges, and the city’s water-ring glow.' },
+      { img: 'web-tworivers-bridge', title: 'Pagodas by Night', sub: '双塔倒影 · Reflections', text: 'The gold-and-silver towers reflected on Shanhu Lake after dark.' },
       { img: 'attraction-elephant', title: 'Elephant Trunk Hill', sub: '象鼻山 · 10-min walk', text: 'Guilin’s city emblem sits where the Li and Peach Blossom rivers meet — an easy addition to a lakeside evening.' },
-      { img: 'band-elephant', title: 'Elephant Trunk Hill Park', sub: '象山公园 · Riverside view', text: 'The classic “elephant drinking” silhouette is best seen from the riverside path outside the paid park.' },
-      { img: 'hero-liriver', title: 'Li River Karst Scenery', sub: '漓江山水 · The main river', text: 'The Li River itself is one of the “two rivers” in the name; its karst peaks form the backdrop to the whole city.' },
-      { img: 'attraction-reedflute', title: 'Reed Flute Cave', sub: '芦笛岩 · 20 min away', text: 'A cool, lit limestone cave with stalactites and an underground lake — pair with the lakes for a half-day in Guilin.' },
+      { img: 'web-elephant-night', title: 'Elephant Hill Night Lights', sub: '象鼻山夜景 · Golden silhouette', text: 'Nearby Elephant Trunk Hill glows gold after dark — easy to combine with a lakes cruise.' },
     ],
     routes: [
       {
@@ -705,11 +704,11 @@ export const attractions = [
     ticketNote: 'Walking the lakes is free; only the night cruise is ticketed. Boat prices vary by operator and season. The walk is flat, lit, and safe late into the evening.',
     gallery: [
       { img: 'attraction-tworivers', alt: 'Sun and Moon Pagodas on Shanhu Lake' },
-      { img: 'attraction-elephant', alt: 'Elephant Trunk Hill' },
-      { img: 'band-elephant', alt: 'Elephant Trunk Hill park view' },
-      { img: 'hero-liriver', alt: 'Li River karst landscape' },
-      { img: 'attraction-reedflute', alt: 'Reed Flute Cave formations' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
+      { img: 'web-tworivers-nightcruise', alt: 'Two Rivers and Four Lakes night cruise' },
+      { img: 'web-tworivers-bridge', alt: 'Sun and Moon Pagodas reflection on Shanhu Lake' },
+      { img: 'attraction-elephant', alt: 'Elephant Trunk Hill near the lakes' },
+      { img: 'web-elephant-night', alt: 'Elephant Trunk Hill at night near the lakes' },
+      { img: 'attraction-reedflute', alt: 'Reed Flute Cave near the lakes' },
     ],
     faqs: [
       { q: 'What exactly are the “two rivers and four lakes”?', a: 'The Li River and Peach Blossom River (two rivers) plus Shanhu, Ronghu, Guihu, and Mulong Lake (four lakes) — connected into one water ring around Guilin’s old city center.' },
@@ -756,10 +755,10 @@ export const attractions = [
     ],
     highlights: [
       { img: 'attraction-xingping', title: 'Xingping Ancient Street', sub: '兴坪老街 · Ming–Qing bricks', text: 'A narrow lane of old brick houses, shops, and red flags — the historic heart of the town and a pleasant stroll.' },
-      { img: 'hero-liriver', title: 'Li River Karst Panorama', sub: '漓江山水 · The 20-yuan area', text: 'The famous karst bend near Xingping is the one printed on China’s ¥20 note; this aerial view shows the same landscape.' },
+      { img: 'web-xingping-bend', title: 'Karst Peaks above Xingping', sub: '兴坪峰丛 · The 20-yuan backdrop', text: 'The limestone towers that line the Li River near Xingping, the same peaks printed on China’s ¥20 note.' },
       { img: 'attraction-liriver', title: 'Riverside Wharf', sub: '码头 · Sunset spot', text: 'The old pier is the place to watch the sun drop behind the limestone towers — and to board rafts.' },
-      { img: 'exp-liriver', title: 'Cormorant Raft Scene', sub: '鸬鹚竹筏 · Li River heritage', text: 'Bamboo rafts and cormorants remain an iconic sight on the Li River — a scene rooted in centuries of local fishing tradition.' },
-      { img: 'attraction-yangshuo', title: 'Yangshuo West Street', sub: '阳朔西街 · 40 min away', text: 'The lively end-of-cruise town is a short bus ride from Xingping — most travelers visit both in one trip.' },
+      { img: 'exp-cormorant', title: 'Cormorant Raft Scene', sub: '鸬鹚竹筏 · Li River heritage', text: 'Traditional cormorant fishermen still pole bamboo rafts on the Li River near Xingping — a living postcard.' },
+      { img: 'exp-xianggong', title: 'Xianggong Mountain Overlook', sub: '相公山 · Sunrise panorama', text: 'A high viewpoint above the Li River catches dawn light on the karst towers around Xingping.' },
     ],
     routes: [
       {
@@ -809,11 +808,11 @@ export const attractions = [
     ticketNote: 'Wandering Xingping is free; only the raft is ticketed. Raft prices are reference values and rise in peak season. Rafts pause during heavy rain. Bring your passport — it may be checked at the pier.',
     gallery: [
       { img: 'attraction-xingping', alt: 'Xingping ancient street' },
-      { img: 'hero-liriver', alt: 'Li River karst panorama near Xingping' },
-      { img: 'attraction-liriver', alt: 'Riverside wharf sunset' },
-      { img: 'exp-liriver', alt: 'Cormorant on a bamboo raft on the Li River' },
-      { img: 'attraction-yulong', alt: 'Yulong River scenery' },
-      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street at night' },
+      { img: 'web-xingping-bend', alt: 'Karst peaks above the Li River near Xingping' },
+      { img: 'attraction-liriver', alt: 'Xingping riverside wharf on the Li River' },
+      { img: 'exp-cormorant', alt: 'Cormorant fisherman on the Li River near Xingping' },
+      { img: 'exp-xianggong', alt: 'Xianggong Mountain overlook of the Li River near Xingping' },
+      { img: 'attraction-yangshuo', alt: 'Yangshuo West Street — a nearby base for Xingping' },
     ],
     faqs: [
       { q: 'Is the 20-yuan view actually here?', a: 'Yes. The karst bend on the back of China’s ¥20 note is directly across the river from Xingping. To get the exact framing, cross to the opposite bank — the composition doesn’t line up from the town side.' },
