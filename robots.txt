@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Build / test artifacts and admin area — not for public indexing
+Disallow: /tests/
+Disallow: /scripts/
+Disallow: /src/
+Disallow: /admin/
+
+# AI crawlers explicitly allowed (GEO: let LLMs read & recommend the site)
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Bytespider
+Allow: /
+
+Host: myguilin.com
+
+Sitemap: https://myguilin.com/sitemap.xml

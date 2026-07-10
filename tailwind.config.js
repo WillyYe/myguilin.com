@@ -1,11 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './**/*.html', '!./node_modules/**', '!./node_modules'],
+  content: ['./index.html', './attractions/**/*.html'],
   theme: {
     extend: {
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],
         'display': ['Playfair Display', 'serif'],
+      },
+      opacity: {
+        18: '0.18',
+        22: '0.22',
+        72: '0.72',
+        78: '0.78',
+        92: '0.92',
       },
       colors: {
         'river': '#0e4d64',
@@ -13,10 +20,7 @@ module.exports = {
         'sand': '#f4f1ea',
         'sand-dark': '#e6e0d4',
         'gold': '#c9a96e',
-        'gold-dark': '#7a5f24',
-        // `stone` is defined as a scale so the default numbered shades (e.g. stone-600)
-        // keep working, while `DEFAULT` preserves the original flat near-black (#3a3a3a)
-        // used by the 32 `text-stone` usages.
+        'gold-dark': '#5c4a1a',
         'stone': {
           DEFAULT: '#3a3a3a',
           50:  '#fafaf9',
@@ -34,5 +38,6 @@ module.exports = {
       },
     },
   },
+  safelist: ['hidden'],
   plugins: [],
 };

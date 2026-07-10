@@ -141,36 +141,36 @@ for (const [sel, name] of [['#tour', 'desktop-tour'], ['#hotel', 'desktop-hotelf
   }
 }
 
-// ---------- 7. mobile ----------
+// ---------- 7. mobile (index) ----------
+let mctx, mpage;
 try {
-const mctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true });
-const mpage = await mctx.newPage();
-mpage.on('pageerror', e => consoleErrors.push('mobile pageerror: ' + e.message));
-await mpage.goto(BASE, { waitUntil: 'load', timeout: 60000 });
-await mpage.waitForTimeout(2500);
-await mpage.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
-await mpage.waitForTimeout(300);
+  mctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true });
+  mpage = await mctx.newPage();
+  mpage.on('pageerror', e => consoleErrors.push('mobile pageerror: ' + e.message));
+  await mpage.goto(BASE, { waitUntil: 'load', timeout: 60000 });
+  await mpage.waitForTimeout(2500);
+  await mpage.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
+  await mpage.waitForTimeout(300);
 
-const mNavLinks = await mpage.locator('nav a[href^="#"]').count();
-ok('Mobile viewport exposes nav anchor links', mNavLinks > 0, `${mNavLinks} links`);
+  const mNavLinks = await mpage.locator('nav a[href^="#"]').count();
+  ok('Mobile viewport exposes nav anchor links', mNavLinks > 0, `${mNavLinks} links`);
 
-// open hamburger
-await mpage.locator('button[onclick*="toggle"]').click();
-await mpage.waitForTimeout(400);
-const menuOpen = await mpage.locator('#mobile-menu').isVisible();
-ok('Mobile hamburger opens the menu', menuOpen);
-await mpage.screenshot({ path: path.join(SHOT_DIR, 'mobile-menu.png') });
+  // open hamburger (index + detail use slightly different toggle markup)
+  await mpage.locator('button[onclick*="toggle"], button[onclick*="mobile-menu"]').first().click();
+  await mpage.waitForTimeout(400);
+  const menuOpen = await mpage.locator('#mobile-menu').isVisible();
+  ok('Mobile hamburger opens the menu', menuOpen);
+  await mpage.screenshot({ path: path.join(SHOT_DIR, 'mobile-menu.png') });
 
-// tap a section link → menu auto-closes
-await mpage.locator('#mobile-menu a[href="#attraction"]').click();
-await mpage.waitForTimeout(600);
-const menuClosed = !(await mpage.locator('#mobile-menu').isVisible());
-ok('Mobile menu auto-closes after tapping a section link', menuClosed);
+  // tap a section link → menu auto-closes
+  await mpage.locator('#mobile-menu a[href="#attraction"]').first().click();
+  await mpage.waitForTimeout(600);
+  const menuClosed = !(await mpage.locator('#mobile-menu').isVisible());
+  ok('Mobile menu auto-closes after tapping a section link', menuClosed);
 
-await mpage.evaluate(() => window.scrollTo(0, 0));
-await mpage.waitForTimeout(300);
-await mpage.screenshot({ path: path.join(SHOT_DIR, 'mobile-full.png'), fullPage: true });
-await mctx.close();
+  await mpage.evaluate(() => window.scrollTo(0, 0));
+  await mpage.waitForTimeout(300);
+  await mpage.screenshot({ path: path.join(SHOT_DIR, 'mobile-full.png'), fullPage: true });
 } catch (e) {
   ok('Mobile viewport flow completed', false, 'error: ' + e.message.split('\n')[0]);
 }
@@ -227,6 +227,208 @@ ok('FCP < 1800ms (good)', cwv.fcp > 0 && cwv.fcp < 1800, `${Math.round(cwv.fcp)}
 // ---------- 10. console errors ----------
 ok('No severe console / page errors on load', consoleErrors.length === 0, consoleErrors.slice(0, 3).join(' | '));
 
+// ---------- 11. detail pages (attractions/*.html) ----------
+const SLUGS = ['liriver', 'elephant', 'yangshuo', 'longji', 'reedflute', 'yulong', 'tworivers', 'xingping'];
+for (const slug of SLUGS) {
+  const label = `attractions/${slug}.html`;
+  const url = `http://127.0.0.1:${PORT}/attractions/${slug}.html`;
+  const errBefore = consoleErrors.length;
+  try {
+    await page.goto(url, { waitUntil: 'load', timeout: 60000 });
+    await page.waitForTimeout(2000);
+    await page.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
+    await page.waitForTimeout(300);
+
+    ok(`[${label}] <title> non-empty`, (await page.title()).trim().length > 0, await page.title());
+
+    const broken = await page.$$eval('img', imgs => imgs.filter(i => i.complete && i.naturalWidth === 0).map(i => i.currentSrc || i.src));
+    ok(`[${label}] no broken <img>`, broken.length === 0, broken.length ? broken.slice(0, 3).join(', ') : 'all loaded');
+
+    const nonLazy = await page.$$eval('img', imgs => imgs.filter(i => i.id !== 'heroImg' && i.getAttribute('loading') !== 'lazy').length);
+    ok(`[${label}] all non-hero <img> use loading="lazy"`, nonLazy === 0, `${nonLazy} not lazy`);
+
+    const anchorBad = await page.$$eval('a', as => {
+      const ids = new Set([...document.querySelectorAll('[id]')].map(e => e.id));
+      return as.filter(a => { const h = a.getAttribute('href'); return h && h.startsWith('#') && h.length > 1 && !ids.has(h.slice(1)); }).map(a => a.getAttribute('href'));
+    });
+    ok(`[${label}] in-page #anchors resolve`, anchorBad.length === 0, anchorBad.slice(0, 3).join(', '));
+
+    const relHrefs = await page.$$eval('a[href$=".html"]', as => as.map(a => a.getAttribute('href')));
+    const relBad = relHrefs.filter((h) => { const fp = h.startsWith('/') ? path.join(ROOT, h) : path.join(ROOT, 'attractions', h); return !fs.existsSync(fp); });
+    ok(`[${label}] internal .html links resolve`, relBad.length === 0, relBad.slice(0, 3).join(', '));
+
+    const seo = await page.evaluate(() => {
+      const can = document.querySelector('link[rel="canonical"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const ogImg = document.querySelector('meta[property="og:image"]');
+      let jsonld = null, jsonErr = null;
+      try { const s = document.querySelector('script[type="application/ld+json"]'); jsonld = s ? JSON.parse(s.textContent) : null; } catch (e) { jsonErr = e.message; }
+      return { can: can && can.getAttribute('href'), ogTitle: !!ogTitle, ogDesc: !!ogDesc, ogImg: ogImg && ogImg.getAttribute('content'), jsonld, jsonErr };
+    });
+    ok(`[${label}] canonical link present & correct`, !!seo.can && seo.can.includes(slug), seo.can || 'missing');
+    ok(`[${label}] OG tags (title/desc/image) present`, seo.ogTitle && seo.ogDesc && !!seo.ogImg, `title=${seo.ogTitle} desc=${seo.ogDesc} img=${!!seo.ogImg}`);
+    ok(`[${label}] JSON-LD valid + TouristAttraction`, !seo.jsonErr && seo.jsonld && JSON.stringify(seo.jsonld).includes('TouristAttraction'), seo.jsonErr || (seo.jsonld ? 'ok' : 'missing'));
+
+    // contact modal (tolerant id: index uses #contact-modal, detail uses #contactModal)
+    await page.locator('button[onclick*="openContactModal"]').first().click();
+    await page.waitForTimeout(400);
+    const modalVisible = await page.locator('#contactModal, #contact-modal').isVisible();
+    const modalRole = await page.locator('#contactModal, #contact-modal').getAttribute('role');
+    ok(`[${label}] contact modal opens`, modalVisible, `visible=${modalVisible}`);
+    ok(`[${label}] contact modal role="dialog"`, modalRole === 'dialog', `role=${modalRole}`);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(400);
+    const modalClosed = !(await page.locator('#contactModal, #contact-modal').isVisible());
+    ok(`[${label}] ESC closes contact modal`, modalClosed);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(SHOT_DIR, `desktop-${slug}.png`), fullPage: true });
+
+    // a11y (axe-core) per detail page
+    await page.addScriptTag({ path: AXE });
+    const axe = await page.evaluate(async () => {
+      const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } });
+      return r.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length }));
+    });
+    const crit = axe.filter(v => v.impact === 'critical').length;
+    const ser = axe.filter(v => v.impact === 'serious').length;
+    ok(`[${label}] axe: no critical a11y violations`, crit === 0, `${crit} critical`);
+    ok(`[${label}] axe: no serious a11y violations`, ser === 0, `${ser} serious`);
+    if (axe.length) console.log(`  [${label} a11y] ` + axe.map(v => `${v.id}(${v.nodes})`).join(', '));
+
+    // Core Web Vitals per page
+    const cwv2 = await page.evaluate(() => {
+      const lcp = window.__lcp || 0;
+      const fcp = (performance.getEntriesByType('paint').find(p => p.name === 'first-contentful-paint') || {}).startTime || 0;
+      const shifts = performance.getEntriesByType('layout-shift').filter(e => !e.hadRecentInput);
+      const cls = shifts.reduce((s, e) => s + e.value, 0);
+      return { lcp, fcp, cls };
+    });
+    ok(`[${label}] CLS < 0.1`, cwv2.cls < 0.1, cwv2.cls.toFixed(3));
+    ok(`[${label}] FCP < 1800ms`, cwv2.fcp > 0 && cwv2.fcp < 1800, `${Math.round(cwv2.fcp)}ms`);
+
+    // console errors accrued on this page only
+    const newErr = consoleErrors.slice(errBefore);
+    ok(`[${label}] no console / page errors`, newErr.length === 0, newErr.slice(0, 2).join(' | '));
+
+    // mobile screenshot for the page
+    if (mpage) {
+      await mpage.goto(url, { waitUntil: 'load', timeout: 60000 });
+      await mpage.waitForTimeout(2000);
+      await mpage.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
+      await mpage.waitForTimeout(300);
+      await mpage.evaluate(() => window.scrollTo(0, 0));
+      await mpage.waitForTimeout(300);
+      await mpage.screenshot({ path: path.join(SHOT_DIR, `mobile-${slug}.png`), fullPage: true });
+    }
+  } catch (e) {
+    ok(`[${label}] page audit completed`, false, 'error: ' + e.message.split('\n')[0]);
+  }
+}
+
+// ---------- 12. guide pages (guides/*.html + index) ----------
+const GUIDE_SLUGS = ['guilin-itinerary', 'li-river-cruise-guide', 'best-time-to-visit-guilin', 'guilin-vs-yangshuo', 'longji-rice-terraces-guide', 'guilin-food-guide'];
+const GUIDE_PAGES = [
+  ...GUIDE_SLUGS.map((s) => ({ slug: s, label: `guides/${s}.html`, url: `http://127.0.0.1:${PORT}/guides/${s}.html` })),
+  { slug: 'index', label: 'guides/index.html', url: `http://127.0.0.1:${PORT}/guides/index.html` },
+];
+for (const gp of GUIDE_PAGES) {
+  const label = gp.label;
+  const errBefore = consoleErrors.length;
+  try {
+    await page.goto(gp.url, { waitUntil: 'load', timeout: 60000 });
+    await page.waitForTimeout(2000);
+    await page.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
+    await page.waitForTimeout(300);
+
+    ok(`[${label}] <title> non-empty`, (await page.title()).trim().length > 0, await page.title());
+
+    const broken = await page.$$eval('img', imgs => imgs.filter(i => i.complete && i.naturalWidth === 0).map(i => i.currentSrc || i.src));
+    ok(`[${label}] no broken <img>`, broken.length === 0, broken.length ? broken.slice(0, 3).join(', ') : 'all loaded');
+
+    const nonLazy = await page.$$eval('img', imgs => imgs.filter(i => i.getAttribute('loading') !== 'lazy' && i.getAttribute('fetchpriority') !== 'high').length);
+    ok(`[${label}] all non-hero <img> use loading="lazy"`, nonLazy === 0, `${nonLazy} not lazy`);
+
+    const anchorBad = await page.$$eval('a', as => {
+      const ids = new Set([...document.querySelectorAll('[id]')].map(e => e.id));
+      return as.filter(a => { const h = a.getAttribute('href'); return h && h.startsWith('#') && h.length > 1 && !ids.has(h.slice(1)); }).map(a => a.getAttribute('href'));
+    });
+    ok(`[${label}] in-page #anchors resolve`, anchorBad.length === 0, anchorBad.slice(0, 3).join(', '));
+
+    const relHrefs = await page.$$eval('a[href$=".html"]', as => as.map(a => a.getAttribute('href')));
+    const relBad = relHrefs.filter((h) => { const fp = h.startsWith('/') ? path.join(ROOT, h) : path.join(ROOT, 'guides', h); return !fs.existsSync(fp); });
+    ok(`[${label}] internal .html links resolve`, relBad.length === 0, relBad.slice(0, 3).join(', '));
+
+    const seo = await page.evaluate(() => {
+      const can = document.querySelector('link[rel="canonical"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const ogImg = document.querySelector('meta[property="og:image"]');
+      let jsonld = null, jsonErr = null;
+      try { const s = document.querySelector('script[type="application/ld+json"]'); jsonld = s ? JSON.parse(s.textContent) : null; } catch (e) { jsonErr = e.message; }
+      return { can: can && can.getAttribute('href'), ogTitle: !!ogTitle, ogDesc: !!ogDesc, ogImg: ogImg && ogImg.getAttribute('content'), jsonld, jsonErr };
+    });
+    ok(`[${label}] canonical link present & correct`, !!seo.can && seo.can.includes('guides'), seo.can || 'missing');
+    ok(`[${label}] OG tags (title/desc/image) present`, seo.ogTitle && seo.ogDesc && !!seo.ogImg, `title=${seo.ogTitle} desc=${seo.ogDesc} img=${!!seo.ogImg}`);
+    const expectType = gp.slug === 'index' ? 'ItemList' : 'BlogPosting';
+    ok(`[${label}] JSON-LD valid + ${expectType}`, !seo.jsonErr && seo.jsonld && JSON.stringify(seo.jsonld).includes(expectType), seo.jsonErr || (seo.jsonld ? 'ok' : 'missing'));
+
+    await page.locator('button[onclick*="openContactModal"]').first().click();
+    await page.waitForTimeout(400);
+    const modalVisible = await page.locator('#contactModal, #contact-modal').isVisible();
+    const modalRole = await page.locator('#contactModal, #contact-modal').getAttribute('role');
+    ok(`[${label}] contact modal opens`, modalVisible, `visible=${modalVisible}`);
+    ok(`[${label}] contact modal role="dialog"`, modalRole === 'dialog', `role=${modalRole}`);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(400);
+    const modalClosed = !(await page.locator('#contactModal, #contact-modal').isVisible());
+    ok(`[${label}] ESC closes contact modal`, modalClosed);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(SHOT_DIR, `desktop-${gp.slug}.png`), fullPage: true });
+
+    await page.addScriptTag({ path: AXE });
+    const axe = await page.evaluate(async () => {
+      const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } });
+      return r.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length }));
+    });
+    const crit = axe.filter(v => v.impact === 'critical').length;
+    const ser = axe.filter(v => v.impact === 'serious').length;
+    ok(`[${label}] axe: no critical a11y violations`, crit === 0, `${crit} critical`);
+    ok(`[${label}] axe: no serious a11y violations`, ser === 0, `${ser} serious`);
+    if (axe.length) console.log(`  [${label} a11y] ` + axe.map(v => `${v.id}(${v.nodes})`).join(', '));
+
+    const cwv2 = await page.evaluate(() => {
+      const lcp = window.__lcp || 0;
+      const fcp = (performance.getEntriesByType('paint').find(p => p.name === 'first-contentful-paint') || {}).startTime || 0;
+      const shifts = performance.getEntriesByType('layout-shift').filter(e => !e.hadRecentInput);
+      const cls = shifts.reduce((s, e) => s + e.value, 0);
+      return { lcp, fcp, cls };
+    });
+    ok(`[${label}] CLS < 0.1`, cwv2.cls < 0.1, cwv2.cls.toFixed(3));
+    ok(`[${label}] FCP < 1800ms`, cwv2.fcp > 0 && cwv2.fcp < 1800, `${Math.round(cwv2.fcp)}ms`);
+
+    const newErr = consoleErrors.slice(errBefore);
+    ok(`[${label}] no console / page errors`, newErr.length === 0, newErr.slice(0, 2).join(' | '));
+
+    if (mpage) {
+      await mpage.goto(gp.url, { waitUntil: 'load', timeout: 60000 });
+      await mpage.waitForTimeout(2000);
+      await mpage.addStyleTag({ content: '.fade-in{opacity:1 !important; transform:none !important;}' });
+      await mpage.waitForTimeout(300);
+      await mpage.evaluate(() => window.scrollTo(0, 0));
+      await mpage.waitForTimeout(300);
+      await mpage.screenshot({ path: path.join(SHOT_DIR, `mobile-${gp.slug}.png`), fullPage: true });
+    }
+  } catch (e) {
+    ok(`[${label}] page audit completed`, false, 'error: ' + e.message.split('\n')[0]);
+  }
+}
+
+if (mctx) await mctx.close();
 await browser.close();
 ASSET_SERVER.close();
 
