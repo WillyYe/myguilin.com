@@ -77,6 +77,10 @@ function nav(current, pageType = 'attraction', base = './') {
     `<a href="${attractionBase}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
   const expLink = (slug, label) =>
     `<a href="${experienceBase}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
+  const expCard = (slug, img, title) => {
+    const label = title.replace(/ /g, '<br>');
+    return `<a href="${experienceBase}${slug}.html" class="mega-feature block">${picture(img, title, 'h-28 w-full object-cover')}<div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">${label}</span></a>`;
+  };
   const activeClass = (cond) => cond ? ' active text-river' : ' text-stone';
   return `
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-sand-dark" style="height:64px;">
@@ -118,22 +122,31 @@ function nav(current, pageType = 'attraction', base = './') {
           <li class="nav-item h-full flex items-center"><a href="/guides/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Guides</a></li>
           <li class="nav-item h-full flex items-center">
             <a href="../#experience" class="nav-link text-sm font-semibold${activeClass(isExperience)} hover:text-river px-4 h-full flex items-center gap-1">
-              Experience
+              Experiences
               <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
             </a>
-            <div class="mega-menu" style="width:520px;">
-              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
-                ${expLink('bamboo-rafting', '🎋 Bamboo Rafting')}
-                ${expLink('countryside-cycling', '🚲 Countryside Cycling')}
-                ${expLink('rock-climbing', '🧗 Karst Climbing')}
-                ${expLink('cooking-class', '🍳 Cooking Classes')}
-                ${expLink('cormorant-fishing', '🐦 Cormorant Fishing')}
-                ${expLink('li-river-cruise', '🛶 Li River Cruise')}
-                ${expLink('longji-terraces-trek', '🌾 Longji Terraces Trek')}
-                ${expLink('sunrise-viewpoint', '🌄 Sunrise Viewpoint')}
+            <div class="mega-menu" style="width:900px;">
+              <div class="grid grid-cols-4 gap-4">
+                ${expCard('li-river-cruise', 'exp-liriver', 'Li River Cruise')}
+                ${expCard('countryside-cycling', 'exp-cycling', 'Countryside Cycling')}
+                ${expCard('longji-terraces-trek', 'exp-longji', 'Longji Trekking')}
+                ${expCard('cormorant-fishing', 'exp-cormorant', 'Cormorant Fishing')}
               </div>
-              <div class="mt-4 pt-4 border-t border-sand-dark">
-                <a href="../#experience" class="inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">View All Experiences →</a>
+              <div class="mt-4 grid grid-cols-4 gap-4">
+                ${expCard('bamboo-rafting', 'exp-bamboo', 'Bamboo Rafting')}
+                ${expCard('rock-climbing', 'exp-climb', 'Rock Climbing')}
+                ${expCard('cooking-class', 'exp-cook', 'Cooking Class')}
+                ${expCard('sunrise-viewpoint', 'exp-xianggong', 'Sunrise Viewpoint')}
+              </div>
+              <div class="mt-4 grid grid-cols-4 gap-4 text-center">
+                ${expLink('li-river-cruise', 'Li River Cruise')}
+                ${expLink('countryside-cycling', 'Countryside Cycling')}
+                ${expLink('longji-terraces-trek', 'Longji Trekking')}
+                ${expLink('cormorant-fishing', 'Cormorant Show')}
+                ${expLink('bamboo-rafting', 'Bamboo Rafting')}
+                ${expLink('rock-climbing', 'Rock Climbing')}
+                ${expLink('cooking-class', 'Cooking Class')}
+                ${expLink('sunrise-viewpoint', 'Sunrise Viewpoint')}
               </div>
             </div>
           </li>
@@ -192,7 +205,7 @@ function nav(current, pageType = 'attraction', base = './') {
       ${attrLink('tworivers', 'Two Rivers &amp; Four Lakes')}
       ${attrLink('xingping', 'Xingping Ancient Town')}
       <a href="/guides/index.html" class="block text-stone font-semibold py-2">Guides</a>
-      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">3. Experience</p>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">3. Experiences</p>
       ${expLink('bamboo-rafting', 'Bamboo Rafting')}
       ${expLink('countryside-cycling', 'Countryside Cycling')}
       ${expLink('rock-climbing', 'Karst Climbing')}
