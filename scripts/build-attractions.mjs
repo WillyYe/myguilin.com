@@ -7,11 +7,37 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { attractions, SITE } from '../attractions-data.mjs';
 import { guides } from '../guides-data.mjs';
+import { experiences } from '../experiences-data.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const IMG_DIR = path.join(ROOT, 'images');
 const OUT_DIR = path.join(ROOT, 'attractions');
+
+// ---- site operator entity (for structured data) + build freshness ----
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+const UPDATED_LABEL = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
+const ORG_ID = `${SITE.url}/#visitguilin`;
+const orgNode = () => ({
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  logo: { '@type': 'ImageObject', url: `${SITE.url}/favicon.svg` },
+  image: `${SITE.url}/images/hero-liriver.webp`,
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: { '@type': 'PostalAddress', addressLocality: 'Guilin', addressRegion: 'Guangxi', addressCountry: 'CN' },
+  areaServed: 'Guilin, Guangxi, China',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: SITE.phone,
+    email: SITE.email,
+    contactType: 'customer support',
+    availableLanguage: ['English', 'Chinese'],
+    areaServed: 'Guilin, Guangxi, China',
+  },
+});
 
 // ---- inline SVG icon set (zero third-party dependency) ----
 const PATHS = {
@@ -37,10 +63,21 @@ const imgExists = (name) =>
 const picture = (name, alt, cls = '', extra = '') =>
   `<picture><source srcset="../images/${name}.webp" type="image/webp"><img src="../images/${name}.jpg" alt="${alt}" class="${cls}" loading="lazy" decoding="async" ${extra}></picture>`;
 
-// ---- navigation (marks current attraction) ----
-function nav(current, base = './') {
-  const link = (slug, label) =>
-    `<a href="${base}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
+// ---- navigation (marks current page in the correct section) ----
+const attractionSlugs = new Set(attractions.map((a) => a.slug));
+const experienceSlugs = new Set(experiences.map((e) => e.slug));
+
+function nav(current, pageType = 'attraction', base = './') {
+  const isAttraction = pageType === 'attraction';
+  const isExperience = pageType === 'experience';
+  const isGuide = pageType === 'guide';
+  const attractionBase = (isExperience || isGuide) ? '../attractions/' : base;
+  const experienceBase = isAttraction || isGuide ? '../experiences/' : base;
+  const attrLink = (slug, label) =>
+    `<a href="${attractionBase}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
+  const expLink = (slug, label) =>
+    `<a href="${experienceBase}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
+  const activeClass = (cond) => cond ? ' active text-river' : ' text-stone';
   return `
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-sand-dark" style="height:64px;">
     <div class="max-w-[1400px] mx-auto px-6 h-full flex items-center justify-between">
@@ -52,7 +89,7 @@ function nav(current, base = './') {
         <ul class="flex items-center h-full">
           <li class="nav-item h-full flex items-center"><a href="../" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Home</a></li>
           <li class="nav-item h-full flex items-center">
-            <a href="../#attraction" class="nav-link active text-sm font-semibold text-river hover:text-river px-4 h-full flex items-center gap-1">
+            <a href="../#attraction" class="nav-link text-sm font-semibold${activeClass(isAttraction)} hover:text-river px-4 h-full flex items-center gap-1">
               Attraction
               <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
             </a>
@@ -60,17 +97,17 @@ function nav(current, base = './') {
               <div class="grid grid-cols-2 gap-x-10 gap-y-1">
                 <div>
                   <p class="mega-col-title">Guilin City &amp; Around</p>
-                  ${link('liriver', '🛶 Li River Cruise (漓江)')}
-                  ${link('elephant', '🐘 Elephant Trunk Hill (象鼻山)')}
-                  ${link('reedflute', '🪨 Reed Flute Cave (芦笛岩)')}
-                  ${link('yulong', '🚣 Yulong River Rafting (遇龙河)')}
+                  ${attrLink('liriver', '🛶 Li River Cruise (漓江)')}
+                  ${attrLink('elephant', '🐘 Elephant Trunk Hill (象鼻山)')}
+                  ${attrLink('reedflute', '🪨 Reed Flute Cave (芦笛岩)')}
+                  ${attrLink('yulong', '🚣 Yulong River Rafting (遇龙河)')}
                 </div>
                 <div>
                   <p class="mega-col-title">Countryside &amp; Beyond</p>
-                  ${link('yangshuo', '🚲 Yangshuo &amp; West Street (阳朔)')}
-                  ${link('longji', '🌾 Longji Rice Terraces (龙脊)')}
-                  ${link('tworivers', '🌉 Two Rivers &amp; Four Lakes (两江四湖)')}
-                  ${link('xingping', '🏘️ Xingping Ancient Town (兴坪)')}
+                  ${attrLink('yangshuo', '🚲 Yangshuo &amp; West Street (阳朔)')}
+                  ${attrLink('longji', '🌾 Longji Rice Terraces (龙脊)')}
+                  ${attrLink('tworivers', '🌉 Two Rivers &amp; Four Lakes (两江四湖)')}
+                  ${attrLink('xingping', '🏘️ Xingping Ancient Town (兴坪)')}
                 </div>
               </div>
               <div class="mt-4 pt-4 border-t border-sand-dark">
@@ -80,18 +117,23 @@ function nav(current, base = './') {
           </li>
           <li class="nav-item h-full flex items-center"><a href="/guides/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Guides</a></li>
           <li class="nav-item h-full flex items-center">
-            <a href="../#experience" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+            <a href="../#experience" class="nav-link text-sm font-semibold${activeClass(isExperience)} hover:text-river px-4 h-full flex items-center gap-1">
               Experience
               <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
             </a>
-            <div class="mega-menu" style="width:480px;">
+            <div class="mega-menu" style="width:520px;">
               <div class="grid grid-cols-2 gap-x-8 gap-y-1">
-                <a href="../#exp-bamboo" class="mega-link">🎋 Bamboo Rafting</a>
-                <a href="../#exp-cycling" class="mega-link">🚲 Countryside Cycling</a>
-                <a href="../#exp-climb" class="mega-link">🧗 Karst Climbing</a>
-                <a href="../#exp-cook" class="mega-link">🍳 Cooking Classes</a>
-                <a href="../#exp-cormorant" class="mega-link">🐦 Cormorant Fishing</a>
-                <a href="../#exp-liriver" class="mega-link">🛶 Li River Cruise</a>
+                ${expLink('bamboo-rafting', '🎋 Bamboo Rafting')}
+                ${expLink('countryside-cycling', '🚲 Countryside Cycling')}
+                ${expLink('rock-climbing', '🧗 Karst Climbing')}
+                ${expLink('cooking-class', '🍳 Cooking Classes')}
+                ${expLink('cormorant-fishing', '🐦 Cormorant Fishing')}
+                ${expLink('li-river-cruise', '🛶 Li River Cruise')}
+                ${expLink('longji-terraces-trek', '🌾 Longji Terraces Trek')}
+                ${expLink('sunrise-viewpoint', '🌄 Sunrise Viewpoint')}
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <a href="../#experience" class="inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">View All Experiences →</a>
               </div>
             </div>
           </li>
@@ -141,22 +183,24 @@ function nav(current, base = './') {
     <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-sand-dark px-6 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
       <a href="../" class="block text-stone font-semibold py-2">1. Home</a>
       <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">2. Attraction</p>
-      ${link('liriver', 'Li River Cruise')}
-      ${link('elephant', 'Elephant Trunk Hill')}
-      ${link('yangshuo', 'Yangshuo &amp; West Street')}
-      ${link('longji', 'Longji Rice Terraces')}
-      ${link('reedflute', 'Reed Flute Cave')}
-      ${link('yulong', 'Yulong River Rafting')}
-      ${link('tworivers', 'Two Rivers &amp; Four Lakes')}
-      ${link('xingping', 'Xingping Ancient Town')}
+      ${attrLink('liriver', 'Li River Cruise')}
+      ${attrLink('elephant', 'Elephant Trunk Hill')}
+      ${attrLink('yangshuo', 'Yangshuo &amp; West Street')}
+      ${attrLink('longji', 'Longji Rice Terraces')}
+      ${attrLink('reedflute', 'Reed Flute Cave')}
+      ${attrLink('yulong', 'Yulong River Rafting')}
+      ${attrLink('tworivers', 'Two Rivers &amp; Four Lakes')}
+      ${attrLink('xingping', 'Xingping Ancient Town')}
       <a href="/guides/index.html" class="block text-stone font-semibold py-2">Guides</a>
       <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">3. Experience</p>
-      <a href="../#exp-bamboo" class="block text-stone/80 py-1 pl-3 text-sm">Bamboo Rafting</a>
-      <a href="../#exp-cycling" class="block text-stone/80 py-1 pl-3 text-sm">Countryside Cycling</a>
-      <a href="../#exp-climb" class="block text-stone/80 py-1 pl-3 text-sm">Karst Climbing</a>
-      <a href="../#exp-cook" class="block text-stone/80 py-1 pl-3 text-sm">Cooking Classes</a>
-      <a href="../#exp-cormorant" class="block text-stone/80 py-1 pl-3 text-sm">Cormorant Fishing</a>
-      <a href="../#exp-liriver" class="block text-stone/80 py-1 pl-3 text-sm">Li River Cruise</a>
+      ${expLink('bamboo-rafting', 'Bamboo Rafting')}
+      ${expLink('countryside-cycling', 'Countryside Cycling')}
+      ${expLink('rock-climbing', 'Karst Climbing')}
+      ${expLink('cooking-class', 'Cooking Classes')}
+      ${expLink('cormorant-fishing', 'Cormorant Fishing')}
+      ${expLink('li-river-cruise', 'Li River Cruise')}
+      ${expLink('longji-terraces-trek', 'Longji Terraces Trek')}
+      ${expLink('sunrise-viewpoint', 'Sunrise Viewpoint')}
       <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">4. Things to do &amp; Tour</p>
       <a href="../#tour-ranking" class="block text-stone/80 py-1 pl-3 text-sm">Top 8 Must-See Spots</a>
       <a href="../#tour-day" class="block text-stone/80 py-1 pl-3 text-sm">Day Tours</a>
@@ -170,8 +214,12 @@ function nav(current, base = './') {
   </header>`;
 }
 
-// ---- render a single attraction page ----
-function renderPage(a) {
+// ---- render a single page (attraction or experience) ----
+function renderPage(a, pageType = 'attraction') {
+  const isExperience = pageType === 'experience';
+  const subdir = isExperience ? 'experiences' : 'attractions';
+  const plural = isExperience ? 'Experiences' : 'Attractions';
+  const singular = isExperience ? 'Experience' : 'Attraction';
   const heroImg = `../images/${a.heroImage}.webp`;
   const odd = a.highlights.length % 2 === 1;
 
@@ -225,8 +273,18 @@ function renderPage(a) {
             <p class="text-stone/80 leading-relaxed text-sm md:text-base">${f.a}</p>
           </div>`).join('\n');
 
+  const relatedHref = (r) => {
+    const isRelAttr = attractionSlugs.has(r.slug);
+    const isRelExp = experienceSlugs.has(r.slug);
+    const base = isRelAttr
+      ? (isExperience ? '../attractions/' : './')
+      : isRelExp
+        ? (isExperience ? './' : '../experiences/')
+        : './';
+    return `${base}${r.slug}.html`;
+  };
   const related = a.related.map((r) => `
-        <a href="./${r.slug}.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+        <a href="${relatedHref(r)}" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
           <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/${r.img}.webp" alt="${r.title}"></div>
           <div class="p-5">
             <h3 class="font-display text-lg text-river">${r.title}</h3>
@@ -239,10 +297,12 @@ function renderPage(a) {
   const jsonld = {
     '@context': 'https://schema.org',
     '@graph': [
+      orgNode(),
       {
         '@type': 'TouristAttraction',
         name: a.name,
         alternateName: [a.cnName],
+        url: `${SITE.url}/${subdir}/${a.slug}.html`,
         description: a.glance.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' '),
         image: [`${SITE.url}/images/${a.ogImage}.webp`],
         geo: { '@type': 'GeoCoordinates', latitude: a.geo.lat, longitude: a.geo.lng },
@@ -254,17 +314,23 @@ function renderPage(a) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-          { '@type': 'ListItem', position: 2, name: 'Attractions', item: `${SITE.url}/attractions/` },
-          { '@type': 'ListItem', position: 3, name: a.name, item: `${SITE.url}/attractions/${a.slug}.html` },
+          { '@type': 'ListItem', position: 2, name: plural, item: `${SITE.url}/${subdir}/` },
+          { '@type': 'ListItem', position: 3, name: a.name, item: `${SITE.url}/${subdir}/${a.slug}.html` },
         ],
       },
       {
         '@type': 'FAQPage',
+        inLanguage: 'en',
+        dateModified: BUILD_DATE,
+        publisher: { '@id': ORG_ID },
         mainEntity: a.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ') } })),
       },
       {
         '@type': 'HowTo',
         name: `${a.name} — ${a.routes[0].title}`,
+        inLanguage: 'en',
+        dateModified: BUILD_DATE,
+        publisher: { '@id': ORG_ID },
         step: a.routes[0].steps.map((s) => ({ '@type': 'HowToStep', name: s.t, text: s.d })),
       },
     ],
@@ -280,12 +346,12 @@ function renderPage(a) {
   <meta name="theme-color" content="#0e4d64">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-  <link rel="canonical" href="${SITE.url}/attractions/${a.slug}.html">
+  <link rel="canonical" href="${SITE.url}/${subdir}/${a.slug}.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${SITE.name}">
   <meta property="og:title" content="${a.name} (${a.cnName}) — ${a.kicker}">
   <meta property="og:description" content="${a.lead.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ')}">
-  <meta property="og:url" content="${SITE.url}/attractions/${a.slug}.html">
+  <meta property="og:url" content="${SITE.url}/${subdir}/${a.slug}.html">
   <meta property="og:image" content="${SITE.url}/images/${a.ogImage}.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${a.name} (${a.cnName}) — ${a.kicker}">
@@ -369,7 +435,7 @@ function renderPage(a) {
   </style>
 </head>
 <body class="bg-sand text-stone antialiased">
-  ${nav(a.slug)}
+  ${nav(a.slug, pageType, './')}
 
   <!-- HERO -->
   <section id="hero" class="relative min-h-[78vh] flex items-end overflow-hidden">
@@ -381,7 +447,7 @@ function renderPage(a) {
       <nav class="flex items-center gap-2 text-white/70 text-sm mb-5" aria-label="Breadcrumb">
         <a href="../" class="hover:text-white transition-colors">Home</a>
         <span class="text-white/40">/</span>
-        <a href="../#attraction" class="hover:text-white transition-colors">Attractions</a>
+        <a href="../#${isExperience ? 'experience' : 'attraction'}" class="hover:text-white transition-colors">${plural}</a>
         <span class="text-white/40">/</span>
         <span class="text-white font-medium">${a.name}</span>
       </nav>
@@ -500,9 +566,9 @@ function renderPage(a) {
       <div class="flex items-end justify-between mb-10 fade-in">
         <div>
           <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.2em] mb-3">More to explore</p>
-          <h2 class="font-display text-3xl md:text-4xl text-river">Related attractions</h2>
+          <h2 class="font-display text-3xl md:text-4xl text-river">Related ${plural.toLowerCase()}</h2>
         </div>
-        <a href="../#attraction" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">View all →</a>
+        <a href="../#${isExperience ? 'experience' : 'attraction'}" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">View all →</a>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${related}</div>
     </div>
@@ -538,16 +604,16 @@ function renderPage(a) {
           </ul>
         </div>
         <div>
-          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Follow</h4>
-          <div class="flex gap-3">
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-200"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-200"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.949-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-            <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-200"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
-          </div>
+          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Why travelers trust us</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Local Guilin team — we live here and keep these guides current.</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Free custom itinerary — replies within 24 hours, no obligation.</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Real, checked info — prices and routes verified regularly.</span></li>
+          </ul>
         </div>
       </div>
       <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70">
-        <p>&copy; 2026 ${SITE.name}. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a></p>
+        <p>&copy; 2026 ${SITE.name}. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a> &middot; Updated ${UPDATED_LABEL}</p>
         <p>Li River Karst Landscape, Guilin, Guangxi, China</p>
       </div>
     </div>
@@ -643,16 +709,16 @@ const FOOTER_HTML = `
           </ul>
         </div>
         <div>
-          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Follow</h4>
-          <div class="flex gap-3">
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-200"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-200"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.949-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-            <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-200"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
-          </div>
+          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Why travelers trust us</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Local Guilin team — we live here and keep these guides current.</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Free custom itinerary — replies within 24 hours, no obligation.</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Real, checked info — prices and routes verified regularly.</span></li>
+          </ul>
         </div>
       </div>
       <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70">
-        <p>&copy; 2026 ${SITE.name}. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a></p>
+        <p>&copy; 2026 ${SITE.name}. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a> &middot; Updated ${UPDATED_LABEL}</p>
         <p>Li River Karst Landscape, Guilin, Guangxi, China</p>
       </div>
     </div>
@@ -702,15 +768,21 @@ function renderGuide(g) {
   const rel = g.relatedAttraction ? attractions.find((a) => a.slug === g.relatedAttraction) : null;
   const jsonld = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: g.title,
-    description: g.excerpt,
-    image: [`${SITE.url}/images/${g.coverImage}.webp`],
-    datePublished: g.date,
-    dateModified: g.updated || g.date,
-    author: { '@type': 'Organization', name: g.author || SITE.name },
-    publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: `${SITE.url}/favicon.svg` } },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/guides/${g.slug}.html` },
+    '@graph': [
+      orgNode(),
+      {
+        '@type': 'BlogPosting',
+        headline: g.title,
+        description: g.excerpt,
+        image: [`${SITE.url}/images/${g.coverImage}.webp`],
+        datePublished: g.date,
+        dateModified: g.updated || g.date,
+        inLanguage: 'en',
+        author: { '@type': 'Organization', name: g.author || SITE.name },
+        publisher: { '@id': ORG_ID },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/guides/${g.slug}.html` },
+      },
+    ],
   };
   return `<!DOCTYPE html>
 <html lang="en">
@@ -794,7 +866,7 @@ function renderGuide(g) {
   </style>
 </head>
 <body class="bg-sand text-stone antialiased">
-  ${nav(g.slug, '../attractions/')}
+  ${nav(g.slug, 'guide')}
 
   <article>
     <header class="guide-hero relative min-h-[52vh] flex items-end overflow-hidden">
@@ -934,7 +1006,7 @@ function renderGuideIndex() {
   </style>
 </head>
 <body class="bg-sand text-stone antialiased">
-  ${nav('guides', '../attractions/')}
+  ${nav('guides', 'guide')}
 
   <section class="relative bg-river text-white py-20 lg:py-28 px-6">
     <div class="max-w-[1400px] mx-auto">
@@ -977,6 +1049,12 @@ for (const g of guides) {
   referenced.add(g.coverImage);
   (g.blocks || []).forEach((b) => { if (b.type === 'image' && b.img) referenced.add(b.img); });
 }
+for (const e of experiences) {
+  referenced.add(e.heroImage);
+  e.highlights.forEach((h) => referenced.add(h.img));
+  e.gallery.forEach((g) => referenced.add(g.img));
+  e.related.forEach((r) => referenced.add(r.img));
+}
 const missing = [...referenced].filter((n) => !imgExists(n));
 if (missing.length) {
   console.error('✗ Missing images referenced in data: ' + missing.join(', '));
@@ -1004,7 +1082,18 @@ for (const g of guides) {
 const gidx = renderGuideIndex();
 fs.writeFileSync(path.join(GUIDE_DIR, 'index.html'), gidx, 'utf8');
 console.log('✓ wrote guides/index.html (' + (gidx.length / 1024).toFixed(1) + ' KB)');
-console.log(`\nDone — ${count} attraction pages + ${gcount} guide pages generated.`);
+
+// ---- experiences ----
+const EXP_DIR = path.join(ROOT, 'experiences');
+fs.mkdirSync(EXP_DIR, { recursive: true });
+let ecount = 0;
+for (const e of experiences) {
+  const html = renderPage(e, 'experience');
+  fs.writeFileSync(path.join(EXP_DIR, e.slug + '.html'), html, 'utf8');
+  ecount++;
+  console.log('✓ wrote experiences/' + e.slug + '.html (' + (html.length / 1024).toFixed(1) + ' KB)');
+}
+console.log(`\nDone — ${count} attraction pages + ${gcount} guide pages + ${ecount} experience pages generated.`);
 
 // ---- sitemap.xml + robots.txt (single source of truth: SITE + attractions) ----
 function buildSitemap() {
@@ -1026,17 +1115,31 @@ function buildSitemap() {
     return `  <url>\n    <loc>${SITE.url}/attractions/${a.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>${imgs.join('')}\n  </url>`;
   };
   const urlForGuide = (g) => `  <url>\n    <loc>${SITE.url}/guides/${g.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
+  const urlForExperience = (e) => {
+    const seen = new Set();
+    const imgs = [];
+    const add = (name, title) => {
+      if (!name || seen.has(name)) return;
+      if (!fs.existsSync(path.join(IMG_DIR, name + '.webp'))) return;
+      seen.add(name);
+      imgs.push(`\n    <image:image>\n      <image:loc>${SITE.url}/images/${name}.webp</image:loc>\n      <image:title>${esc(title)}</image:title>\n    </image:image>`);
+    };
+    add(e.heroImage, `${e.name} - hero`);
+    (e.gallery || []).forEach((g) => add(g.img, g.alt || g.title || g.sub));
+    return `  <url>\n    <loc>${SITE.url}/experiences/${e.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>${imgs.join('')}\n  </url>`;
+  };
   const pages = [
     `  <url>\n    <loc>${SITE.url}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>`,
     ...attractions.map(urlFor),
     `  <url>\n    <loc>${SITE.url}/guides/index.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
     ...guides.map(urlForGuide),
+    ...experiences.map(urlForExperience),
     `  <url>\n    <loc>${SITE.url}/credits.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.3</priority>\n  </url>`,
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="${IMG_NS}">\n${pages.join('\n')}\n</urlset>\n`;
 }
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap(), 'utf8');
-console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + 3} URLs + image entries)`);
+console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + experiences.length + 3} URLs + image entries)`);
 
 // Disallow build/test artifacts + the (empty) admin area; guide crawlers to the canonical host.
 // AI training/search crawlers are explicitly allowed so LLMs can read and recommend the site.
@@ -1087,9 +1190,14 @@ function buildLlmsTxt() {
     .map((a) => `- [${a.name} (${a.cnName || ''})](${SITE.url}/attractions/${a.slug}.html): ${oneLiner(a)}`)
     .join('\n');
   const guideLines = guides.map((g) => `- [${g.title}](${SITE.url}/guides/${g.slug}.html): ${clean(g.excerpt).slice(0, 150)}`).join('\n');
+  const expLines = experiences
+    .map((e) => `- [${e.name} (${e.cnName || ''})](${SITE.url}/experiences/${e.slug}.html): ${oneLiner(e)}`)
+    .join('\n');
   return `# ${SITE.name} — Guilin Travel Guide & Private Tours for International Travelers
 
-> ${SITE.name} is an English-language travel guide and private-tour service for international visitors to Guilin, China. It covers the Li River cruise, karst limestone peaks, Longji rice terraces, Reed Flute Cave, Yulong River bamboo rafting, Elephant Trunk Hill, the Sun & Moon Pagodas, and Xingping ancient town — with practical planning info: best time to visit, how to get there, tickets, suggested routes, and FAQs.
+> Last updated: ${UPDATED_LABEL}
+
+> ${SITE.name} is an English-language travel guide and private-tour service for international visitors to Guilin, China. It covers the Li River cruise, karst limestone peaks, Longji rice terraces, Reed Flute Cave, Yulong River bamboo rafting, Elephant Trunk Hill, the Sun & Moon Pagodas, and Xingping ancient town — with practical planning info: best time to visit, how to get there, tickets, suggested routes, and FAQs. Content is written and reviewed by a local Guilin team, and prices/routes are checked regularly.
 
 ## Top destinations
 
@@ -1098,6 +1206,10 @@ ${destLines}
 ## Travel guides (in-depth planning)
 
 ${guideLines}
+
+## Experiences (hands-on activities)
+
+${expLines}
 
 ## Plan your trip
 

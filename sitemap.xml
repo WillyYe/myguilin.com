@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://myguilin.com/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://myguilin.com/attractions/liriver.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/elephant.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/yangshuo.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/longji.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -128,7 +128,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/reedflute.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -158,7 +158,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/yulong.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -184,7 +184,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/tworivers.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -214,7 +214,7 @@
   </url>
   <url>
     <loc>https://myguilin.com/attractions/xingping.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -244,49 +244,289 @@
   </url>
   <url>
     <loc>https://myguilin.com/guides/index.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://myguilin.com/guides/guilin-itinerary.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myguilin.com/guides/li-river-cruise-guide.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myguilin.com/guides/best-time-to-visit-guilin.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myguilin.com/guides/guilin-vs-yangshuo.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myguilin.com/guides/longji-rice-terraces-guide.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://myguilin.com/guides/guilin-food-guide.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://myguilin.com/experiences/li-river-cruise.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-liriver.webp</image:loc>
+      <image:title>Li River Cruise - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-liriver-1.webp</image:loc>
+      <image:title>Nine Horse Fresco Hill cliff face</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cormorant.webp</image:loc>
+      <image:title>Cormorant fisherman on a bamboo raft at dusk</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-liriver-2.webp</image:loc>
+      <image:title>Xingping riverfront and the 20-yuan view</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-xianggong.webp</image:loc>
+      <image:title>Sunrise over the Li River from Xianggong Mountain</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-yangshuo-countryside.webp</image:loc>
+      <image:title>Cruise boats and karst peaks on a clear day</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/countryside-cycling.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cycling.webp</image:loc>
+      <image:title>Countryside Cycling - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cycling-1.webp</image:loc>
+      <image:title>Yulong River valley cycling path</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cycling-2.webp</image:loc>
+      <image:title>Moon Hill natural arch</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cycling-3.webp</image:loc>
+      <image:title>Dragon Bridge over the Yulong River</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cycling-4.webp</image:loc>
+      <image:title>Village life in the Yangshuo countryside</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-yulong-karst.webp</image:loc>
+      <image:title>Aerial view of Yangshuo karst peaks</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/longji-terraces-trek.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-longji.webp</image:loc>
+      <image:title>Longji Terraces Trek - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-longji-1.webp</image:loc>
+      <image:title>Sunrise over the Longji terraces</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-longji-2.webp</image:loc>
+      <image:title>Zhuang village houses on the hillside</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-longji-3.webp</image:loc>
+      <image:title>Stone pathway between rice terraces</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-longji-4.webp</image:loc>
+      <image:title>Water buffalo in the terraced fields</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-longji-jinkeng.webp</image:loc>
+      <image:title>Wide view of Jinkeng rice terraces</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/cormorant-fishing.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cormorant.webp</image:loc>
+      <image:title>Cormorant Fishing - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cormorant-1.webp</image:loc>
+      <image:title>Trained cormorant catching fish</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cormorant-2.webp</image:loc>
+      <image:title>Bamboo raft and traditional fishing gear</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cormorant-3.webp</image:loc>
+      <image:title>Xingping riverfront at dusk</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cormorant-4.webp</image:loc>
+      <image:title>Blue-hour photography of cormorant fishing</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-xingping-bend.webp</image:loc>
+      <image:title>Li River karst peaks near Xingping</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/bamboo-rafting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-bamboo.webp</image:loc>
+      <image:title>Bamboo Rafting - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-bamboo-1.webp</image:loc>
+      <image:title>Clear water reflecting karst peaks</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-bamboo-2.webp</image:loc>
+      <image:title>Bamboo groves along the Yulong River</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-bamboo-3.webp</image:loc>
+      <image:title>Stone bridge over the Yulong River</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-bamboo-4.webp</image:loc>
+      <image:title>Water buffalo along the riverbank</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-yulong-karst.webp</image:loc>
+      <image:title>Aerial view of Yulong River valley</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/rock-climbing.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-climb.webp</image:loc>
+      <image:title>Rock Climbing - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-climb-1.webp</image:loc>
+      <image:title>The Egg climbing crag</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-climb-2.webp</image:loc>
+      <image:title>Moon Hill natural arch climb</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-climb-3.webp</image:loc>
+      <image:title>Climbing community in Yangshuo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-climb-4.webp</image:loc>
+      <image:title>Rice field view from a climbing crag</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-yulong-karst.webp</image:loc>
+      <image:title>Karst towers above the Yulong River</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/cooking-class.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cook.webp</image:loc>
+      <image:title>Cooking Class - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cook-1.webp</image:loc>
+      <image:title>Yangshuo beer fish being prepared</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cook-2.webp</image:loc>
+      <image:title>Guilin rice noodles bowl</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cook-3.webp</image:loc>
+      <image:title>Stuffed tofu and vegetables</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-cook-4.webp</image:loc>
+      <image:title>Shared meal after cooking class</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/food-chunji.webp</image:loc>
+      <image:title>Local Guilin restaurant dish</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://myguilin.com/experiences/sunrise-viewpoint.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-xianggong.webp</image:loc>
+      <image:title>Sunrise Viewpoint - hero</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-xianggong-1.webp</image:loc>
+      <image:title>Sea of clouds over the Li River valley</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-xianggong-2.webp</image:loc>
+      <image:title>Golden dawn light on karst peaks</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-xianggong-3.webp</image:loc>
+      <image:title>Li River seen from Xianggong Mountain</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/exp-xianggong-4.webp</image:loc>
+      <image:title>Photography platform at the summit</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://myguilin.com/images/web-xingping-bend.webp</image:loc>
+      <image:title>Karst peaks of the Li River near Xingping</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://myguilin.com/credits.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
