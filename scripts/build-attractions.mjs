@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { attractions, SITE } from '../attractions-data.mjs';
 import { guides } from '../guides-data.mjs';
 import { experiences } from '../experiences-data.mjs';
+import { hotels, hotelCategories } from '../hotels-data.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -71,12 +72,15 @@ function nav(current, pageType = 'attraction', base = './') {
   const isAttraction = pageType === 'attraction';
   const isExperience = pageType === 'experience';
   const isGuide = pageType === 'guide';
-  const attractionBase = (isExperience || isGuide) ? '../attractions/' : base;
-  const experienceBase = isAttraction || isGuide ? '../experiences/' : base;
+  const isHotel = pageType === 'hotel';
+  const attractionBase = (isExperience || isGuide || isHotel) ? '../attractions/' : base;
+  const experienceBase = (isAttraction || isGuide || isHotel) ? '../experiences/' : base;
   const attrLink = (slug, label) =>
     `<a href="${attractionBase}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
   const expLink = (slug, label) =>
     `<a href="${experienceBase}${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
+  const hotelLink = (slug, label) =>
+    `<a href="../hotels/${slug}.html" class="mega-link"${slug === current ? ' aria-current="page"' : ''}>${label}</a>`;
   const expCard = (slug, img, title) => {
     const label = title.replace(/ /g, '<br>');
     return `<a href="${experienceBase}${slug}.html" class="mega-feature block">${picture(img, title, 'h-28 w-full object-cover')}<div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">${label}</span></a>`;
@@ -177,7 +181,29 @@ function nav(current, pageType = 'attraction', base = './') {
               </div>
             </div>
           </li>
-          <li class="nav-item h-full flex items-center"><a href="../#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Hotel</a></li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../#hotel" class="nav-link text-sm font-semibold${activeClass(isHotel)} hover:text-river px-4 h-full flex items-center gap-1">
+              Hotels
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:640px;">
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                ${hotelLink('scenic-view', '🏞️ Scenic-View Hotels')}
+                ${hotelLink('selected', '⭐ Curated Stays')}
+                ${hotelLink('budget', '💡 Great-Value Stays')}
+                ${hotelLink('region', '📍 Hotels by Area')}
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <span class="mega-col-title">By area</span>
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-2">
+                  <a href="../hotels/region.html#yangshuo" class="mega-link">🛶 Yangshuo &amp; Yulong River</a>
+                  <a href="../hotels/region.html#guilin-city" class="mega-link">🏙️ Guilin City</a>
+                  <a href="../hotels/region.html#longji" class="mega-link">🌾 Longji Terraces</a>
+                  <a href="../hotels/region.html#xingping" class="mega-link">🏘️ Xingping Ancient Town</a>
+                </div>
+              </div>
+            </div>
+          </li>
           <li class="nav-item h-full flex items-center"><a href="../#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Food</a></li>
           <li class="nav-item h-full flex items-center">
             <button type="button" onclick="openContactModal(event)" class="nav-link bg-transparent border-0 cursor-pointer text-sm font-semibold text-river hover:bg-river hover:text-white px-4 h-full flex items-center rounded-full transition-colors">Contact us</button>
@@ -759,6 +785,254 @@ const CONTACT_MODAL_HTML = `
     </div>
   </div>`;
 
+// ---- render hotel cards + 2nd-level category pages ----
+const hotelCatLabel = { 'scenic-view': 'Scenic', 'selected': 'Curated', 'budget': 'Value' };
+
+function renderHotelCard(h) {
+  const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hi, I'm interested in ${h.name} (${h.cnName}) for my Guilin trip.`)}`;
+  const tags = h.category.map((c) => `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">${hotelCatLabel[c] || c}</span>`).join('');
+  return `
+        <article id="${h.slug}" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
+          <div class="overflow-hidden relative">
+            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/${h.cardImg}.webp" alt="${h.name} (${h.cnName}) — ${h.regionLabel}">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">${tags}</div>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">${h.regionLabel}</p>
+            <h3 class="font-display text-xl text-river mb-1">${h.name}</h3>
+            <p class="text-sm text-stone-600 mb-3">${h.cnName}</p>
+            <p class="text-sm text-stone/80 leading-relaxed mb-4">${h.tagline}</p>
+            <div class="mt-auto flex items-end justify-between gap-3">
+              <div>
+                <p class="text-xs text-stone-500">From</p>
+                <p class="font-display text-lg text-river">¥${h.priceFrom}<span class="text-xs text-stone-500"> / night</span></p>
+              </div>
+              <a href="${wa}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
+            </div>
+          </div>
+        </article>`;
+}
+
+function renderHotelCategory(cat) {
+  const isRegion = !!cat.regions;
+  const faqs = cat.faqs.map((f) => `
+          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
+            <h3 class="font-display text-lg md:text-xl text-river mb-2">${f.q}</h3>
+            <p class="text-stone/80 leading-relaxed text-sm md:text-base">${f.a}</p>
+          </div>`).join('\n');
+  const relatedCats = hotelCategories.filter((c) => c.slug !== cat.slug).map((c) => `
+          <a href="${c.slug}.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+            <div class="p-6">
+              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">${c.cnName}</p>
+              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">${c.name}</h3>
+              <p class="text-sm text-stone-600 mt-1">${c.tagline}</p>
+            </div>
+          </a>`).join('\n');
+
+  let bodyMain;
+  if (isRegion) {
+    bodyMain = cat.regions.map((r) => {
+      const hs = r.hotelSlugs.map((s) => hotels.find((h) => h.slug === s)).filter(Boolean);
+      if (!hs.length) {
+        return `
+        <section id="${r.slug}" class="mb-16 scroll-mt-24">
+          <div class="flex items-baseline gap-3 mb-5">
+            <h2 class="font-display text-2xl md:text-3xl text-river">${r.name}</h2>
+            <span class="text-xs font-semibold text-gold-dark uppercase tracking-wide">${r.note}</span>
+          </div>
+          <div class="bg-white rounded-2xl border border-dashed border-sand-dark p-8 text-center">
+            <p class="text-stone/70">Stays in this area are being added. <a href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener noreferrer" class="text-river font-semibold underline">Tell us your dates</a> and we'll recommend options.</p>
+          </div>
+        </section>`;
+      }
+      return `
+        <section id="${r.slug}" class="mb-16 scroll-mt-24">
+          <div class="flex items-baseline gap-3 mb-5">
+            <h2 class="font-display text-2xl md:text-3xl text-river">${r.name}</h2>
+            <span class="text-xs font-semibold text-gold-dark uppercase tracking-wide">${r.note}</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${hs.map(renderHotelCard).join('\n')}
+          </div>
+        </section>`;
+    }).join('\n');
+  } else {
+    const list = cat.hotelSlugs.map((s) => hotels.find((h) => h.slug === s)).filter(Boolean);
+    bodyMain = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${list.map(renderHotelCard).join('\n')}</div>`;
+  }
+
+  const slugs = isRegion ? cat.regions.flatMap((r) => r.hotelSlugs) : cat.hotelSlugs;
+  const jsonld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      orgNode(),
+      {
+        '@type': 'CollectionPage',
+        name: `${cat.name} — ${SITE.name}`,
+        url: `${SITE.url}/hotels/${cat.slug}.html`,
+        description: cat.intro.join(' ').replace(/<[^>]+>/g, ''),
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: slugs.map((s, i) => {
+            const h = hotels.find((x) => x.slug === s);
+            return { '@type': 'ListItem', position: i + 1, name: h ? h.name : s, url: `${SITE.url}/hotels/${cat.slug}.html#${s}` };
+          }),
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+          { '@type': 'ListItem', position: 2, name: 'Hotels', item: `${SITE.url}/hotels/` },
+          { '@type': 'ListItem', position: 3, name: cat.name, item: `${SITE.url}/hotels/${cat.slug}.html` },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        inLanguage: 'en',
+        dateModified: BUILD_DATE,
+        publisher: { '@id': ORG_ID },
+        mainEntity: cat.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      },
+    ],
+  };
+
+  const heroImg = `../images/${cat.heroImage}.webp`;
+  const introHtml = cat.intro.map((p) => `<p class="text-stone/85 leading-relaxed mb-3">${p}</p>`).join('');
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${cat.name} (${cat.cnName}) — Guilin Hotels | ${SITE.name}</title>
+  <meta name="description" content="${cat.intro.join(' ').replace(/<[^>]+>/g, '').slice(0, 160)}">
+  <meta name="theme-color" content="#0e4d64">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="canonical" href="${SITE.url}/hotels/${cat.slug}.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${SITE.name}">
+  <meta property="og:title" content="${cat.name} (${cat.cnName}) — Guilin Hotels">
+  <meta property="og:description" content="${cat.tagline}">
+  <meta property="og:url" content="${SITE.url}/hotels/${cat.slug}.html">
+  <meta property="og:image" content="${SITE.url}/images/${cat.heroImage}.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${cat.name} (${cat.cnName}) — Guilin Hotels">
+  <meta name="twitter:description" content="${cat.tagline}">
+  <meta name="twitter:image" content="${SITE.url}/images/${cat.heroImage}.webp">
+  <link rel="stylesheet" href="../tailwind.css">
+  <link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <script>
+    function openContactModal(e) {
+      if (e) e.preventDefault();
+      var m = document.getElementById('contactModal');
+      var p = document.getElementById('contactModalPanel');
+      if (!m || !p) return;
+      m.classList.remove('hidden');
+      requestAnimationFrame(function() { requestAnimationFrame(function() { p.style.transform = 'scale(1)'; p.style.opacity = '1'; }); });
+      document.addEventListener('keydown', onEscKey);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContactModal() {
+      var m = document.getElementById('contactModal');
+      var p = document.getElementById('contactModalPanel');
+      if (!m || !p) return;
+      p.style.transform = 'scale(.95)';
+      p.style.opacity = '0';
+      setTimeout(function() { m.classList.add('hidden'); document.body.style.overflow = ''; }, 250);
+      document.removeEventListener('keydown', onEscKey);
+    }
+    function onEscKey(e) { if (e.key === 'Escape') closeContactModal(); }
+    document.addEventListener('DOMContentLoaded', function() {
+      var obs = new IntersectionObserver(function(es) {
+        es.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    });
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg { background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%), url('${heroImg}'); background-size: cover; background-position: center; }
+    .card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .bg-stone-100 { background-color: #f5f5f4; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #c9a96e; transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    html { scroll-padding-top: 80px; }
+    section[id] { scroll-margin-top: 80px; }
+    .nav-item { position: relative; }
+    .dropdown-caret { transition: transform 0.25s ease; }
+    .nav-item:hover .dropdown-caret { transform: rotate(180deg); }
+    .mega-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: #ffffff; border-radius: 0 0 1rem 1rem; box-shadow: 0 16px 48px rgba(0,0,0,0.14); padding: 2.25rem 2rem; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 60; }
+    .nav-item:hover .mega-menu, .nav-item:focus-within .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .mega-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .mega-col-title { color: #7a5f24; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.85rem; }
+    .mega-link { display: flex; align-items: center; gap: 0.4rem; color: #3a3a3a; font-size: 0.9rem; padding: 0.32rem 0; transition: color 0.2s, padding-left 0.2s; }
+    .mega-link:hover { color: #0e4d64; padding-left: 0.3rem; }
+    .mega-link[aria-current="page"] { color: #0e4d64; font-weight: 700; }
+    .mega-feature { border-radius: 0.85rem; overflow: hidden; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+    .mega-feature .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,77,100,0.85) 0%, rgba(14,77,100,0) 60%); }
+  </style>
+  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+</head>
+<body class="bg-sand text-stone antialiased">
+  ${nav(cat.slug, 'hotel', '../')}
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-[64vh] flex items-end overflow-hidden">
+    <img id="heroImg" src="${heroImg}" alt="${cat.name} (${cat.cnName}) — Guilin"
+         fetchpriority="high" decoding="async"
+         class="absolute inset-0 w-full h-full object-cover" style="transform:scale(1.1);" />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(14,77,100,0.35) 0%, rgba(14,77,100,0.45) 45%, rgba(14,77,100,0.85) 100%);"></div>
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto px-6 pb-12 pt-28 fade-in">
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide mb-3">Guilin Hotels</p>
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">${cat.name}</h1>
+      <p class="text-white/85 text-lg md:text-xl max-w-2xl leading-relaxed">${cat.tagline}</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h2 class="font-display text-2xl md:text-3xl text-river mb-5">About these stays</h2>
+      <div class="text-base">${introHtml}</div>
+    </div>
+  </section>
+
+  <!-- MAIN LIST -->
+  <section class="max-w-[1400px] mx-auto px-6 pb-16">
+    ${bodyMain}
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-[1400px] mx-auto px-6 pb-16">
+    <h2 class="font-display text-2xl md:text-3xl text-river mb-6">Frequently asked questions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      ${faqs}
+    </div>
+  </section>
+
+  <!-- RELATED CATEGORIES -->
+  <section class="max-w-[1400px] mx-auto px-6 pb-20">
+    <h2 class="font-display text-2xl md:text-3xl text-river mb-6">Other ways to browse hotels</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      ${relatedCats}
+    </div>
+  </section>
+
+  ${FOOTER_HTML}
+  ${CONTACT_MODAL_HTML}
+</body>
+</html>`;
+}
+
+
 // ---- render a single guide article page ----
 function renderBlock(b) {
   switch (b.type) {
@@ -1108,6 +1382,18 @@ for (const e of experiences) {
 }
 console.log(`\nDone — ${count} attraction pages + ${gcount} guide pages + ${ecount} experience pages generated.`);
 
+// ---- hotels (2nd-level category pages) ----
+const HOTELS_DIR = path.join(ROOT, 'hotels');
+fs.mkdirSync(HOTELS_DIR, { recursive: true });
+let hcount = 0;
+for (const c of hotelCategories) {
+  const html = renderHotelCategory(c);
+  fs.writeFileSync(path.join(HOTELS_DIR, c.slug + '.html'), html, 'utf8');
+  hcount++;
+  console.log('✓ wrote hotels/' + c.slug + '.html (' + (html.length / 1024).toFixed(1) + ' KB)');
+}
+console.log(`✓ ${hcount} hotel category pages generated.`);
+
 // ---- sitemap.xml + robots.txt (single source of truth: SITE + attractions) ----
 function buildSitemap() {
   const today = new Date().toISOString().slice(0, 10);
@@ -1147,12 +1433,13 @@ function buildSitemap() {
     `  <url>\n    <loc>${SITE.url}/guides/index.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
     ...guides.map(urlForGuide),
     ...experiences.map(urlForExperience),
+    ...hotelCategories.map((c) => `  <url>\n    <loc>${SITE.url}/hotels/${c.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`),
     `  <url>\n    <loc>${SITE.url}/credits.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.3</priority>\n  </url>`,
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="${IMG_NS}">\n${pages.join('\n')}\n</urlset>\n`;
 }
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap(), 'utf8');
-console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + experiences.length + 3} URLs + image entries)`);
+console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + experiences.length + hotelCategories.length + 3} URLs + image entries)`);
 
 // Disallow build/test artifacts + the (empty) admin area; guide crawlers to the canonical host.
 // AI training/search crawlers are explicitly allowed so LLMs can read and recommend the site.
@@ -1206,6 +1493,9 @@ function buildLlmsTxt() {
   const expLines = experiences
     .map((e) => `- [${e.name} (${e.cnName || ''})](${SITE.url}/experiences/${e.slug}.html): ${oneLiner(e)}`)
     .join('\n');
+  const hotelLines = hotelCategories
+    .map((c) => `- [${c.name} (${c.cnName || ''})](${SITE.url}/hotels/${c.slug}.html): ${clean(c.tagline)}`)
+    .join('\n');
   return `# ${SITE.name} — Guilin Travel Guide & Private Tours for International Travelers
 
 > Last updated: ${UPDATED_LABEL}
@@ -1223,6 +1513,10 @@ ${guideLines}
 ## Experiences (hands-on activities)
 
 ${expLines}
+
+## Hotels (where to stay)
+
+${hotelLines}
 
 ## Plan your trip
 

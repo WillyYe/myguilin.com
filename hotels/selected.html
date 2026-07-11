@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guilin Travel Guides | Visit Guilin</title>
-  <meta name="description" content="Practical Guilin travel guides by a local team — itineraries, the Li River cruise, best time to visit, Yangshuo vs Guilin, Longji terraces, and what to eat.">
+  <title>Curated Stays (精选酒店) — Guilin Hotels | Visit Guilin</title>
+  <meta name="description" content="A shortlist of stays we’d recommend to friends — design guesthouses, a full-service town hotel and a resort by the river. Each is chosen for consistent quality,">
   <meta name="theme-color" content="#0e4d64">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-  <link rel="canonical" href="https://myguilin.com/guides/index.html">
+  <link rel="canonical" href="https://myguilin.com/hotels/selected.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Visit Guilin">
-  <meta property="og:title" content="Guilin Travel Guides">
-  <meta property="og:description" content="Practical Guilin travel guides by a local team — itineraries, the Li River cruise, best time to visit, and more.">
-  <meta property="og:url" content="https://myguilin.com/guides/index.html">
-  <meta property="og:image" content="https://myguilin.com/images/hero-liriver.webp">
+  <meta property="og:title" content="Curated Stays (精选酒店) — Guilin Hotels">
+  <meta property="og:description" content="Hand-picked properties with character, service and standout design.">
+  <meta property="og:url" content="https://myguilin.com/hotels/selected.html">
+  <meta property="og:image" content="https://myguilin.com/images/hotel-minos-1.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Guilin Travel Guides">
-  <meta name="twitter:description" content="Practical Guilin travel guides by a local team.">
-  <meta name="twitter:image" content="https://myguilin.com/images/hero-liriver.webp">
+  <meta name="twitter:title" content="Curated Stays (精选酒店) — Guilin Hotels">
+  <meta name="twitter:description" content="Hand-picked properties with character, service and standout design.">
+  <meta name="twitter:image" content="https://myguilin.com/images/hotel-minos-1.webp">
   <link rel="stylesheet" href="../tailwind.css">
   <link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,22 +44,41 @@
       document.removeEventListener('keydown', onEscKey);
     }
     function onEscKey(e) { if (e.key === 'Escape') closeContactModal(); }
+    document.addEventListener('DOMContentLoaded', function() {
+      var obs = new IntersectionObserver(function(es) {
+        es.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    });
   </script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg { background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%), url('../images/hotel-minos-1.webp'); background-size: cover; background-position: center; }
+    .card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .bg-stone-100 { background-color: #f5f5f4; }
     .nav-link { position: relative; }
     .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #c9a96e; transition: width 0.3s ease; }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
     html { scroll-padding-top: 80px; }
     section[id] { scroll-margin-top: 80px; }
     .nav-item { position: relative; }
-    .card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-    .guide-tag { display: inline-block; background: #f4f1ea; color: #7a5f24; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 999px; margin: 0.2rem 0.3rem 0.2rem 0; }
+    .dropdown-caret { transition: transform 0.25s ease; }
+    .nav-item:hover .dropdown-caret { transform: rotate(180deg); }
+    .mega-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: #ffffff; border-radius: 0 0 1rem 1rem; box-shadow: 0 16px 48px rgba(0,0,0,0.14); padding: 2.25rem 2rem; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 60; }
+    .nav-item:hover .mega-menu, .nav-item:focus-within .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .mega-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .mega-col-title { color: #7a5f24; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.85rem; }
+    .mega-link { display: flex; align-items: center; gap: 0.4rem; color: #3a3a3a; font-size: 0.9rem; padding: 0.32rem 0; transition: color 0.2s, padding-left 0.2s; }
+    .mega-link:hover { color: #0e4d64; padding-left: 0.3rem; }
+    .mega-link[aria-current="page"] { color: #0e4d64; font-weight: 700; }
+    .mega-feature { border-radius: 0.85rem; overflow: hidden; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+    .mega-feature .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,77,100,0.85) 0%, rgba(14,77,100,0) 60%); }
   </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://myguilin.com/#visitguilin","name":"Visit Guilin","url":"https://myguilin.com/","logo":{"@type":"ImageObject","url":"https://myguilin.com/favicon.svg"},"image":"https://myguilin.com/images/hero-liriver.webp","telephone":"+86 187 7735 8302","email":"willyumi2026@outlook.com","address":{"@type":"PostalAddress","addressLocality":"Guilin","addressRegion":"Guangxi","addressCountry":"CN"},"areaServed":"Guilin, Guangxi, China","contactPoint":{"@type":"ContactPoint","telephone":"+86 187 7735 8302","email":"willyumi2026@outlook.com","contactType":"customer support","availableLanguage":["English","Chinese"],"areaServed":"Guilin, Guangxi, China"}},{"@type":"CollectionPage","name":"Curated Stays — Visit Guilin","url":"https://myguilin.com/hotels/selected.html","description":"A shortlist of stays we’d recommend to friends — design guesthouses, a full-service town hotel and a resort by the river. Each is chosen for consistent quality, helpful hosts and a location that makes sightseeing easy.","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Yingu Valley Retreat","url":"https://myguilin.com/hotels/selected.html#yingu"},{"@type":"ListItem","position":2,"name":"MINOS Yangshuo","url":"https://myguilin.com/hotels/selected.html#minos"},{"@type":"ListItem","position":3,"name":"Junyue Hotel Yangshuo","url":"https://myguilin.com/hotels/selected.html#junyue"},{"@type":"ListItem","position":4,"name":"Yuyuan Resort","url":"https://myguilin.com/hotels/selected.html#yuyuan"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myguilin.com/"},{"@type":"ListItem","position":2,"name":"Hotels","item":"https://myguilin.com/hotels/"},{"@type":"ListItem","position":3,"name":"Curated Stays","item":"https://myguilin.com/hotels/selected.html"}]},{"@type":"FAQPage","inLanguage":"en","dateModified":"2026-07-11","publisher":{"@id":"https://myguilin.com/#visitguilin"},"mainEntity":[{"@type":"Question","name":"How are these curated?","acceptedAnswer":{"@type":"Answer","text":"By real guest feedback, host responsiveness and location — not paid placement."}},{"@type":"Question","name":"Are they English-friendly?","acceptedAnswer":{"@type":"Answer","text":"Most hosts speak basic English; we provide full translation support end-to-end."}},{"@type":"Question","name":"Can I bundle with tours?","acceptedAnswer":{"@type":"Answer","text":"Yes — ask us for a stay + private-guide package."}}]}]}</script>
 </head>
 <body class="bg-sand text-stone antialiased">
   
@@ -158,14 +177,14 @@
             </div>
           </li>
           <li class="nav-item h-full flex items-center">
-            <a href="../#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+            <a href="../#hotel" class="nav-link text-sm font-semibold active text-river hover:text-river px-4 h-full flex items-center gap-1">
               Hotels
               <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
             </a>
             <div class="mega-menu" style="width:640px;">
               <div class="grid grid-cols-2 gap-x-8 gap-y-1">
                 <a href="../hotels/scenic-view.html" class="mega-link">🏞️ Scenic-View Hotels</a>
-                <a href="../hotels/selected.html" class="mega-link">⭐ Curated Stays</a>
+                <a href="../hotels/selected.html" class="mega-link" aria-current="page">⭐ Curated Stays</a>
                 <a href="../hotels/budget.html" class="mega-link">💡 Great-Value Stays</a>
                 <a href="../hotels/region.html" class="mega-link">📍 Hotels by Area</a>
               </div>
@@ -228,78 +247,161 @@
     </div>
   </header>
 
-  <section class="relative bg-river text-white py-20 lg:py-28 px-6">
-    <div class="max-w-[1400px] mx-auto">
-      <p class="text-gold-light text-xs font-bold uppercase tracking-[0.2em] mb-3">Travel Guides</p>
-      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] mb-4">Plan your Guilin trip like a local</h1>
-      <p class="text-white/80 text-lg max-w-2xl leading-relaxed">Practical, no-fluff guides written by our Guilin team — itineraries, the Li River cruise, the best time to visit, and what to eat. Every guide links to a real place you can book.</p>
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-[64vh] flex items-end overflow-hidden">
+    <img id="heroImg" src="../images/hotel-minos-1.webp" alt="Curated Stays (精选酒店) — Guilin"
+         fetchpriority="high" decoding="async"
+         class="absolute inset-0 w-full h-full object-cover" style="transform:scale(1.1);" />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(14,77,100,0.35) 0%, rgba(14,77,100,0.45) 45%, rgba(14,77,100,0.85) 100%);"></div>
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto px-6 pb-12 pt-28 fade-in">
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide mb-3">Guilin Hotels</p>
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">Curated Stays</h1>
+      <p class="text-white/85 text-lg md:text-xl max-w-2xl leading-relaxed">Hand-picked properties with character, service and standout design.</p>
     </div>
   </section>
 
-  <section class="py-16 lg:py-20 px-6">
-    <div class="max-w-[1400px] mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+  <!-- INTRO -->
+  <section class="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h2 class="font-display text-2xl md:text-3xl text-river mb-5">About these stays</h2>
+      <div class="text-base"><p class="text-stone/85 leading-relaxed mb-3">A shortlist of stays we’d recommend to friends — design guesthouses, a full-service town hotel and a resort by the river.</p><p class="text-stone/85 leading-relaxed mb-3">Each is chosen for consistent quality, helpful hosts and a location that makes sightseeing easy.</p></div>
+    </div>
+  </section>
 
-        <a href="./guilin-itinerary.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hero-liriver.webp" alt="Guilin Itinerary: How to Spend 3, 4, or 5 Days"></div>
-          <div class="p-6">
-            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">2026-03-12 · 9 min read</p>
-            <h3 class="font-display text-xl text-river mb-2 leading-snug">Guilin Itinerary: How to Spend 3, 4, or 5 Days</h3>
-            <p class="text-sm text-stone-600 leading-relaxed mb-4">A practical day-by-day Guilin itinerary for 3, 4, and 5 days — covering the Li River cruise, Yangshuo countryside, Longji terraces, and the city classics, with real logistics (travel times, where to base yourself, and what to skip).</p>
-            <div><span class="guide-tag">Itinerary</span> <span class="guide-tag">Planning</span> <span class="guide-tag">First-timer</span></div>
+  <!-- MAIN LIST -->
+  <section class="max-w-[1400px] mx-auto px-6 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article id="yingu" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
+          <div class="overflow-hidden relative">
+            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hotel-yingu-1.webp" alt="Yingu Valley Retreat (阳朔隐谷) — Yangshuo · Yulong River">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Scenic</span><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Curated</span></div>
           </div>
-        </a>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · Yulong River</p>
+            <h3 class="font-display text-xl text-river mb-1">Yingu Valley Retreat</h3>
+            <p class="text-sm text-stone-600 mb-3">阳朔隐谷</p>
+            <p class="text-sm text-stone/80 leading-relaxed mb-4">Terraced rooms wrapped in karst peaks, with private terraces and mountain views.</p>
+            <div class="mt-auto flex items-end justify-between gap-3">
+              <div>
+                <p class="text-xs text-stone-500">From</p>
+                <p class="font-display text-lg text-river">¥480<span class="text-xs text-stone-500"> / night</span></p>
+              </div>
+              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Yingu%20Valley%20Retreat%20(%E9%98%B3%E6%9C%94%E9%9A%90%E8%B0%B7)%20for%20my%20Guilin%20trip." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
+            </div>
+          </div>
+        </article>
 
-        <a href="./li-river-cruise-guide.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hero-liriver.webp" alt="Li River Cruise: The Complete Guide to Routes, Tickets & Tips"></div>
-          <div class="p-6">
-            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">2026-03-18 · 8 min read</p>
-            <h3 class="font-display text-xl text-river mb-2 leading-snug">Li River Cruise: The Complete Guide to Routes, Tickets & Tips</h3>
-            <p class="text-sm text-stone-600 leading-relaxed mb-4">Everything you need to book the Li River cruise: the Guilin–Yangshuo route, bamboo-raft alternatives, 2026 ticket tiers, best seat strategy, and the ¥20-banknote viewpoint at Xingping.</p>
-            <div><span class="guide-tag">Li River</span> <span class="guide-tag">Cruise</span> <span class="guide-tag">Tickets</span></div>
+        <article id="minos" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
+          <div class="overflow-hidden relative">
+            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hotel-minos-1.webp" alt="MINOS Yangshuo (阳朔米诺斯民宿) — Yangshuo · Shili Gallery">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Scenic</span><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Curated</span></div>
           </div>
-        </a>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · Shili Gallery</p>
+            <h3 class="font-display text-xl text-river mb-1">MINOS Yangshuo</h3>
+            <p class="text-sm text-stone-600 mb-3">阳朔米诺斯民宿</p>
+            <p class="text-sm text-stone/80 leading-relaxed mb-4">A white-and-blue Aegean-themed guesthouse near the Ten-Mile Gallery.</p>
+            <div class="mt-auto flex items-end justify-between gap-3">
+              <div>
+                <p class="text-xs text-stone-500">From</p>
+                <p class="font-display text-lg text-river">¥454<span class="text-xs text-stone-500"> / night</span></p>
+              </div>
+              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20MINOS%20Yangshuo%20(%E9%98%B3%E6%9C%94%E7%B1%B3%E8%AF%BA%E6%96%AF%E6%B0%91%E5%AE%BF)%20for%20my%20Guilin%20trip." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
+            </div>
+          </div>
+        </article>
 
-        <a href="./best-time-to-visit-guilin.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-longji.webp" alt="Best Time to Visit Guilin: Month-by-Month Weather & Crowds"></div>
-          <div class="p-6">
-            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">2026-02-26 · 7 min read</p>
-            <h3 class="font-display text-xl text-river mb-2 leading-snug">Best Time to Visit Guilin: Month-by-Month Weather & Crowds</h3>
-            <p class="text-sm text-stone-600 leading-relaxed mb-4">When to visit Guilin in 2026: a month-by-month breakdown of weather, crowd levels, and what to expect on the Li River and Longji terraces — plus the two weeks to avoid.</p>
-            <div><span class="guide-tag">Weather</span> <span class="guide-tag">Planning</span> <span class="guide-tag">Seasons</span></div>
+        <article id="junyue" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
+          <div class="overflow-hidden relative">
+            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hotel-junyue-1.webp" alt="Junyue Hotel Yangshuo (阳朔君悦大酒店) — Yangshuo · Town">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Curated</span></div>
           </div>
-        </a>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · Town</p>
+            <h3 class="font-display text-xl text-river mb-1">Junyue Hotel Yangshuo</h3>
+            <p class="text-sm text-stone-600 mb-3">阳朔君悦大酒店</p>
+            <p class="text-sm text-stone/80 leading-relaxed mb-4">A full-service town hotel with larger rooms and a grand lobby.</p>
+            <div class="mt-auto flex items-end justify-between gap-3">
+              <div>
+                <p class="text-xs text-stone-500">From</p>
+                <p class="font-display text-lg text-river">¥420<span class="text-xs text-stone-500"> / night</span></p>
+              </div>
+              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Junyue%20Hotel%20Yangshuo%20(%E9%98%B3%E6%9C%94%E5%90%9B%E6%82%A6%E5%A4%A7%E9%85%92%E5%BA%97)%20for%20my%20Guilin%20trip." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
+            </div>
+          </div>
+        </article>
 
-        <a href="./guilin-vs-yangshuo.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-yangshuo.webp" alt="Guilin vs Yangshuo: Where to Stay & Which Is Better"></div>
-          <div class="p-6">
-            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">2026-03-05 · 6 min read</p>
-            <h3 class="font-display text-xl text-river mb-2 leading-snug">Guilin vs Yangshuo: Where to Stay & Which Is Better</h3>
-            <p class="text-sm text-stone-600 leading-relaxed mb-4">Guilin city or Yangshuo? A straight comparison of where to base your trip — transport, scenery, nightlife, hotels, and which one fits a first-time visit to the Li River region.</p>
-            <div><span class="guide-tag">Planning</span> <span class="guide-tag">Where to stay</span> <span class="guide-tag">Yangshuo</span></div>
+        <article id="yuyuan" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
+          <div class="overflow-hidden relative">
+            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/web-yulong-karst.webp" alt="Yuyuan Resort (阳遇源景舍) — Yangshuo · Yulong River">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Curated</span><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Value</span></div>
           </div>
-        </a>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · Yulong River</p>
+            <h3 class="font-display text-xl text-river mb-1">Yuyuan Resort</h3>
+            <p class="text-sm text-stone-600 mb-3">阳遇源景舍</p>
+            <p class="text-sm text-stone/80 leading-relaxed mb-4">A resort-style stay beside the Yulong River landscape.</p>
+            <div class="mt-auto flex items-end justify-between gap-3">
+              <div>
+                <p class="text-xs text-stone-500">From</p>
+                <p class="font-display text-lg text-river">¥360<span class="text-xs text-stone-500"> / night</span></p>
+              </div>
+              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Yuyuan%20Resort%20(%E9%98%B3%E9%81%87%E6%BA%90%E6%99%AF%E8%88%8D)%20for%20my%20Guilin%20trip." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
+            </div>
+          </div>
+        </article></div>
+  </section>
 
-        <a href="./longji-rice-terraces-guide.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-longji.webp" alt="Longji Rice Terraces: Everything You Need to Know"></div>
-          <div class="p-6">
-            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">2026-03-22 · 8 min read</p>
-            <h3 class="font-display text-xl text-river mb-2 leading-snug">Longji Rice Terraces: Everything You Need to Know</h3>
-            <p class="text-sm text-stone-600 leading-relaxed mb-4">How to visit the Longji Rice Terraces from Guilin: which village to choose (Ping'an, Jinkeng, Dazhai), when the terraces are flooded vs golden, hiking routes, and where to stay overnight.</p>
-            <div><span class="guide-tag">Longji</span> <span class="guide-tag">Day trip</span> <span class="guide-tag">Villages</span></div>
+  <!-- FAQ -->
+  <section class="max-w-[1400px] mx-auto px-6 pb-16">
+    <h2 class="font-display text-2xl md:text-3xl text-river mb-6">Frequently asked questions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      
+          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
+            <h3 class="font-display text-lg md:text-xl text-river mb-2">How are these curated?</h3>
+            <p class="text-stone/80 leading-relaxed text-sm md:text-base">By real guest feedback, host responsiveness and location — not paid placement.</p>
           </div>
-        </a>
 
-        <a href="./guilin-food-guide.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-yangshuo.webp" alt="Guilin Food Guide: 12 Dishes to Try & Where to Eat"></div>
-          <div class="p-6">
-            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">2026-04-02 · 7 min read</p>
-            <h3 class="font-display text-xl text-river mb-2 leading-snug">Guilin Food Guide: 12 Dishes to Try & Where to Eat</h3>
-            <p class="text-sm text-stone-600 leading-relaxed mb-4">What to eat in Guilin: from Guilin rice noodles and beer fish to osmanthus sweets and minority village fare — 12 dishes worth seeking out, plus where locals actually eat in the city and Yangshuo.</p>
-            <div><span class="guide-tag">Food</span> <span class="guide-tag">Local eats</span> <span class="guide-tag">Yangshuo</span></div>
+          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
+            <h3 class="font-display text-lg md:text-xl text-river mb-2">Are they English-friendly?</h3>
+            <p class="text-stone/80 leading-relaxed text-sm md:text-base">Most hosts speak basic English; we provide full translation support end-to-end.</p>
           </div>
-        </a>
-      </div>
+
+          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
+            <h3 class="font-display text-lg md:text-xl text-river mb-2">Can I bundle with tours?</h3>
+            <p class="text-stone/80 leading-relaxed text-sm md:text-base">Yes — ask us for a stay + private-guide package.</p>
+          </div>
+    </div>
+  </section>
+
+  <!-- RELATED CATEGORIES -->
+  <section class="max-w-[1400px] mx-auto px-6 pb-20">
+    <h2 class="font-display text-2xl md:text-3xl text-river mb-6">Other ways to browse hotels</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+          <a href="scenic-view.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+            <div class="p-6">
+              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">山水景观酒店</p>
+              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Scenic-View Hotels</h3>
+              <p class="text-sm text-stone-600 mt-1">Rooms that frame the karst — mountain views, terraces and riverside calm.</p>
+            </div>
+          </a>
+
+          <a href="budget.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+            <div class="p-6">
+              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">性价比酒店</p>
+              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Great-Value Stays</h3>
+              <p class="text-sm text-stone-600 mt-1">Comfortable, well-located rooms that leave more budget for experiences.</p>
+            </div>
+          </a>
+
+          <a href="region.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+            <div class="p-6">
+              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">区域酒店</p>
+              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Hotels by Area</h3>
+              <p class="text-sm text-stone-600 mt-1">Pick your base first — Yangshuo is ready now; more areas coming soon.</p>
+            </div>
+          </a>
     </div>
   </section>
 
@@ -369,53 +471,5 @@
       </div>
     </div>
   </div>
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-  </script>
-  <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Guilin Itinerary: How to Spend 3, 4, or 5 Days",
-      "url": "https://myguilin.com/guides/guilin-itinerary.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Li River Cruise: The Complete Guide to Routes, Tickets & Tips",
-      "url": "https://myguilin.com/guides/li-river-cruise-guide.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Best Time to Visit Guilin: Month-by-Month Weather & Crowds",
-      "url": "https://myguilin.com/guides/best-time-to-visit-guilin.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Guilin vs Yangshuo: Where to Stay & Which Is Better",
-      "url": "https://myguilin.com/guides/guilin-vs-yangshuo.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "name": "Longji Rice Terraces: Everything You Need to Know",
-      "url": "https://myguilin.com/guides/longji-rice-terraces-guide.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
-      "name": "Guilin Food Guide: 12 Dishes to Try & Where to Eat",
-      "url": "https://myguilin.com/guides/guilin-food-guide.html"
-    }
-  ]
-}</script>
 </body>
 </html>

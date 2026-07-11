@@ -452,7 +452,27 @@
 
           <!-- 5. Hotel -->
           <li class="nav-item h-full flex items-center">
-            <a href="#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Hotel</a>
+            <a href="#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Hotels
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:640px;">
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                <a href="hotels/scenic-view.html" class="mega-link">🏞️ Scenic-View Hotels</a>
+                <a href="hotels/selected.html" class="mega-link">⭐ Curated Stays</a>
+                <a href="hotels/budget.html" class="mega-link">💡 Great-Value Stays</a>
+                <a href="hotels/region.html" class="mega-link">📍 Hotels by Area</a>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <span class="mega-col-title">By area</span>
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-2">
+                  <a href="hotels/region.html#yangshuo" class="mega-link">🛶 Yangshuo &amp; Yulong River</a>
+                  <a href="hotels/region.html#guilin-city" class="mega-link">🏙️ Guilin City</a>
+                  <a href="hotels/region.html#longji" class="mega-link">🌾 Longji Terraces</a>
+                  <a href="hotels/region.html#xingping" class="mega-link">🏘️ Xingping Ancient Town</a>
+                </div>
+              </div>
+            </div>
           </li>
 
           <!-- 6. Food -->
@@ -509,7 +529,11 @@
       <a href="#tour-private-card" class="block text-stone/80 py-1 pl-3 text-sm">Private Tours</a>
       <a href="#tour-vip-card" class="block text-stone/80 py-1 pl-3 text-sm">VIP Tours</a>
       <a href="/guides/index.html" class="block text-river font-semibold py-1 pl-3 text-sm">📖 Travel Guides</a>
-      <a href="#hotel" class="block text-stone font-semibold py-2 pt-3">5. Hotel</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">5. Hotels</p>
+      <a href="hotels/scenic-view.html" class="block text-stone/80 py-1 pl-3 text-sm">Scenic-View Hotels</a>
+      <a href="hotels/selected.html" class="block text-stone/80 py-1 pl-3 text-sm">Curated Stays</a>
+      <a href="hotels/budget.html" class="block text-stone/80 py-1 pl-3 text-sm">Great-Value Stays</a>
+      <a href="hotels/region.html" class="block text-stone/80 py-1 pl-3 text-sm">Hotels by Area</a>
       <a href="#food" class="block text-stone font-semibold py-2">6. Food</a>
       <button type="button" onclick="openContactModal(); document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left bg-transparent border-0 cursor-pointer text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</button>
       <a href="https://wa.me/8618777358302" target="_blank" class="block text-center bg-river text-white font-semibold py-2.5 rounded-full mt-3">WhatsApp Us</a>
@@ -955,22 +979,47 @@
   </section>
 
     <!-- ========== 5. HOTEL & FOOD (entry cards — details on sub-pages) ====== -->
-  <section class="py-20 px-6 bg-stone-50/50">
+  <section id="hotel" class="py-20 px-6 bg-stone-50/50">
     <div class="max-w-5xl mx-auto flex flex-col gap-6">
 
-      <a href="#hotel" id="hotel" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
-        <img src="images/attraction-liriver.webp" alt="Hotels in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
-        <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/25 to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
-          <span class="inline-flex items-center gap-2 text-white/60 text-xs font-medium tracking-widest uppercase mb-3">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/><path d="M18 8v9"/></svg>
-            Where to Stay
-          </span>
-          <h3 class="font-display text-2xl md:text-3xl mb-2">Hotels &amp; Stays</h3>
-          <p class="text-white/70 text-sm mb-6">5-star resorts · boutique inns · budget hostels</p>
-          <span class="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/35 rounded-full px-5 py-2 group-hover:bg-white group-hover:text-river transition-colors">Browse All &rarr;</span>
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-2 text-center">Where to Stay in Guilin</h2>
+        <p class="text-center text-stone-600 mb-8 max-w-2xl mx-auto">Real, bookable hotels in Yangshuo and beyond — picked for view, character and value.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <a href="hotels/scenic-view.html" class="group relative min-h-[240px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/hotel-yingu-1.webp" alt="Scenic-view hotels in Yangshuo with karst mountain views" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+              <h3 class="font-display text-xl md:text-2xl mb-1">Scenic-View Hotels</h3>
+              <p class="text-white/80 text-sm">Rooms that frame the karst peaks</p>
+            </div>
+          </a>
+          <a href="hotels/selected.html" class="group relative min-h-[240px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/hotel-minos-1.webp" alt="Curated boutique hotels in Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+              <h3 class="font-display text-xl md:text-2xl mb-1">Curated Stays</h3>
+              <p class="text-white/80 text-sm">Hand-picked for character &amp; service</p>
+            </div>
+          </a>
+          <a href="hotels/budget.html" class="group relative min-h-[240px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/hotel-bgdesign-1.webp" alt="Great-value hotels in Yangshuo from budget prices" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+              <h3 class="font-display text-xl md:text-2xl mb-1">Great-Value Stays</h3>
+              <p class="text-white/80 text-sm">Comfortable rooms that save your budget</p>
+            </div>
+          </a>
+          <a href="hotels/region.html" class="group relative min-h-[240px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/web-yangshuo-countryside.webp" alt="Hotels by area: Yangshuo, Guilin city, Longji, Xingping" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+              <h3 class="font-display text-xl md:text-2xl mb-1">Hotels by Area</h3>
+              <p class="text-white/80 text-sm">Yangshuo · City · Longji · Xingping</p>
+            </div>
+          </a>
         </div>
-      </a>
+      </div>
 
       <a href="#food" id="food" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
         <img src="images/exp-cook.webp" alt="Restaurants in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">

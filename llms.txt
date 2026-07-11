@@ -35,6 +35,13 @@
 - [Cooking Class (桂林烹饪课)](https://myguilin.com/experiences/cooking-class.html): Shop Local Markets and Cook Guilin Classics with English-Speaking Chefs
 - [Sunrise Viewpoint (相公山日出)](https://myguilin.com/experiences/sunrise-viewpoint.html): Climb Xianggong Mountain for the Best Sunrise View in Guilin
 
+## Hotels (where to stay)
+
+- [Scenic-View Hotels (山水景观酒店)](https://myguilin.com/hotels/scenic-view.html): Rooms that frame the karst — mountain views, terraces and riverside calm.
+- [Curated Stays (精选酒店)](https://myguilin.com/hotels/selected.html): Hand-picked properties with character, service and standout design.
+- [Great-Value Stays (性价比酒店)](https://myguilin.com/hotels/budget.html): Comfortable, well-located rooms that leave more budget for experiences.
+- [Hotels by Area (区域酒店)](https://myguilin.com/hotels/region.html): Pick your base first — Yangshuo is ready now; more areas coming soon.
+
 ## Plan your trip
 
 Each destination page includes: best time to visit, how to get there, ticket prices, suggested routes, and a frequently-asked-questions section.

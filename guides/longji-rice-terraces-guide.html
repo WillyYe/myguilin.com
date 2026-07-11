@@ -175,7 +175,29 @@
               </div>
             </div>
           </li>
-          <li class="nav-item h-full flex items-center"><a href="../#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Hotel</a></li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Hotels
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:640px;">
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                <a href="../hotels/scenic-view.html" class="mega-link">🏞️ Scenic-View Hotels</a>
+                <a href="../hotels/selected.html" class="mega-link">⭐ Curated Stays</a>
+                <a href="../hotels/budget.html" class="mega-link">💡 Great-Value Stays</a>
+                <a href="../hotels/region.html" class="mega-link">📍 Hotels by Area</a>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <span class="mega-col-title">By area</span>
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-2">
+                  <a href="../hotels/region.html#yangshuo" class="mega-link">🛶 Yangshuo &amp; Yulong River</a>
+                  <a href="../hotels/region.html#guilin-city" class="mega-link">🏙️ Guilin City</a>
+                  <a href="../hotels/region.html#longji" class="mega-link">🌾 Longji Terraces</a>
+                  <a href="../hotels/region.html#xingping" class="mega-link">🏘️ Xingping Ancient Town</a>
+                </div>
+              </div>
+            </div>
+          </li>
           <li class="nav-item h-full flex items-center"><a href="../#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Food</a></li>
           <li class="nav-item h-full flex items-center">
             <button type="button" onclick="openContactModal(event)" class="nav-link bg-transparent border-0 cursor-pointer text-sm font-semibold text-river hover:bg-river hover:text-white px-4 h-full flex items-center rounded-full transition-colors">Contact us</button>
