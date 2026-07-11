@@ -4,10 +4,13 @@
   "private": true,
   "description": "Guilin travel guide static site — Tailwind precompiled for production",
   "scripts": {
+    "build": "node scripts/build-attractions.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify",
     "test:static": "node tests/static-audit.mjs",
     "test:e2e": "node tests/browser-test.mjs",
-    "test": "npm run test:static && npm run test:e2e"
+    "test": "npm run test:static && npm run test:e2e",
+    "ping:indexnow": "node scripts/ping-indexnow.mjs",
+    "setup:searchconsole": "node scripts/setup-search-console.mjs"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.19",

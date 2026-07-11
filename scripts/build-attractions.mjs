@@ -4,6 +4,7 @@
 // Output: attractions/<slug>.html  (committed; serves as static site pages)
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { attractions, SITE } from '../attractions-data.mjs';
 import { guides } from '../guides-data.mjs';
@@ -1723,6 +1724,18 @@ function buildSitemap() {
 }
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap(), 'utf8');
 console.log(`✓ wrote sitemap.xml (${attractions.length + guides.length + experiences.length + hotelCategories.length + 3} URLs + image entries)`);
+
+// ---- IndexNow key file (auto-recover if missing; enables instant Bing/ChatGPT/Perplexity discovery) ----
+// IndexNow requires the key file to be served at https://{host}/{key}.txt (key is the filename),
+// so we keep indexnow-key.txt as the local source-of-truth and also emit {key}.txt for verification.
+const INDEXNOW_KEY = path.join(ROOT, 'indexnow-key.txt');
+if (!fs.existsSync(INDEXNOW_KEY)) {
+  const key = crypto.randomUUID().replace(/-/g, '') + crypto.randomUUID().replace(/-/g, '');
+  fs.writeFileSync(INDEXNOW_KEY, key, 'utf8');
+  console.log('✓ (re)generated indexnow-key.txt');
+}
+const indexNowKey = fs.readFileSync(INDEXNOW_KEY, 'utf8').trim();
+fs.writeFileSync(path.join(ROOT, `${indexNowKey}.txt`), indexNowKey, 'utf8');
 
 // Disallow build/test artifacts + the (empty) admin area; guide crawlers to the canonical host.
 // AI training/search crawlers are explicitly allowed so LLMs can read and recommend the site.
