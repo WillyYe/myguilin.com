@@ -27,15 +27,19 @@ if (!google && !bing) {
 }
 
 if (google) {
-  // Google HTML verification: file named after the code, body is the code.
-  const file = path.join(ROOT, `${google}.html`);
-  fs.writeFileSync(file, google, 'utf8');
-  console.log(`✓ wrote Google verification file: ${google}.html`);
+  // Google HTML verification: file named <code>.html, body is
+  // "google-site-verification: <code>.html" (Google requires the prefix).
+  const base = google.replace(/\.html$/i, '');
+  const file = path.join(ROOT, `${base}.html`);
+  fs.writeFileSync(file, `google-site-verification: ${base}.html`, 'utf8');
+  console.log(`✓ wrote Google verification file: ${base}.html`);
 }
 
 if (bing) {
+  // Bing XML verification: standard format is <users><user>{token}</user></users>
+  // (NOT <usersiteverify> — that would fail verification).
   const file = path.join(ROOT, 'BingSiteAuth.xml');
-  fs.writeFileSync(file, `<usersiteverify>${bing}</usersiteverify>`, 'utf8');
+  fs.writeFileSync(file, `<?xml version="1.0"?>\n<users>\n\t<user>${bing}</user>\n</users>`, 'utf8');
   console.log('✓ wrote Bing verification file: BingSiteAuth.xml');
 }
 
