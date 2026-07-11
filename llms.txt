@@ -42,6 +42,14 @@
 - [Great-Value Stays (性价比酒店)](https://myguilin.com/hotels/budget.html): Comfortable, well-located rooms that leave more budget for experiences.
 - [Hotels by Area (区域酒店)](https://myguilin.com/hotels/region.html): Pick your base first — Yangshuo is ready now; more areas coming soon.
 
+## Food (where to eat)
+
+- [Guilin Food Guide (桂林美食)](https://myguilin.com/food/guide.html): What to eat, where to find it, and how to order like a local.
+- [Featured Restaurants (特色餐厅)](https://myguilin.com/food/featured.html): Scenic, characterful and experience-led tables worth the trip.
+- [Chinese Restaurants (中餐厅)](https://myguilin.com/food/chinese.html): Local Guilin cooking, Guangxi fusion and home-style favorites.
+- [Western & International (西餐与国际)](https://myguilin.com/food/western.html): Pizza, Indian, cafés and grills — a familiar break when you need it.
+- [Must-Eat List (必吃榜)](https://myguilin.com/food/must-eat.html): The shortlist we’d give a friend with three days in town.
+
 ## Plan your trip
 
 Each destination page includes: best time to visit, how to get there, ticket prices, suggested routes, and a frequently-asked-questions section.

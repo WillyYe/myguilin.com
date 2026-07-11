@@ -477,7 +477,26 @@
 
           <!-- 6. Food -->
           <li class="nav-item h-full flex items-center">
-            <a href="#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Food</a>
+            <a href="#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Food
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:640px;">
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                <a href="food/guide.html" class="mega-link">🍜 Guilin Food Guide</a>
+                <a href="food/featured.html" class="mega-link">⭐ Featured Restaurants</a>
+                <a href="food/chinese.html" class="mega-link">🥢 Chinese Restaurants</a>
+                <a href="food/western.html" class="mega-link">🍕 Western &amp; International</a>
+                <a href="food/must-eat.html" class="mega-link">🏆 Must-Eat List</a>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <span class="mega-col-title">Quick picks</span>
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-2">
+                  <a href="food/chinese.html" class="mega-link">🐟 Beer Fish houses</a>
+                  <a href="food/western.html" class="mega-link">🌏 Indian &amp; Pizza</a>
+                </div>
+              </div>
+            </div>
           </li>
 
           <!-- 7. Contact us -->
@@ -534,7 +553,12 @@
       <a href="hotels/selected.html" class="block text-stone/80 py-1 pl-3 text-sm">Curated Stays</a>
       <a href="hotels/budget.html" class="block text-stone/80 py-1 pl-3 text-sm">Great-Value Stays</a>
       <a href="hotels/region.html" class="block text-stone/80 py-1 pl-3 text-sm">Hotels by Area</a>
-      <a href="#food" class="block text-stone font-semibold py-2">6. Food</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">6. Food</p>
+      <a href="food/guide.html" class="block text-stone/80 py-1 pl-3 text-sm">Guilin Food Guide</a>
+      <a href="food/featured.html" class="block text-stone/80 py-1 pl-3 text-sm">Featured Restaurants</a>
+      <a href="food/chinese.html" class="block text-stone/80 py-1 pl-3 text-sm">Chinese Restaurants</a>
+      <a href="food/western.html" class="block text-stone/80 py-1 pl-3 text-sm">Western &amp; International</a>
+      <a href="food/must-eat.html" class="block text-stone/80 py-1 pl-3 text-sm">Must-Eat List</a>
       <button type="button" onclick="openContactModal(); document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left bg-transparent border-0 cursor-pointer text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</button>
       <a href="https://wa.me/8618777358302" target="_blank" class="block text-center bg-river text-white font-semibold py-2.5 rounded-full mt-3">WhatsApp Us</a>
     </div>
@@ -1021,19 +1045,57 @@
         </div>
       </div>
 
-      <a href="#food" id="food" class="group relative min-h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
-        <img src="images/exp-cook.webp" alt="Restaurants in Guilin and Yangshuo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
-        <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/25 to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
-          <span class="inline-flex items-center gap-2 text-white/60 text-xs font-medium tracking-widest uppercase mb-3">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15c-1.1 0-2-.9-2-2V2"/><path d="M19 2v13c0 1.1-.9 2-2 2h0a2 2 0 0 1-2-2V2"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
-            Taste Guilin
-          </span>
-          <h3 class="font-display text-2xl md:text-3xl mb-2">Restaurants &amp; Food</h3>
-          <p class="text-white/70 text-sm mb-6">Fine dining · local favorites · street food gems</p>
-          <span class="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/35 rounded-full px-5 py-2 group-hover:bg-white group-hover:text-river transition-colors">Browse All &rarr;</span>
+      <div id="food" class="pt-2">
+        <div class="flex items-end justify-between mb-6">
+          <div>
+            <p class="text-gold-dark text-xs font-bold uppercase tracking-wide mb-1">Taste Guilin</p>
+            <h3 class="font-display text-2xl md:text-3xl text-river">Restaurants &amp; Food</h3>
+          </div>
+          <a href="food/guide.html" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">All food →</a>
         </div>
-      </a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="food/guide.html" class="group relative min-h-[220px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/food-hero-guide.webp" alt="Guilin Food Guide" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-5 text-white">
+              <h4 class="font-display text-lg md:text-xl mb-0.5">Guilin Food Guide</h4>
+              <p class="text-white/80 text-xs">Dishes, tips &amp; how to order</p>
+            </div>
+          </a>
+          <a href="food/featured.html" class="group relative min-h-[220px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/food-hero-featured.webp" alt="Featured Restaurants in Guilin" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-5 text-white">
+              <h4 class="font-display text-lg md:text-xl mb-0.5">Featured Restaurants</h4>
+              <p class="text-white/80 text-xs">Scenic &amp; characterful tables</p>
+            </div>
+          </a>
+          <a href="food/chinese.html" class="group relative min-h-[220px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/food-hero-chinese.webp" alt="Chinese Restaurants in Guilin" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-5 text-white">
+              <h4 class="font-display text-lg md:text-xl mb-0.5">Chinese Restaurants</h4>
+              <p class="text-white/80 text-xs">Local Guilin &amp; Guangxi flavors</p>
+            </div>
+          </a>
+          <a href="food/western.html" class="group relative min-h-[220px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/food-hero-western.webp" alt="Western and International Restaurants in Guilin" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-5 text-white">
+              <h4 class="font-display text-lg md:text-xl mb-0.5">Western &amp; International</h4>
+              <p class="text-white/80 text-xs">Pizza, Indian &amp; cafés</p>
+            </div>
+          </a>
+          <a href="food/must-eat.html" class="group relative min-h-[220px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 fade-in block">
+            <img src="images/food-hero-musteat.webp" alt="Must-Eat List of Guilin restaurants" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]">
+            <div class="absolute inset-0 bg-gradient-to-t from-river/85 via-river/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-5 text-white">
+              <h4 class="font-display text-lg md:text-xl mb-0.5">Must-Eat List</h4>
+              <p class="text-white/80 text-xs">Our 3-day shortlist</p>
+            </div>
+          </a>
+        </div>
+      </div>
 
     </div>
   </section>
