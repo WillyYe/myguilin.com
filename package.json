@@ -5,6 +5,7 @@
   "description": "Guilin travel guide static site — Tailwind precompiled for production",
   "scripts": {
     "build": "node scripts/build-attractions.mjs",
+    "build:shell": "node scripts/build-shell.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify",
     "test:static": "node tests/static-audit.mjs",
     "test:e2e": "node tests/browser-test.mjs",

@@ -1,0 +1,212 @@
+{
+  "brand": {
+    "icon": "⛰",
+    "text": "Visit Guilin"
+  },
+  "nav": [
+    { "type": "link", "label": "Home", "href": "#home" },
+    {
+      "type": "mega",
+      "label": "Attraction",
+      "href": "#attraction",
+      "mega": {
+        "width": 700,
+        "sections": [
+          {
+            "type": "grid-links",
+            "gridClass": "grid grid-cols-2 gap-x-10 gap-y-1",
+            "columns": [
+              {
+                "title": "Guilin City & Around",
+                "links": [
+                  { "label": "🐘 Elephant Trunk Hill (象鼻山)", "href": "attractions/elephant.html" },
+                  { "label": "🛶 Li River (漓江)", "href": "attractions/liriver.html" },
+                  { "label": "🪨 Reed Flute Cave (芦笛岩)", "href": "attractions/reedflute.html" },
+                  { "label": "🚣 Yulong River Rafting (遇龙河)", "href": "attractions/yulong.html" }
+                ]
+              },
+              {
+                "title": "Countryside & Beyond",
+                "links": [
+                  { "label": "🚲 Yangshuo & West Street (阳朔)", "href": "attractions/yangshuo.html" },
+                  { "label": "🌾 Longji Rice Terraces (龙脊)", "href": "attractions/longji.html" },
+                  { "label": "🌉 Two Rivers & Four Lakes (两江四湖)", "href": "attractions/tworivers.html" },
+                  { "label": "🏘️ Xingping Ancient Town (兴坪)", "href": "attractions/xingping.html" }
+                ]
+              }
+            ]
+          },
+          { "type": "footer-link", "label": "View All Attractions →", "href": "#attraction" }
+        ]
+      }
+    },
+    {
+      "type": "mega",
+      "label": "Experiences",
+      "href": "#experience",
+      "mega": {
+        "width": 900,
+        "sections": [
+          {
+            "type": "features",
+            "cols": 4,
+            "items": [
+              { "href": "experiences/li-river-cruise.html", "img": "images/exp-liriver.webp", "imgFallback": "images/exp-liriver.jpg", "alt": "Li River Cruise", "label": "Li River<br>Cruise" },
+              { "href": "experiences/countryside-cycling.html", "img": "images/exp-cycling.webp", "imgFallback": "images/exp-cycling.jpg", "alt": "Countryside Cycling", "label": "Countryside<br>Cycling" },
+              { "href": "experiences/longji-terraces-trek.html", "img": "images/exp-longji.webp", "imgFallback": "images/exp-longji.jpg", "alt": "Longji Terraces Trek", "label": "Longji<br>Trekking" },
+              { "href": "experiences/cormorant-fishing.html", "img": "images/exp-cormorant.webp", "imgFallback": "images/exp-cormorant.jpg", "alt": "Cormorant Fishing", "label": "Cormorant<br>Fishing" },
+              { "href": "experiences/bamboo-rafting.html", "img": "images/exp-bamboo.webp", "imgFallback": "images/exp-bamboo.jpg", "alt": "Bamboo Rafting", "label": "Bamboo<br>Rafting" },
+              { "href": "experiences/rock-climbing.html", "img": "images/exp-climb.webp", "imgFallback": "images/exp-climb.jpg", "alt": "Rock Climbing", "label": "Rock<br>Climbing" },
+              { "href": "experiences/cooking-class.html", "img": "images/exp-cook.webp", "imgFallback": "images/exp-cook.jpg", "alt": "Cooking Class", "label": "Cooking<br>Class" },
+              { "href": "experiences/sunrise-viewpoint.html", "img": "images/exp-xianggong.webp", "imgFallback": "images/exp-xianggong.jpg", "alt": "Sunrise Viewpoint", "label": "Sunrise<br>Viewpoint" }
+            ]
+          },
+          {
+            "type": "links-grid",
+            "cols": 4,
+            "items": [
+              { "href": "experiences/li-river-cruise.html", "label": "Li River Cruise" },
+              { "href": "experiences/countryside-cycling.html", "label": "Yangshuo Cycling" },
+              { "href": "experiences/longji-terraces-trek.html", "label": "Longji Trekking" },
+              { "href": "experiences/cormorant-fishing.html", "label": "Cormorant Show" },
+              { "href": "experiences/bamboo-rafting.html", "label": "Bamboo Rafting" },
+              { "href": "experiences/rock-climbing.html", "label": "Rock Climbing" },
+              { "href": "experiences/cooking-class.html", "label": "Cooking Class" },
+              { "href": "experiences/sunrise-viewpoint.html", "label": "Sunrise Viewpoint" }
+            ]
+          },
+          {
+            "type": "links-grid",
+            "cols": 4,
+            "center": true,
+            "items": [
+              { "href": "experiences/li-river-cruise.html", "label": "Li River Cruise" },
+              { "href": "experiences/countryside-cycling.html", "label": "Yangshuo Cycling" },
+              { "href": "experiences/longji-terraces-trek.html", "label": "Longji Trekking" },
+              { "href": "experiences/cormorant-fishing.html", "label": "Cormorant Show" },
+              { "href": "experiences/bamboo-rafting.html", "label": "Bamboo Rafting" },
+              { "href": "experiences/rock-climbing.html", "label": "Rock Climbing" },
+              { "href": "experiences/cooking-class.html", "label": "Cooking Class" },
+              { "href": "experiences/sunrise-viewpoint.html", "label": "Sunrise Viewpoint" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mega",
+      "label": "Things to do & Tour",
+      "href": "#tour",
+      "mega": {
+        "width": 600,
+        "sections": [
+          {
+            "type": "grid-links",
+            "gridClass": "grid grid-cols-2 gap-8",
+            "columns": [
+              {
+                "links": [
+                  { "label": "🏆 Top 8 Must-See Spots", "href": "#tour-ranking" },
+                  { "label": "📅 Day Tours", "href": "#tour-day" },
+                  { "label": "🎒 Private Tours", "href": "#tour-private-card" },
+                  { "label": "💎 VIP Tours", "href": "#tour-vip-card" }
+                ]
+              },
+              {
+                "title": "Featured",
+                "feature": { "href": "#tour", "img": "images/tour-featured.webp", "imgFallback": "images/tour-featured.jpg", "alt": "", "label": "All Tours →" },
+                "links": [
+                  { "label": "Most Popular: Private Guide + Car", "href": "#tour-private-card", "cls": "mega-link text-river font-semibold" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    { "type": "link", "label": "Guides", "href": "/guides/index.html" },
+    {
+      "type": "mega",
+      "label": "Hotels",
+      "href": "#hotel",
+      "mega": {
+        "width": 640,
+        "sections": [
+          {
+            "type": "grid-links",
+            "gridClass": "grid grid-cols-2 gap-x-8 gap-y-1",
+            "columns": [
+              {
+                "links": [
+                  { "label": "🏞️ Scenic-View Hotels", "href": "hotels/scenic-view.html" },
+                  { "label": "⭐ Curated Stays", "href": "hotels/selected.html" },
+                  { "label": "💡 Great-Value Stays", "href": "hotels/budget.html" },
+                  { "label": "📍 Hotels by Area", "href": "hotels/region.html" }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "footer-section",
+            "title": "By area",
+            "links": [
+              { "label": "🛶 Yangshuo & Yulong River", "href": "hotels/region.html#yangshuo" },
+              { "label": "🏙️ Guilin City", "href": "hotels/region.html#guilin-city" },
+              { "label": "🌾 Longji Terraces", "href": "hotels/region.html#longji" },
+              { "label": "🏘️ Xingping Ancient Town", "href": "hotels/region.html#xingping" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mega",
+      "label": "Food",
+      "href": "#food",
+      "mega": {
+        "width": 640,
+        "sections": [
+          {
+            "type": "grid-links",
+            "gridClass": "grid grid-cols-2 gap-x-8 gap-y-1",
+            "columns": [
+              {
+                "links": [
+                  { "label": "🍜 Guilin Food Guide", "href": "food/guide.html" },
+                  { "label": "⭐ Featured Restaurants", "href": "food/featured.html" },
+                  { "label": "🥢 Chinese Restaurants", "href": "food/chinese.html" },
+                  { "label": "🍕 Western & International", "href": "food/western.html" },
+                  { "label": "🏆 Must-Eat List", "href": "food/must-eat.html" }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "footer-section",
+            "title": "Quick picks",
+            "links": [
+              { "label": "🐟 Beer Fish houses", "href": "food/chinese.html" },
+              { "label": "🌏 Indian & Pizza", "href": "food/western.html" }
+            ]
+          }
+        ]
+      }
+    },
+    { "type": "button", "label": "Contact us", "action": "openContactModal()" }
+  ],
+  "cta": {
+    "label": "WhatsApp",
+    "href": "https://wa.me/8618777358302"
+  },
+  "hero": {
+    "eyebrow": "Karst Landscape of China",
+    "titleHtml": "Where Mountains<br>&amp; Rivers Become Poetry",
+    "subtitle": "Discover Guilin's legendary karst peaks and the misty Li River — the landscape that inspired a thousand Chinese paintings and the phrase <em>\"Guilin's scenery is the best under heaven.\"</em> Experience it with the local team that knows every bend of the river.",
+    "image": {
+      "avif": ["images/hero-liriver-800.avif", "images/hero-liriver.avif"],
+      "webp": ["images/hero-liriver-800.webp", "images/hero-liriver.webp"],
+      "fallback": "images/hero-liriver.jpg",
+      "alt": "The Li River winding through misty karst peaks near Guilin at dawn"
+    }
+  }
+}

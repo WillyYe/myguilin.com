@@ -1,0 +1,40 @@
+name: Build & Deploy (CMS)
+
+# Rebuilds static pages whenever CMS-managed source changes, then commits the
+# generated HTML back so GitHub Pages (serving from main) stays up to date.
+# The commit uses [skip ci] to avoid re-triggering CI loops.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site-config.json'
+      - 'scripts/build-shell.mjs'
+      - 'scripts/build-attractions.mjs'
+      - '*-data.mjs'
+      - 'src/**'
+      - 'admin/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Regenerate site shell (navbar + hero)
+        run: node scripts/build-shell.mjs
+      - name: Regenerate module pages
+        run: node scripts/build-attractions.mjs
+      - name: Commit regenerated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html attractions experiences guides hotels food
+          git diff --cached --quiet || git commit -m "chore: regenerate static pages from CMS [skip ci]"
+          git push
