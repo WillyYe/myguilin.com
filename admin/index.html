@@ -3,28 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyGuilin 后台 — Site Shell</title>
+  <title>MyGuilin 后台 · Content Studio</title>
   <style>
-    :root { --river:#0e4d64; --gold:#c9a96e; --sand:#f4f1ea; --border:#e3ddd0; --text:#333; --text-light:#888; }
+    :root {
+      --river:#0e4d64; --river-dark:#0a3a4d; --gold:#c9a96e; --gold-dark:#a8884f;
+      --sand:#f4f1ea; --sand-dark:#e3ddd0; --border:#e3ddd0;
+      --text:#2c2c2a; --text-light:#888780; --text-mut:#5f5e5a;
+      --blue-soft:#e6f1fb; --blue:#185fa5;
+    }
     * { box-sizing: border-box; }
-    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; background:var(--sand); color:var(--text); }
-    header { background:var(--river); color:#fff; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; }
-    header h1 { font-size:17px; margin:0; font-weight:600; }
-    header button { background:rgba(255,255,255,.15); color:#fff; border:0; padding:7px 14px; border-radius:8px; cursor:pointer; font-size:13px; }
+    html, body { margin:0; height:100%; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; background:var(--sand); color:var(--text); font-size:14px; }
+
+    /* 顶栏 */
+    header { background:var(--river); color:#fff; height:52px; display:flex; align-items:center; padding:0 18px; gap:14px; position:sticky; top:0; z-index:30; }
+    header .brand { font-size:16px; font-weight:600; display:flex; align-items:center; gap:8px; }
+    header .brand .ic { width:26px; height:26px; border-radius:7px; background:rgba(255,255,255,.16); display:flex; align-items:center; justify-content:center; font-size:15px; }
+    header .spacer { flex:1; }
+    #publishStatus { font-size:13px; padding:5px 12px; border-radius:20px; background:rgba(255,255,255,.14); display:flex; align-items:center; gap:7px; }
+    #publishStatus .dot { width:8px; height:8px; border-radius:50%; background:#9fe1cb; }
+    #publishStatus.busy .dot { background:#fac775; }
+    #publishStatus.err .dot { background:#f09595; }
+    header button { background:rgba(255,255,255,.15); color:#fff; border:0; padding:7px 13px; border-radius:8px; cursor:pointer; font-size:13px; }
     header button:hover { background:rgba(255,255,255,.28); }
-    main { max-width:840px; margin:24px auto; padding:0 18px; }
-    .card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:20px 22px; margin-bottom:20px; }
-    .card h2 { margin:0 0 14px; font-size:16px; color:var(--river); }
-    label { display:block; font-size:12px; font-weight:600; color:var(--text-light); margin:12px 0 5px; }
-    input[type=text], input[type=password], textarea { width:100%; padding:9px 11px; border:1px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; }
-    textarea { resize:vertical; line-height:1.5; }
-    #navJson { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12.5px; min-height:300px; }
+
+    /* 三栏 */
+    .layout { display:grid; grid-template-columns: 210px 1fr 340px; height: calc(100vh - 52px); }
+    @media (max-width: 1100px) { .layout { grid-template-columns: 180px 1fr; } #previewPane { display:none; } }
+
+    /* 侧栏 */
+    .sidebar { background:#fff; border-right:1px solid var(--border); padding:14px 12px; overflow-y:auto; }
+    .sidebar .grp-title { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--text-light); margin:6px 6px 8px; }
+    .mod { display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:transparent; border:0; padding:10px 12px; border-radius:9px; cursor:pointer; font-size:14px; color:var(--text); margin-bottom:4px; }
+    .mod:hover { background:var(--sand); }
+    .mod.active { background:var(--blue-soft); color:var(--blue); font-weight:600; }
+    .mod .ic { width:22px; text-align:center; font-size:15px; }
+    .mod.locked { color:var(--text-light); cursor:not-allowed; }
+    .mod.locked:hover { background:transparent; }
+    .sidebar .sep { height:1px; background:var(--border); margin:12px 6px; }
+    .sidebar .foot { margin-top:auto; }
+
+    /* 编辑区 */
+    .editor { padding:22px 26px; overflow-y:auto; }
+    .panel { display:none; }
+    .panel.active { display:block; }
+    .panel h2 { margin:0 0 4px; font-size:19px; color:var(--river); }
+    .panel .lead { color:var(--text-mut); margin:0 0 18px; font-size:13px; }
+    .field { margin-bottom:16px; }
+    label.fld { display:block; font-size:12px; font-weight:600; color:var(--text-mut); margin-bottom:6px; }
+    label.fld .tip { font-weight:400; color:var(--text-light); }
+    input[type=text], textarea, select { width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:9px; font-size:14px; font-family:inherit; background:#fff; color:var(--text); }
+    input[type=text]:focus, textarea:focus, select:focus { outline:2px solid var(--blue); border-color:var(--blue); }
+    textarea { resize:vertical; line-height:1.55; }
     .hint { font-size:12px; color:var(--text-light); margin-top:6px; line-height:1.6; }
+
     .btn { background:var(--river); color:#fff; border:0; padding:10px 20px; border-radius:9px; cursor:pointer; font-size:14px; font-weight:600; }
     .btn:hover { opacity:.92; }
     .btn-ghost { background:#fff; color:var(--river); border:1px solid var(--river); }
-    .row { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
-    .toast { position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); background:#333; color:#fff; padding:11px 18px; border-radius:10px; font-size:13.5px; opacity:0; pointer-events:none; transition:.25s; max-width:90vw; }
+    .btn-sm { padding:6px 12px; font-size:13px; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:8px; }
+
+    /* Nav 编辑器 */
+    .nav-item { background:#fff; border:1px solid var(--border); border-radius:11px; padding:12px 14px; margin-bottom:10px; }
+    .nav-item.dragging { opacity:.4; }
+    .nav-item.drop-before { box-shadow:0 -3px 0 var(--blue); }
+    .nav-item.drop-after { box-shadow:0 3px 0 var(--blue); }
+    .nav-head { display:flex; align-items:center; gap:10px; }
+    .drag { cursor:grab; color:var(--text-light); font-size:16px; user-select:none; padding:0 2px; }
+    .nav-head .label-in { flex:1; }
+    .nav-head select { width:auto; min-width:110px; }
+    .nav-head .del { background:#fff; border:1px solid var(--border); color:#a32d2d; border-radius:8px; padding:6px 10px; cursor:pointer; font-size:13px; }
+    .nav-head .toggle { background:#fff; border:1px solid var(--border); border-radius:8px; padding:6px 10px; cursor:pointer; font-size:13px; color:var(--river); }
+    .nav-body { margin-top:10px; padding-top:10px; border-top:1px dashed var(--border); }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .mega-sec { background:var(--sand); border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; }
+    .mega-sec .sec-head { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .mega-sec .sec-head select { width:auto; min-width:130px; }
+    .link-row { display:flex; gap:8px; align-items:center; margin-bottom:6px; }
+    .link-row .li { flex:1; }
+    .link-row .lh { flex:1; }
+    .link-row .x { background:#fff; border:1px solid var(--border); color:#a32d2d; border-radius:7px; padding:5px 9px; cursor:pointer; }
+    .col-block { background:#fff; border:1px solid var(--border); border-radius:9px; padding:9px 11px; margin-bottom:8px; }
+    .col-block .col-title { font-weight:600; font-size:12px; color:var(--text-mut); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .addlink { font-size:12px; color:var(--blue); cursor:pointer; background:none; border:0; padding:2px 0; }
+
+    /* 预览区 */
+    #previewPane { background:var(--sand); border-left:1px solid var(--border); padding:18px 16px; overflow-y:auto; }
+    #previewPane h3 { margin:0 0 10px; font-size:13px; color:var(--text-mut); font-weight:600; letter-spacing:.04em; }
+    .hero-prev { border-radius:14px; overflow:hidden; background:linear-gradient(180deg, rgba(14,77,100,.35), rgba(14,77,100,.85)); min-height:300px; padding:34px 22px; display:flex; flex-direction:column; justify-content:center; text-align:center; color:#fff; }
+    .hero-prev .eyebrow { color:var(--gold); font-size:11px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:14px; }
+    .hero-prev .title { font-size:26px; line-height:1.2; font-weight:700; margin:0 0 14px; }
+    .hero-prev .sub { font-size:13px; line-height:1.6; color:rgba(255,255,255,.82); }
+    .hero-prev .sub em { color:var(--gold); font-style:italic; }
+    .nav-prev { background:#fff; border:1px solid var(--border); border-radius:11px; padding:10px 12px; display:flex; flex-wrap:wrap; gap:6px 14px; }
+    .nav-prev .n { font-size:13px; color:var(--text); }
+    .nav-prev .n.mega { color:var(--river); font-weight:600; }
+    .nav-prev .n.btn { background:var(--river); color:#fff; padding:3px 10px; border-radius:14px; }
+
+    /* 设置弹层 */
+    .modal-mask { position:fixed; inset:0; background:rgba(20,30,38,.45); display:none; align-items:center; justify-content:center; z-index:50; }
+    .modal-mask.show { display:flex; }
+    .modal { background:#fff; border-radius:14px; padding:22px 24px; width:min(440px,92vw); }
+    .modal h2 { margin:0 0 14px; font-size:17px; color:var(--river); }
+    .modal .close { float:right; background:none; border:0; font-size:20px; cursor:pointer; color:var(--text-light); }
+
+    .toast { position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); background:#333; color:#fff; padding:11px 18px; border-radius:10px; font-size:13.5px; opacity:0; pointer-events:none; transition:.25s; max-width:90vw; z-index:60; }
     .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
     .toast.success { background:#2e7d32; }
     .toast.error { background:#c62828; }
@@ -33,57 +116,102 @@
 </head>
 <body>
   <header>
-    <h1>⛰ MyGuilin 后台 · Site Shell</h1>
+    <div class="brand"><span class="ic">⛰</span> MyGuilin 后台</div>
+    <div class="spacer"></div>
+    <div id="publishStatus"><span class="dot"></span><span id="publishStatusText">就绪</span></div>
     <button id="btnOpenSettings">⚙ 设置</button>
   </header>
 
-  <main>
-    <!-- 设置 -->
-    <section class="card" id="settingsPanel" style="display:none">
+  <div class="layout">
+    <!-- 侧栏 -->
+    <nav class="sidebar">
+      <div class="grp-title">内容模块</div>
+      <button class="mod active" data-module="hero"><span class="ic">🏠</span> 首页 Hero</button>
+      <button class="mod" data-module="nav"><span class="ic">🧭</span> 导航菜单</button>
+      <div class="sep"></div>
+      <div class="grp-title">内容页面（规划中）</div>
+      <button class="mod locked" disabled><span class="ic">🏞️</span> 景点 Attractions</button>
+      <button class="mod locked" disabled><span class="ic">📖</span> 指南 Guides</button>
+      <button class="mod locked" disabled><span class="ic">🏨</span> 酒店 Hotels</button>
+      <button class="mod locked" disabled><span class="ic">🍜</span> 美食 Food</button>
+      <div class="sep"></div>
+      <div class="foot"><button class="mod" id="btnSettings2"><span class="ic">⚙</span> GitHub 设置</button></div>
+    </nav>
+
+    <!-- 编辑区 -->
+    <main class="editor">
+      <!-- Hero 面板 -->
+      <section class="panel active" data-panel="hero">
+        <h2>首页 Hero</h2>
+        <p class="lead">改完右侧实时预览，满意后点「保存并发布」即可上线。</p>
+
+        <div class="field">
+          <label class="fld">小标签（eyebrow） <span class="tip">页面顶部那行小字</span></label>
+          <input type="text" id="heroEyebrow" placeholder="Karst Landscape of China" data-testid="hero-eyebrow">
+        </div>
+        <div class="field">
+          <label class="fld">大标题（Title） <span class="tip">直接按回车换行，不用写代码</span></label>
+          <textarea id="heroTitle" rows="2" placeholder="Where Mountains&#10;& Rivers Become Poetry" data-testid="hero-title"></textarea>
+        </div>
+        <div class="field">
+          <label class="fld">副标题（Subtitle） <span class="tip">用 *星号* 包住要强调的文字</span></label>
+          <textarea id="heroSubtitle" rows="4" placeholder="Discover Guilin's legendary karst peaks..." data-testid="hero-subtitle"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn" id="btnSaveHero" data-testid="save-hero">💾 保存并发布</button>
+          <button class="btn-ghost btn" id="btnReloadHero">↻ 重新加载</button>
+        </div>
+      </section>
+
+      <!-- Nav 面板 -->
+      <section class="panel" data-panel="nav">
+        <h2>导航菜单</h2>
+        <p class="lead">拖动 <span style="color:var(--text-light)">⠿</span> 调整顺序，点开「下拉内容」编辑大菜单。全部可视化，无需碰代码。</p>
+        <div id="navList" data-testid="nav-list"></div>
+        <div class="row">
+          <button class="btn" id="btnAddNav" data-testid="add-nav">＋ 添加菜单项</button>
+          <button class="btn" id="btnSaveNav" data-testid="save-nav">💾 保存并发布</button>
+          <button class="btn-ghost btn" id="btnReloadNav">↻ 重新加载</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 预览区 -->
+    <aside id="previewPane">
+      <div data-preview="hero">
+        <h3>实时预览 · 首页 Hero</h3>
+        <div class="hero-prev" id="heroPreview" data-testid="hero-preview"></div>
+      </div>
+      <div data-preview="nav" style="display:none">
+        <h3>实时预览 · 导航条</h3>
+        <div class="nav-prev" id="navPreview" data-testid="nav-preview"></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 设置弹层 -->
+  <div class="modal-mask" id="settingsModal">
+    <div class="modal">
+      <button class="close" id="btnCloseSettings">×</button>
       <h2>GitHub 连接设置</h2>
-      <label>GitHub Token（PAT，存于本浏览器）</label>
-      <input type="password" id="ghToken" placeholder="ghp_xxx 或 github_pat_xxx">
-      <div class="hint">在 <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a> 生成，需有本仓库 <code>Contents: read & write</code> 权限。令牌只在本地浏览器使用，不会上传。</div>
-
-      <label>仓库（owner/repo）</label>
-      <input type="text" id="ghRepo" value="WillyYe/myguilin.com">
-
-      <label>分支</label>
-      <input type="text" id="ghBranch" value="main">
-
-      <div class="row">
-        <button class="btn" id="btnSaveSettings">保存设置</button>
+      <div class="field">
+        <label class="fld">GitHub Token（PAT）</label>
+        <input type="password" id="ghToken" placeholder="ghp_xxx 或 github_pat_xxx" data-testid="gh-token">
+        <div class="hint">在 <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a> 生成，需有本仓库 <code>Contents: read &amp; write</code>。令牌只存本浏览器。</div>
       </div>
-    </section>
-
-    <!-- 编辑器 -->
-    <section class="card" id="editorPanel" style="display:none">
-      <h2>首页 Hero</h2>
-      <label>Eyebrow（小标题 / 标签行）</label>
-      <input type="text" id="heroEyebrow" placeholder="Karst Landscape of China">
-
-      <label>Title（大标题，可用 &lt;br&gt; 换行）</label>
-      <textarea id="heroTitle" rows="2" placeholder="Where Mountains&lt;br&gt;&amp; Rivers Become Poetry"></textarea>
-
-      <label>Subtitle（副标题，可用 HTML）</label>
-      <textarea id="heroSubtitle" rows="4" placeholder="Discover Guilin's legendary karst peaks..."></textarea>
-
-      <h2 style="margin-top:26px">导航栏 Nav（JSON）</h2>
-      <div class="hint">每个元素含 <code>type</code>（link / mega / button）、<code>label</code>、<code>href</code>。mega 菜单结构复杂，建议复制现有内容后小改。保存前会自动校验 JSON。</div>
-      <textarea id="navJson" placeholder="[]"></textarea>
-
-      <div class="row">
-        <button class="btn" id="btnSave">💾 保存并部署</button>
-        <button class="btn btn-ghost" id="btnLoad">↻ 重新加载</button>
+      <div class="grid2">
+        <div class="field"><label class="fld">仓库（owner/repo）</label><input type="text" id="ghRepo" value="WillyYe/myguilin.com"></div>
+        <div class="field"><label class="fld">分支</label><input type="text" id="ghBranch" value="main"></div>
       </div>
-    </section>
-
-    <p class="hint" style="text-align:center">保存后 GitHub Actions 会自动重建站点，约 1–2 分钟生效。</p>
-  </main>
+      <div class="row">
+        <button class="btn" id="btnSaveSettings" data-testid="save-settings">保存设置</button>
+      </div>
+    </div>
+  </div>
 
   <div id="toast" class="toast"></div>
 
-  <script src="js/common.js?v=1"></script>
-  <script src="js/shell-admin.js?v=1"></script>
+  <script src="js/common.js?v=3"></script>
+  <script src="js/shell-admin.js?v=3"></script>
 </body>
 </html>
