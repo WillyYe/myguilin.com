@@ -117,6 +117,7 @@ function renderHeroForm() {
   document.getElementById('heroEyebrow').value = h.eyebrow || '';
   document.getElementById('heroTitle').value = heroTitleToInput(h.titleHtml);
   document.getElementById('heroSubtitle').value = subtitleToInput(h.subtitle);
+  renderHeroImageField();
 }
 function syncHeroFromForm() {
   if (!currentConfig || !currentConfig.hero) return;
@@ -128,6 +129,12 @@ function updateHeroPreview() {
   var box = document.getElementById('heroPreview');
   if (!box || !currentConfig || !currentConfig.hero) return;
   var h = currentConfig.hero;
+  var bg = (h.image && h.image.webp && h.image.webp[1]) ? imgCdn(h.image.webp[1]) : '';
+  box.style.backgroundImage = bg
+    ? 'linear-gradient(180deg, rgba(14,77,100,.35) 0%, rgba(14,77,100,.85) 100%), url("' + bg + '")'
+    : 'linear-gradient(180deg, rgba(14,77,100,.35) 0%, rgba(14,77,100,.85) 100%)';
+  box.style.backgroundSize = 'cover';
+  box.style.backgroundPosition = 'center';
   clear(box);
   var eyebrow = el('div', { class: 'eyebrow', text: h.eyebrow || '' });
   var title = el('div', { class: 'title', html: h.titleHtml || '' });
@@ -277,8 +284,8 @@ function renderSectionBody(sec, bodyWrap, navItem, navIdx) {
     sec.items.forEach(function (it, iidx) {
       var row = el('div', { class: 'link-row' });
       if (sec.type === 'features') {
-        row.appendChild(el('input', { class: 'li', type: 'text', value: it.img || '', placeholder: '图片 webp 路径', oninput: function (e) { it.img = e.target.value; } }));
-        row.appendChild(el('input', { class: 'li', type: 'text', value: it.alt || '', placeholder: '图片说明', oninput: function (e) { it.alt = e.target.value; } }));
+        bodyWrap.appendChild(imagePickerField(it, function () {}, null));
+        bodyWrap.appendChild(field('图片说明 (alt)', el('input', { type: 'text', value: it.alt || '', oninput: function (e) { it.alt = e.target.value; } })));
       }
       row.appendChild(el('input', { class: 'li', type: 'text', value: it.label || '', placeholder: '显示文字', oninput: function (e) { it.label = e.target.value; } }));
       row.appendChild(el('input', { class: 'lh', type: 'text', value: it.href || '', placeholder: '链接', oninput: function (e) { it.href = e.target.value; } }));
@@ -287,7 +294,7 @@ function renderSectionBody(sec, bodyWrap, navItem, navIdx) {
       bodyWrap.appendChild(row);
     });
     var addIt = el('button', { class: 'addlink', text: '＋ 添加一项' });
-    addIt.addEventListener('click', function () { sec.items.push(sec.type === 'features' ? { href: '#', img: 'images/.webp', imgFallback: 'images/.jpg', alt: '', label: 'New' } : { href: '#', label: 'New' }); renderMegaSections(navItem, navIdx, bodyWrap.parentNode.parentNode); });
+    addIt.addEventListener('click', function () { sec.items.push(sec.type === 'features' ? { href: '#', img: '', imgFallback: '', alt: '', label: 'New' } : { href: '#', label: 'New' }); renderMegaSections(navItem, navIdx, bodyWrap.parentNode.parentNode); });
     bodyWrap.appendChild(addIt);
   } else if (sec.type === 'footer-link') {
     bodyWrap.appendChild(field('显示文字', el('input', { type: 'text', value: sec.label || '', oninput: function (e) { sec.label = e.target.value; } })));
@@ -315,7 +322,7 @@ function renderColumn(col, cidx, sec, navItem, navIdx) {
   box.querySelector('.x').addEventListener('click', function () { sec.columns.splice(cidx, 1); renderMegaSections(navItem, navIdx, box.parentNode.parentNode.parentNode); });
   box.appendChild(field('分栏标题（可空）', el('input', { type: 'text', value: col.title || '', oninput: function (e) { col.title = e.target.value; } })));
   if (col.feature) {
-    box.appendChild(field('特色卡片图片', el('input', { type: 'text', value: col.feature.img || '', oninput: function (e) { col.feature.img = e.target.value; } })));
+    box.appendChild(imagePickerField(col.feature, function () {}, null));
     box.appendChild(field('特色卡片文字', el('input', { type: 'text', value: col.feature.label || '', oninput: function (e) { col.feature.label = e.target.value; } })));
     box.appendChild(field('特色卡片链接', el('input', { type: 'text', value: col.feature.href || '', oninput: function (e) { col.feature.href = e.target.value; } })));
   }
@@ -342,7 +349,7 @@ function renderColumnRefresh(col, cidx, sec, navItem, navIdx, box) {
 function changeSectionType(sec, type) {
   sec.type = type;
   if (type === 'grid-links') { sec.columns = sec.columns || [{ links: [{ label: '新链接', href: '#' }] }]; delete sec.items; delete sec.links; }
-  else if (type === 'features' || type === 'links-grid') { sec.cols = sec.cols || 4; sec.items = sec.items || [{ href: '#', label: 'New' }]; if (type === 'features') { sec.items[0].img = sec.items[0].img || 'images/.webp'; sec.items[0].imgFallback = sec.items[0].imgFallback || 'images/.jpg'; sec.items[0].alt = sec.items[0].alt || ''; } delete sec.columns; delete sec.links; }
+  else if (type === 'features' || type === 'links-grid') { sec.cols = sec.cols || 4; sec.items = sec.items || [{ href: '#', label: 'New' }]; if (type === 'features') { sec.items[0].img = sec.items[0].img || ''; sec.items[0].imgFallback = sec.items[0].imgFallback || ''; sec.items[0].alt = sec.items[0].alt || ''; } delete sec.columns; delete sec.links; }
   else if (type === 'footer-link') { sec.label = sec.label || '查看全部 →'; sec.href = sec.href || '#'; delete sec.columns; delete sec.items; delete sec.links; }
   else if (type === 'footer-section') { sec.title = sec.title || '标题'; sec.links = sec.links || [{ label: '新链接', href: '#' }]; delete sec.columns; delete sec.items; }
 }
@@ -459,6 +466,128 @@ function saveSettings() {
   showToast('设置已保存 ✅', 'success');
   document.getElementById('settingsModal').classList.remove('show');
   loadConfig();
+}
+
+// ==================== 图片示意卡 + 图片库浏览器 ====================
+// 模糊占位图（blur-up）：先显示模糊大图，加载完成去模糊渐显。CDN 源保证秒开。
+function makeBlurImg(src, alt) {
+  var wrap = el('div', { class: 'imgcard-thumb' });
+  var ph = el('div', { class: 'ph', text: '加载中…' });
+  wrap.appendChild(ph);
+  if (src) {
+    var im = el('img', { src: src, alt: alt || '', loading: 'lazy', decoding: 'async' });
+    im.addEventListener('load', function () { im.classList.add('loaded'); if (ph.parentNode) ph.parentNode.removeChild(ph); });
+    im.addEventListener('error', function () { ph.textContent = '图未找到'; });
+    wrap.appendChild(im);
+  } else {
+    ph.textContent = '未设置图片';
+  }
+  return wrap;
+}
+
+// bind：含 img / imgFallback / alt 字段的对象（features 项、feature 卡片直接用真实对象）
+// onChanged：值变化回调；applyFn：自定义写入逻辑（Hero 特殊结构用）
+function imagePickerField(bind, onChanged, applyFn) {
+  var wrap = el('div', { class: 'field' });
+  var card = el('div', { class: 'imgcard' });
+  var thumb = makeBlurImg(imgCdn(bind.img), bind.alt);
+  var meta = el('div', { class: 'imgcard-meta' });
+  var name = el('div', { class: 'imgcard-name', text: bind.img || '（未设置）' });
+  var row = el('div', { class: 'row' });
+  var pick = el('button', { class: 'btn-pick', text: '🖼 从图片库选' });
+  var clearBtn = el('button', { class: 'btn-clear', text: '清空' });
+  row.appendChild(pick); row.appendChild(clearBtn);
+  meta.appendChild(name); meta.appendChild(row);
+  card.appendChild(thumb); card.appendChild(meta);
+  wrap.appendChild(card);
+
+  function doApply(p) {
+    (applyFn || applyImageToBind)(bind, p);
+    name.textContent = bind.img || '（未设置）';
+    refreshThumb(card, bind);
+    if (onChanged) onChanged();
+  }
+  pick.addEventListener('click', function () { openImageLibrary(doApply, bind.img); });
+  clearBtn.addEventListener('click', function () { doApply(''); });
+
+  var manual = el('input', { type: 'text', placeholder: '或手动填写图片路径，如 images/exp-bamboo.webp', value: bind.img || '' });
+  manual.addEventListener('input', function (e) { doApply(e.target.value); });
+  wrap.appendChild(manual);
+  return wrap;
+}
+
+function refreshThumb(card, bind) {
+  var old = card.querySelector('.imgcard-thumb');
+  if (old) card.replaceChild(makeBlurImg(imgCdn(bind.img), bind.alt), old);
+}
+
+// 默认写入：设 img，并推断同名 .jpg 作为 fallback
+function applyImageToBind(bind, path) {
+  path = (path || '').trim();
+  if (!path) { bind.img = ''; bind.imgFallback = ''; return; }
+  bind.img = path;
+  bind.imgFallback = path.replace(/\.webp$/i, '.jpg').replace(/\.avif$/i, '.jpg');
+}
+
+// ---------- 图片库浏览器 ----------
+var __imglibOnPick = null;
+function openImageLibrary(onPick, currentPath) {
+  __imglibOnPick = onPick;
+  var modal = document.getElementById('imageLibraryModal');
+  modal.classList.add('show');
+  var search = document.getElementById('imglibSearch');
+  search.value = '';
+  renderImageLibrary('');
+  search.oninput = function () { renderImageLibrary(search.value.trim().toLowerCase()); };
+  document.getElementById('btnCloseImageLib').onclick = function () { modal.classList.remove('show'); };
+  modal.onclick = function (e) { if (e.target === modal) modal.classList.remove('show'); };
+}
+function renderImageLibrary(q) {
+  var grid = document.getElementById('imglibGrid');
+  clear(grid);
+  grid.appendChild(el('div', { class: 'imglib-empty', text: '加载中…' }));
+  listRepoImages().then(function (names) {
+    clear(grid);
+    var list = q ? names.filter(function (n) { return n.toLowerCase().indexOf(q) !== -1; }) : names;
+    document.getElementById('imglibCount').textContent = list.length + ' 张';
+    if (!list.length) { grid.appendChild(el('div', { class: 'imglib-empty', text: '没有匹配的图片' })); return; }
+    list.forEach(function (name) {
+      var cell = el('div', { class: 'imglib-cell', 'data-testid': 'imglib-cell', dataset: { name: name } });
+      var t = el('div', { class: 't' });
+      var im = el('img', { src: imgCdn('images/' + name), alt: name, loading: 'lazy', decoding: 'async' });
+      im.addEventListener('load', function () { im.classList.add('loaded'); });
+      t.appendChild(im);
+      var nm = el('div', { class: 'nm', text: name });
+      cell.appendChild(t); cell.appendChild(nm);
+      cell.addEventListener('click', function () {
+        if (__imglibOnPick) __imglibOnPick('images/' + name);
+        document.getElementById('imageLibraryModal').classList.remove('show');
+      });
+      grid.appendChild(cell);
+    });
+  }).catch(function (err) {
+    clear(grid);
+    grid.appendChild(el('div', { class: 'imglib-empty', text: '加载图片库失败：' + friendlyError(err.message || err) }));
+  });
+}
+
+// ---------- Hero 背景图可视化 ----------
+function renderHeroImageField() {
+  var host = document.getElementById('heroImageField');
+  if (!host || !currentConfig || !currentConfig.hero) return;
+  clear(host);
+  var im = currentConfig.hero.image;
+  var bind = { img: (im.webp && im.webp[1]) || '', imgFallback: im.fallback || '', alt: im.alt || '' };
+  host.appendChild(imagePickerField(bind, function () { updateHeroPreview(); }, function (b, p) { applyHeroImage(b, p); }));
+}
+function applyHeroImage(bind, path) {
+  path = (path || '').trim();
+  var im = currentConfig.hero.image;
+  if (!path) { im.webp = []; im.avif = []; im.fallback = ''; bind.img = ''; bind.imgFallback = ''; return; }
+  im.webp = [path.replace(/\.webp$/i, '-800.webp'), path];
+  im.avif = [path.replace(/\.webp$/i, '-800.avif'), path.replace(/\.webp$/i, '.avif')];
+  im.fallback = path.replace(/\.webp$/i, '.jpg');
+  bind.img = path; bind.imgFallback = im.fallback;
 }
 
 // ==================== 表单小部件 ====================

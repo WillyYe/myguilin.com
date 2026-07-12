@@ -129,6 +129,11 @@ function validateMegaSections(sections, path, errors) {
       if (!Array.isArray(sec.columns)) errors.push(where + ' (grid-links) 缺少 columns');
     } else if (sec.type === 'features' || sec.type === 'links-grid') {
       if (!Array.isArray(sec.items)) errors.push(where + ' (' + sec.type + ') 缺少 items');
+      else if (sec.type === 'features') {
+        sec.items.forEach(function (it, k) {
+          if (!it || !it.img || !String(it.img).trim()) errors.push(where + ' (features) 第 ' + (k + 1) + ' 项图片不能为空，请在「从图片库选」中选一张');
+        });
+      }
     } else if (sec.type === 'footer-link') {
       if (typeof sec.href !== 'string') errors.push(where + ' (footer-link) 缺少 href');
     } else if (sec.type === 'footer-section') {
@@ -160,4 +165,26 @@ function friendlyError(errMsg) {
   if (msg.indexOf('403') !== -1) return 'Token 权限不足，请确保有该仓库 Contents 读写权限';
   if (msg.indexOf('NetworkError') !== -1 || msg.indexOf('Failed to fetch') !== -1) return '网络连接失败，请检查网络';
   return msg || '未知错误，请重试';
+}
+
+// ---------- 图片 CDN 源 + 图片库列表（后台示意图快速加载） ----------
+// 用 jsDelivr 全球 CDN 加速：后台缩略图秒开；清晰度可渐显，符合「快速加载、清晰度排后」。
+function imgCdn(path) {
+  if (!path) return '';
+  path = String(path).replace(/^\/+/, '').replace(/^\.\//, '');
+  return 'https://cdn.jsdelivr.net/gh/' + GH_REPO + '@' + GH_BRANCH + '/' + path;
+}
+// 列出仓库 images/ 目录下所有图片文件名（缓存，避免重复请求）
+var __imageListCache = null;
+function listRepoImages() {
+  if (__imageListCache) return Promise.resolve(__imageListCache);
+  return ghFetch('images', 'GET')
+    .then(function (r) { if (!r.ok) throw new Error('列目录失败 HTTP ' + r.status); return r.json(); })
+    .then(function (arr) {
+      __imageListCache = (arr || [])
+        .filter(function (f) { return /\.(webp|jpg|jpeg|png|avif)$/i.test(f.name); })
+        .map(function (f) { return f.name; })
+        .sort(function (a, b) { return a.localeCompare(b); });
+      return __imageListCache;
+    });
 }

@@ -112,6 +112,38 @@
     .toast.success { background:#2e7d32; }
     .toast.error { background:#c62828; }
     code { background:rgba(0,0,0,.06); padding:1px 5px; border-radius:4px; font-size:12px; }
+
+  /* 图片示意卡（blur-up 快速加载：模糊占位秒出，高清渐显） */
+  .imgcard { display:flex; gap:10px; align-items:center; }
+  .imgcard-thumb { width:96px; height:64px; border-radius:8px; overflow:hidden; background:var(--sand); border:1px solid var(--border); flex:0 0 auto; position:relative; }
+  .imgcard-thumb img { width:100%; height:100%; object-fit:cover; filter:blur(10px); transform:scale(1.06); transition:filter .45s ease, transform .45s ease; }
+  .imgcard-thumb img.loaded { filter:blur(0); transform:scale(1); }
+  .imgcard-thumb .ph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--text-light); background:var(--sand); }
+  .imgcard-meta { flex:1; min-width:0; }
+  .imgcard-name { font-size:12px; color:var(--text-mut); margin-bottom:6px; word-break:break-all; }
+  .imgcard .row { margin-top:0; }
+  .btn-pick { background:var(--blue-soft); color:var(--blue); border:1px solid var(--blue); padding:6px 12px; border-radius:8px; cursor:pointer; font-size:13px; }
+  .btn-pick:hover { background:#d4e8fb; }
+  .btn-clear { background:#fff; border:1px solid var(--border); color:var(--text-light); padding:6px 12px; border-radius:8px; cursor:pointer; font-size:13px; }
+
+  /* 图片库弹层 */
+  .imglib-mask { position:fixed; inset:0; background:rgba(20,30,38,.5); display:none; align-items:center; justify-content:center; z-index:55; }
+  .imglib-mask.show { display:flex; }
+  .imglib { background:#fff; border-radius:14px; width:min(720px,94vw); max-height:84vh; display:flex; flex-direction:column; overflow:hidden; }
+  .imglib-head { padding:16px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px; }
+  .imglib-head h2 { margin:0; font-size:16px; color:var(--river); flex:1; }
+  .imglib-head .close { background:none; border:0; font-size:20px; cursor:pointer; color:var(--text-light); }
+  .imglib-search { padding:12px 18px; border-bottom:1px solid var(--border); }
+  .imglib-search input { width:100%; }
+  .imglib-grid { padding:14px 18px; overflow-y:auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:12px; }
+  .imglib-cell { cursor:pointer; text-align:center; }
+  .imglib-cell .t { width:100%; aspect-ratio:3/2; border-radius:8px; overflow:hidden; background:var(--sand); border:1px solid var(--border); position:relative; }
+  .imglib-cell .t img { width:100%; height:100%; object-fit:cover; filter:blur(8px); transform:scale(1.06); transition:filter .4s ease, transform .4s ease; }
+  .imglib-cell .t img.loaded { filter:blur(0); transform:scale(1); }
+  .imglib-cell:hover .t { border-color:var(--blue); }
+  .imglib-cell.sel .t { border:2px solid var(--blue); }
+  .imglib-cell .nm { font-size:11px; color:var(--text-mut); margin-top:4px; word-break:break-all; }
+  .imglib-empty { grid-column:1/-1; padding:40px; text-align:center; color:var(--text-light); font-size:13px; }
   </style>
 </head>
 <body>
@@ -156,6 +188,10 @@
         <div class="field">
           <label class="fld">副标题（Subtitle） <span class="tip">用 *星号* 包住要强调的文字</span></label>
           <textarea id="heroSubtitle" rows="4" placeholder="Discover Guilin's legendary karst peaks..." data-testid="hero-subtitle"></textarea>
+        </div>
+        <div class="field">
+          <label class="fld">背景大图（Background） <span class="tip">首页 Hero 背后的山水图，点「从图片库选」</span></label>
+          <div id="heroImageField" data-testid="hero-image-field"></div>
         </div>
         <div class="row">
           <button class="btn" id="btnSaveHero" data-testid="save-hero">💾 保存并发布</button>
@@ -206,6 +242,19 @@
       <div class="row">
         <button class="btn" id="btnSaveSettings" data-testid="save-settings">保存设置</button>
       </div>
+    </div>
+  </div>
+
+  <!-- 图片库弹层 -->
+  <div class="imglib-mask" id="imageLibraryModal">
+    <div class="imglib">
+      <div class="imglib-head">
+        <h2>选择图片 · 现有图片库</h2>
+        <span id="imglibCount" style="font-size:12px;color:var(--text-light)"></span>
+        <button class="close" id="btnCloseImageLib">×</button>
+      </div>
+      <div class="imglib-search"><input type="text" id="imglibSearch" placeholder="搜索文件名，如 hero / exp / food / tour" data-testid="imglib-search"></div>
+      <div class="imglib-grid" id="imglibGrid" data-testid="imglib-grid"></div>
     </div>
   </div>
 
