@@ -6,6 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { buildSrcset, stemFromPath } from './responsive.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -63,6 +64,19 @@ function renderMegaSections(sections) {
   return sections.map((s, i) => renderSection(s, i === 0)).join('\n');
 }
 
+// Responsive <picture> for nav feature images (avif + webp srcset, jpg fallback).
+// Degrades gracefully to a single webp source if no variants were generated.
+function navPicture(o) {
+  const stem = stemFromPath(o.img);
+  const avif = buildSrcset(stem, 'avif', 'images');
+  const webp = buildSrcset(stem, 'webp', 'images');
+  const fb = o.imgFallback && fs.existsSync(path.join(ROOT, o.imgFallback)) ? o.imgFallback : `images/${stem}.webp`;
+  const sources = [];
+  if (avif) sources.push(`<source type="image/avif" srcset="${avif}">`);
+  sources.push(`<source type="image/webp" srcset="${webp}">`);
+  return `<picture>\n${sources.map((s) => '                    ' + s).join('\n')}\n                    <img src="${fb}" alt="${o.alt}" class="h-28 w-full object-cover" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 320px">\n                  </picture>`;
+}
+
 function renderSection(s, isFirst) {
   const spacer = isFirst ? '' : 'mt-4 ';
   if (s.type === 'grid-links') {
@@ -72,7 +86,7 @@ function renderSection(s, isFirst) {
       if (col.feature) {
         const f = col.feature;
         inner += `                  <a href="${f.href}" class="mega-feature block mb-3">
-                    <picture><source srcset="${f.img}" type="image/webp"><img src="${f.imgFallback}" alt="${f.alt}" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
+                    ${navPicture(f)}
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-sm font-semibold">${f.label}</span>
                   </a>\n`;
@@ -88,7 +102,7 @@ ${cols}
   if (s.type === 'features') {
     const items = s.items.map((it) => `                <div>
                   <a href="${it.href}" class="mega-feature block">
-                    <picture><source srcset="${it.img}" type="image/webp"><img src="${it.imgFallback}" alt="${it.alt}" class="h-28 w-full object-cover" loading="lazy" decoding="async"></picture>
+                    ${navPicture(it)}
                     <div class="overlay"></div>
                     <span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">${it.label}</span>
                   </a>

@@ -41,6 +41,10 @@ jobs:
       - name: Lighthouse against live site (overseas baseline)
         uses: treosh/lighthouse-ci-action@v12
         with:
-          urls: https://myguilin.com/
+          urls: |
+            https://myguilin.com/
+            https://myguilin.com/attractions/liriver.html
+            https://myguilin.com/experiences/li-river-cruise.html
+            https://myguilin.com/guides/guilin-itinerary.html
           configPath: ./lighthouserc.json
           uploadArtifacts: true
