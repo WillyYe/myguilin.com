@@ -225,3 +225,21 @@ section[id] { scroll-margin-top: 80px; }
 .text-gold-dark { color: #5c4a1a !important; }
 .text-river { color: #0e4d64 !important; }
 .text-gold { color: #c9a96e !important; }
+
+/* ===== Keyboard focus visibility (WCAG 2.4.7) ===== */
+/* Visible focus ring so keyboard users can see where they are. Covers every
+   interactive element; mouse clicks are unaffected (`:focus-visible` only
+   matches keyboard/programmatic focus). */
+:focus-visible {
+  outline: 2px solid #c9a96e;
+  outline-offset: 2px;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #c9a96e;
+  outline-offset: 2px;
+}

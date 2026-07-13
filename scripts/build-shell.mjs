@@ -177,7 +177,7 @@ function renderHero() {
   return `    <picture>
       <source type="image/avif" srcset="${img.avif.join(', ')}">
       <source type="image/webp" srcset="${img.webp.join(', ')}">
-      <img src="${img.fallback}" alt="${img.alt}" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high" decoding="async">
+      <img src="${img.fallback}" alt="${img.alt}" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high" decoding="async" sizes="100vw">
     </picture>
     <div class="absolute inset-0" style="background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%);"></div>
     <div class="text-center px-6 max-w-4xl relative z-10">

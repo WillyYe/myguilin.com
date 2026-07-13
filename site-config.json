@@ -407,11 +407,13 @@
     "subtitle": "Discover Guilin's legendary karst peaks and the misty Li River — the landscape that inspired a thousand Chinese paintings and the phrase <em>\"Guilin's scenery is the best under heaven.\"</em> Experience it with the local team that knows every bend of the river.",
     "image": {
       "avif": [
-        "images/hero-liriver-800.avif",
+        "images/hero-liriver-640.avif 640w",
+        "images/hero-liriver-1280.avif 1280w",
         "images/hero-liriver.avif"
       ],
       "webp": [
-        "images/hero-liriver-800.webp",
+        "images/hero-liriver-640.webp 640w",
+        "images/hero-liriver-1280.webp 1280w",
         "images/hero-liriver.webp"
       ],
       "fallback": "images/hero-liriver.jpg",

@@ -34,13 +34,14 @@ function auditPage(html, file, isIndex) {
   const resolveLink = (h) => (h.startsWith('/') ? path.resolve(ROOT, h.replace(/^\/+/, '')) : path.resolve(pageDir, h));
   const refImgs = new Set();
   const addImg = (val) => {
-    // a srcset is "url 640w, url2 1280w"; a plain src/href is one URL. Only
-    // split on commas when this actually looks like a srcset (has a width
-    // descriptor), otherwise a URL that merely contains a comma (e.g. a
-    // Wikimedia "File:Not_sure,_this_could_be_...jpg" link) would be chopped
-    // into a bogus bare-filename "image" and falsely reported as missing.
-    const isSrcset = /\s\d+w/.test(val);
-    const parts = isSrcset ? String(val).split(',') : [val];
+    // A srcset is "url 640w, url2 1280w"; a plain src/href is one URL. Split on
+    // commas in BOTH cases. External URLs that contain a comma (e.g. a
+    // Wikimedia "File:Not_sure,_this_could_be_...jpg" link) are dropped by the
+    // http(s)/data guards below, so splitting never yields a bogus local ref.
+    // This also fixes the false "missing image" for comma-srcsets lacking width
+    // descriptors (e.g. "a.avif, b.avif") which the previous isSrcset gate
+    // refused to split.
+    const parts = String(val).split(',');
     for (const part of parts) {
       const url = part.trim().split(/\s+/)[0];
       // external (http/https/protocol-relative) and inline data URIs are not
@@ -83,8 +84,10 @@ function auditPage(html, file, isIndex) {
   else pass.push({ name: `All ${imgTags.length} <img> have descriptive alt` });
 
   // T5 lazy loading
-  const noLazy = imgTags.filter((t) => !/loading=["']lazy["']/.test(t));
-  if (noLazy.length) warn.push({ name: 'Images without loading="lazy"', detail: `${noLazy.length} <img> not lazy` });
+  // Above-the-fold hero images are intentionally eager (fetchpriority="high")
+  // for LCP — they must NOT be lazy-loaded, so don't flag them.
+  const noLazy = imgTags.filter((t) => !/loading=["']lazy["']/.test(t) && !/fetchpriority=["']high["']/.test(t));
+  if (noLazy.length) warn.push({ name: 'Images without loading="lazy"', detail: `${noLazy.length} <img> not lazy (hero with fetchpriority="high" excluded)` });
   else pass.push({ name: `All ${imgTags.length} <img> use loading="lazy"` });
 
   // T6 card counts — index only
@@ -95,13 +98,27 @@ function auditPage(html, file, isIndex) {
     expCards === 8 ? pass.push({ name: 'Experiences module has 8 cards' }) : fail.push({ name: 'Experiences card count', detail: `found ${expCards}, expected 8` });
   }
 
-  // T7 performance budget (per page, using largest variant per stem as proxy)
+  // T7 performance budget — CRITICAL (above-the-fold) payload only.
+  // Lazy-loaded images don't block LCP and stream in later, so they are
+  // excluded from the 3MB critical budget (still reviewed by the >1MB check).
   const stems = new Set([...refImgs].map((i) => i.split('/').pop().replace(/\.(webp|avif|jpg|jpeg|png)$/i, '').replace(/-(\d+)$/, '')));
+  const lazyStems = new Set();
+  for (const t of imgTags) {
+    if (!/loading=["']lazy["']/.test(t)) continue;
+    for (const m of t.matchAll(/(?:src|srcset)\s*=\s*["']([^"']+\.(?:webp|avif|jpg|jpeg|png))["']/gi)) {
+      for (const part of m[1].split(',')) {
+        const url = part.trim().split(/\s+/)[0];
+        if (!url || /^https?:/i.test(url) || url.startsWith('//')) continue;
+        lazyStems.add(url.split('/').pop().replace(/\.(webp|avif|jpg|jpeg|png)$/i, '').replace(/-(\d+)$/, ''));
+      }
+    }
+  }
+  const eagerStems = new Set([...stems].filter((s) => !lazyStems.has(s)));
   let total = 0, maxFile = '', maxBytes = 0;
-  for (const s of stems) { const b = stemPayload(s); total += b; if (b > maxBytes) { maxBytes = b; maxFile = s; } }
+  for (const s of eagerStems) { const b = stemPayload(s); total += b; if (b > maxBytes) { maxBytes = b; maxFile = s; } }
   const totalKB = Math.round(total / 1024);
-  if (total < 3 * 1024 * 1024) pass.push({ name: `Image payload ~${totalKB}KB (budget <3MB)`, detail: `largest: ${maxFile} ${Math.round(maxBytes / 1024)}KB` });
-  else warn.push({ name: 'Image payload exceeds 3MB budget', detail: `${totalKB}KB` });
+  if (total < 3 * 1024 * 1024) pass.push({ name: `Critical image payload ~${totalKB}KB (budget <3MB, above-the-fold only)`, detail: `largest: ${maxFile} ${Math.round(maxBytes / 1024)}KB` });
+  else warn.push({ name: 'Critical image payload exceeds 3MB budget', detail: `${totalKB}KB` });
   const over1 = [...stems].filter((s) => stemPayload(s) > 1024 * 1024);
   if (over1.length) warn.push({ name: 'Individual images >1MB (review)', detail: over1.map((s) => `${s} ${Math.round(stemPayload(s) / 1024)}KB`).join(', ') });
 
@@ -150,8 +167,20 @@ function auditPage(html, file, isIndex) {
   if (emptyA.length) fail.push({ name: 'Links with no accessible name (a11y)', detail: emptyA.length + ' empty <a>' });
   else pass.push({ name: `All ${aBlocks.length} links have accessible name` });
 
-  // T13 focus-visible
-  if (/:focus\b|:focus-visible|focus:\\w|@apply\s+focus|class=["'][^"']*\bfocus:/.test(html)) pass.push({ name: 'Focus-visible styling present' });
+  // T13 focus-visible — the rule often lives in the linked stylesheet
+  // (tailwind.css) rather than inline in the HTML, so check that too.
+  let focusOk = /:focus\b|:focus-visible|focus:\\w|@apply\s+focus|class=["'][^"']*\bfocus:/.test(html);
+  if (!focusOk) {
+    const linkMatch = html.match(/<link[^>]+rel=["']stylesheet["'][^>]+href=["']([^"']+)["']/i);
+    if (linkMatch) {
+      const cssPath = resolveLink(linkMatch[1]);
+      if (fs.existsSync(cssPath)) {
+        const css = fs.readFileSync(cssPath, 'utf8');
+        if (/:focus\b|:focus-visible|focus:\\w|@apply\s+focus/.test(css)) focusOk = true;
+      }
+    }
+  }
+  if (focusOk) pass.push({ name: 'Focus-visible styling present' });
   else warn.push({ name: 'No focus-visible styling detected' });
 
   // T14/T16 contact modal — only if page has it
