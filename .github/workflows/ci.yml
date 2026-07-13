@@ -30,6 +30,12 @@ jobs:
         run: npm run test:static
       - name: E2E + a11y + Core Web Vitals
         run: npm run test:e2e
+      - name: Visual regression (pixel diff)
+        # Observation period: report-only (continue-on-error) until we confirm the
+        # Mac-seeded baselines stay stable against Linux CI renders. Flip to blocking
+        # once a few green runs prove no cross-OS flakiness.
+        run: node tests/visual-diff.mjs
+        continue-on-error: true
 
   lighthouse:
     name: Lighthouse CI (performance gate)

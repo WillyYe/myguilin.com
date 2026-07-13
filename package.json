@@ -9,13 +9,15 @@
     "build:css": "tailwindcss -i ./src/input.css -o ./tailwind.css --minify",
     "test:static": "node tests/static-audit.mjs",
     "test:e2e": "node tests/browser-test.mjs",
-    "test": "npm run test:static && npm run test:e2e",
+    "test:visual": "node tests/visual-diff.mjs",
+    "test": "npm run test:static && npm run test:e2e && npm run test:visual",
     "ping:indexnow": "node scripts/ping-indexnow.mjs",
     "setup:searchconsole": "node scripts/setup-search-console.mjs"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.19",
     "playwright": "^1.61.1",
-    "axe-core": "^4.12.1"
+    "axe-core": "^4.12.1",
+    "sharp": "^0.34.5"
   }
 }
