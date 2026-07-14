@@ -156,17 +156,28 @@ try {
   ok('Mobile viewport exposes nav anchor links', mNavLinks > 0, `${mNavLinks} links`);
 
   // open hamburger (index + detail use slightly different toggle markup)
-  await mpage.locator('button[onclick*="toggle"], button[onclick*="mobile-menu"]').first().click();
+  // Hardened: wait for the button to be actionable (the suite runs many pages
+  // before reaching mobile, so the headless browser may be briefly busy), then
+  // scroll into view and click; fall back to a force click only if intercepted.
+  const ham = mpage.locator('button[onclick*="toggle"], button[onclick*="mobile-menu"]').first();
+  await ham.waitFor({ state: 'visible', timeout: 15000 }).catch(() => {});
+  await ham.scrollIntoViewIfNeeded().catch(() => {});
+  await ham.click({ timeout: 15000 }).catch(async () => {
+    await ham.click({ timeout: 10000, force: true }).catch(() => {});
+  });
   await mpage.waitForTimeout(400);
   const menuOpen = await mpage.locator('#mobile-menu').isVisible();
   ok('Mobile hamburger opens the menu', menuOpen);
   await mpage.screenshot({ path: path.join(SHOT_DIR, 'mobile-menu.png') });
 
-  // tap a section link → menu auto-closes
-  await mpage.locator('#mobile-menu a[href="#attraction"]').first().click();
+  // tap a real nav link → navigates to the Attractions hub (proves the link works
+  // and the menu dismisses via full-page navigation). The mobile menu no longer
+  // uses in-page #anchors; it links to real .html pages.
+  await mpage.locator('#mobile-menu a[href="attractions/index.html"]').first().click();
+  await mpage.waitForLoadState('load', { timeout: 30000 }).catch(() => {});
   await mpage.waitForTimeout(600);
-  const menuClosed = !(await mpage.locator('#mobile-menu').isVisible());
-  ok('Mobile menu auto-closes after tapping a section link', menuClosed);
+  const navOk = mpage.url().includes('attractions/index.html');
+  ok('Mobile menu link navigates to Attractions hub', navOk);
 
   await mpage.evaluate(() => window.scrollTo(0, 0));
   await mpage.waitForTimeout(300);

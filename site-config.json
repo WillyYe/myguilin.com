@@ -12,7 +12,7 @@
     {
       "type": "mega",
       "label": "Attraction",
-      "href": "#attraction",
+      "href": "attractions/index.html",
       "mega": {
         "width": 700,
         "sections": [
@@ -67,10 +67,15 @@
           {
             "type": "footer-link",
             "label": "View All Attractions →",
-            "href": "#attraction"
+            "href": "attractions/index.html"
           }
         ]
       }
+    },
+    {
+      "type": "link",
+      "label": "Plan",
+      "href": "plan/index.html"
     },
     {
       "type": "mega",

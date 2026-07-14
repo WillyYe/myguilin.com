@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Western & International (西餐与国际) — Guilin Food | Visit Guilin</title>
-  <meta name="description" content="Yangshuo has a surprising international scene: Indian curries that expats rank among the best anywhere, wood-fired pizza, riverside Italian and easy café brunch">
+  <title>Top Attractions in Guilin | Visit Guilin</title>
+  <meta name="description" content="Guilin’s eight must-see attractions — the Li River, Longji Rice Terraces, Elephant Trunk Hill, Yangshuo, Reed Flute Cave and more, each with tickets, transport and insider tips.">
   <meta name="theme-color" content="#0e4d64">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-  <link rel="canonical" href="https://myguilin.com/food/western.html">
+  <link rel="canonical" href="https://myguilin.com/guides/index.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Visit Guilin">
-  <meta property="og:title" content="Western & International (西餐与国际) — Guilin Food">
-  <meta property="og:description" content="Pizza, Indian, cafés and grills — a familiar break when you need it.">
-  <meta property="og:url" content="https://myguilin.com/food/western.html">
-  <meta property="og:image" content="https://myguilin.com/images/food-hero-western.webp">
+  <meta property="og:title" content="Top Attractions in Guilin">
+  <meta property="og:description" content="Eight must-see Guilin destinations, with tickets, transport and local tips.">
+  <meta property="og:url" content="https://myguilin.com/attractions/index.html">
+  <meta property="og:image" content="https://myguilin.com/images/hero-liriver.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Western & International (西餐与国际) — Guilin Food">
-  <meta name="twitter:description" content="Pizza, Indian, cafés and grills — a familiar break when you need it.">
-  <meta name="twitter:image" content="https://myguilin.com/images/food-hero-western.webp">
+  <meta name="twitter:title" content="Top Attractions in Guilin">
+  <meta name="twitter:description" content="Eight must-see Guilin destinations, with tickets, transport and local tips.">
+  <meta name="twitter:image" content="https://myguilin.com/images/hero-liriver.webp">
   <link rel="stylesheet" href="../tailwind.css">
   <link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,41 +44,22 @@
       document.removeEventListener('keydown', onEscKey);
     }
     function onEscKey(e) { if (e.key === 'Escape') closeContactModal(); }
-    document.addEventListener('DOMContentLoaded', function() {
-      var obs = new IntersectionObserver(function(es) {
-        es.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
-    });
   </script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg { background-image: linear-gradient(to bottom, rgba(14,77,100,0.3) 0%, rgba(14,77,100,0.5) 50%, rgba(14,77,100,0.85) 100%), url('../images/food-hero-western.webp'); background-size: cover; background-position: center; }
-    .card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
-    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .bg-stone-100 { background-color: #f5f5f4; }
     .nav-link { position: relative; }
     .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #c9a96e; transition: width 0.3s ease; }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
     html { scroll-padding-top: 80px; }
     section[id] { scroll-margin-top: 80px; }
     .nav-item { position: relative; }
-    .dropdown-caret { transition: transform 0.25s ease; }
-    .nav-item:hover .dropdown-caret { transform: rotate(180deg); }
-    .mega-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: #ffffff; border-radius: 0 0 1rem 1rem; box-shadow: 0 16px 48px rgba(0,0,0,0.14); padding: 2.25rem 2rem; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 60; }
-    .nav-item:hover .mega-menu, .nav-item:focus-within .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-    .mega-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
-    .mega-col-title { color: #7a5f24; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .mega-link { display: flex; align-items: center; gap: 0.4rem; color: #3a3a3a; font-size: 0.9rem; padding: 0.32rem 0; transition: color 0.2s, padding-left 0.2s; }
-    .mega-link:hover { color: #0e4d64; padding-left: 0.3rem; }
-    .mega-link[aria-current="page"] { color: #0e4d64; font-weight: 700; }
-    .mega-feature { border-radius: 0.85rem; overflow: hidden; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
-    .mega-feature .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,77,100,0.85) 0%, rgba(14,77,100,0) 60%); }
+    .card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .guide-tag { display: inline-block; background: #f4f1ea; color: #7a5f24; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 999px; margin: 0.2rem 0.3rem 0.2rem 0; }
   </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://myguilin.com/#visitguilin","name":"Visit Guilin","url":"https://myguilin.com/","logo":{"@type":"ImageObject","url":"https://myguilin.com/favicon.svg"},"image":"https://myguilin.com/images/hero-liriver.webp","telephone":"+86 187 7735 8302","email":"willyumi2026@outlook.com","address":{"@type":"PostalAddress","addressLocality":"Guilin","addressRegion":"Guangxi","addressCountry":"CN"},"areaServed":"Guilin, Guangxi, China","contactPoint":{"@type":"ContactPoint","telephone":"+86 187 7735 8302","email":"willyumi2026@outlook.com","contactType":"customer support","availableLanguage":["English","Chinese"],"areaServed":"Guilin, Guangxi, China"}},{"@type":"CollectionPage","name":"Western & International — Visit Guilin","url":"https://myguilin.com/food/western.html","description":"Yangshuo has a surprising international scene: Indian curries that expats rank among the best anywhere, wood-fired pizza, riverside Italian and easy café brunches. Ideal for travel-weary palates, kids, or anyone who just wants a good coffee and a view.","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ganga Impression (NAMO NAMO)","url":"https://myguilin.com/food/western.html#ganga-impression"},{"@type":"ListItem","position":2,"name":"Desi Indian Restaurant","url":"https://myguilin.com/food/western.html#desi-indian"},{"@type":"ListItem","position":3,"name":"Amy’s on the Li","url":"https://myguilin.com/food/western.html#amys-on-the-li"},{"@type":"ListItem","position":4,"name":"Rock N Grill Cafe","url":"https://myguilin.com/food/western.html#rock-n-grill"},{"@type":"ListItem","position":5,"name":"The Garden @ Bamboo Leaf Hotel","url":"https://myguilin.com/food/western.html#garden-bamboo-leaf"},{"@type":"ListItem","position":6,"name":"Demo Bar","url":"https://myguilin.com/food/western.html#demo-bar"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myguilin.com/"},{"@type":"ListItem","position":2,"name":"Food","item":"https://myguilin.com/food/"},{"@type":"ListItem","position":3,"name":"Western & International","item":"https://myguilin.com/food/western.html"}]},{"@type":"FAQPage","inLanguage":"en","dateModified":"2026-07-14","publisher":{"@id":"https://myguilin.com/#visitguilin"},"mainEntity":[{"@type":"Question","name":"Best Indian food in town?","acceptedAnswer":{"@type":"Answer","text":"Ganga Impression (NAMO NAMO) is the most-reviewed; Desi Indian is the smaller, highly-rated alternative."}},{"@type":"Question","name":"Good pizza?","acceptedAnswer":{"@type":"Answer","text":"Rock N Grill and The Garden @ Bamboo Leaf both do wood-fired pizza; Amy’s on the Li mixes Italian with a river view."}},{"@type":"Question","name":"Family / kid friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes — pizza and café spots are easy wins with children; most have high chairs or relaxed seating."}}]}]}</script>
 </head>
 <body class="bg-sand text-stone antialiased">
   
@@ -92,7 +73,7 @@
         <ul class="flex items-center h-full">
           <li class="nav-item h-full flex items-center"><a href="../" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Home</a></li>
           <li class="nav-item h-full flex items-center">
-            <a href="../attractions/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+            <a href="../attractions/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1 active">
               Attraction
               <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
             </a>
@@ -118,6 +99,7 @@
               </div>
             </div>
           </li>
+          <li class="nav-item h-full flex items-center"><a href="../plan/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Plan</a></li>
           <li class="nav-item h-full flex items-center"><a href="../plan/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Plan</a></li>
           <li class="nav-item h-full flex items-center"><a href="/guides/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Guides</a></li>
           <li class="nav-item h-full flex items-center">
@@ -201,7 +183,7 @@
             </div>
           </li>
           <li class="nav-item h-full flex items-center">
-            <a href="../#food" class="nav-link text-sm font-semibold active text-river hover:text-river px-4 h-full flex items-center gap-1">
+            <a href="../#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
               Food
               <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
             </a>
@@ -210,7 +192,7 @@
                 <a href="../food/guide.html" class="mega-link">🍜 Guilin Food Guide</a>
                 <a href="../food/featured.html" class="mega-link">⭐ Featured Restaurants</a>
                 <a href="../food/chinese.html" class="mega-link">🥢 Chinese Restaurants</a>
-                <a href="../food/western.html" class="mega-link" aria-current="page">🍕 Western & International</a>
+                <a href="../food/western.html" class="mega-link">🍕 Western & International</a>
                 <a href="../food/must-eat.html" class="mega-link">🏆 Must-Eat List</a>
               </div>
               <div class="mt-4 pt-4 border-t border-sand-dark">
@@ -247,6 +229,7 @@
       <a href="../attractions/yulong.html" class="mega-link">Yulong River Rafting</a>
       <a href="../attractions/tworivers.html" class="mega-link">Two Rivers &amp; Four Lakes</a>
       <a href="../attractions/xingping.html" class="mega-link">Xingping Ancient Town</a>
+      <a href="../plan/index.html" class="block text-stone font-semibold py-2">Plan Like a Local</a>
       <a href="/guides/index.html" class="block text-stone font-semibold py-2">Guides</a>
       <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">3. Experiences</p>
       <a href="../experiences/bamboo-rafting.html" class="mega-link">Bamboo Rafting</a>
@@ -267,222 +250,93 @@
       <a href="../food/guide.html" class="mega-link">Guilin Food Guide</a>
       <a href="../food/featured.html" class="mega-link">Featured Restaurants</a>
       <a href="../food/chinese.html" class="mega-link">Chinese Restaurants</a>
-      <a href="../food/western.html" class="mega-link" aria-current="page">Western & International</a>
+      <a href="../food/western.html" class="mega-link">Western & International</a>
       <a href="../food/must-eat.html" class="mega-link">Must-Eat List</a>
       <button type="button" onclick="openContactModal(event);document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left bg-transparent border-0 cursor-pointer text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</button>
       <a href="https://wa.me/8618777358302" target="_blank" class="block text-center bg-river text-white font-semibold py-2.5 rounded-full mt-3">WhatsApp Us</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="hero" class="relative min-h-[64vh] flex items-end overflow-hidden">
-    <img id="heroImg" src="../images/food-hero-western.webp" alt="Western & International (西餐与国际) — Guilin Food"
-         fetchpriority="high" decoding="async"
-         class="absolute inset-0 w-full h-full object-cover" style="transform:scale(1.1);" />
-    <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(14,77,100,0.35) 0%, rgba(14,77,100,0.45) 45%, rgba(14,77,100,0.85) 100%);"></div>
-    <div class="relative z-10 w-full max-w-[1400px] mx-auto px-6 pb-12 pt-28 fade-in">
-      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide mb-3">Guilin Food</p>
-      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">Western & International</h1>
-      <p class="text-white/85 text-lg md:text-xl max-w-2xl leading-relaxed">Pizza, Indian, cafés and grills — a familiar break when you need it.</p>
+  <section class="relative bg-river text-white py-20 lg:py-28 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <p class="text-gold-light text-xs font-bold uppercase tracking-[0.2em] mb-3">Explore Guilin</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] mb-4">Guilin's Top Attractions</h1>
+      <p class="text-white/80 text-lg max-w-2xl leading-relaxed">Eight must-see destinations — from the Li River's karst peaks to Longji's dragon-back terraces. Pick your favorites, then let our local team build the route.</p>
     </div>
   </section>
 
-  <!-- INTRO -->
-  <section class="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
-    <div class="max-w-3xl">
-      <h2 class="font-display text-2xl md:text-3xl text-river mb-5">About this collection</h2>
-      <div class="text-base"><p class="text-stone/85 leading-relaxed mb-3">Yangshuo has a surprising international scene: Indian curries that expats rank among the best anywhere, wood-fired pizza, riverside Italian and easy café brunches.</p><p class="text-stone/85 leading-relaxed mb-3">Ideal for travel-weary palates, kids, or anyone who just wants a good coffee and a view.</p></div>
-    </div>
-  </section>
-
-  <!-- MAIN LIST -->
-  <section class="max-w-[1400px] mx-auto px-6 pb-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article id="ganga-impression" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
-          <div class="overflow-hidden relative">
-            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/food-dish-indian.webp" alt="Ganga Impression (NAMO NAMO) (甘伽印度餐厅) — Indian in Yangshuo · West Street">
+    <section class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-12 fade-in">
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Eight must-see destinations</h2>
+        <p class="text-stone-600 text-lg max-w-2xl">Ranked by popularity among our 100K+ guests. Each card opens a full guide with tickets, transport, and insider tips.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+        <a href="./liriver.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hero-liriver.webp" alt="Li River Cruise"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Li River Cruise</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">Guilin to Yangshuo — 83 km of karst peaks and river bends, including the famous scenery behind the 20-yuan banknote.</p>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · West Street</p>
-            <h3 class="font-display text-xl text-river mb-1">Ganga Impression (NAMO NAMO)</h3>
-            <p class="text-sm text-stone-600 mb-3">甘伽印度餐厅</p>
-            <div class="mb-3"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Indian</span></div>
-            <p class="text-sm text-stone/80 leading-relaxed mb-1">The most-reviewed Indian restaurant in Yangshuo — butter chicken and garlic naan that regulars cross continents for.</p>
-            <p class="text-xs text-stone-500 mt-2">Must try: Butter chicken · Garlic naan · Prawn curry</p>
-            <div class="mt-auto flex items-end justify-between gap-3 pt-4">
-              <div>
-                <p class="text-xs text-stone-500">Avg / person</p>
-                <p class="font-display text-lg text-river">¥90<span class="text-xs text-stone-500"> $$</span></p>
-              </div>
-              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Ganga%20Impression%20(NAMO%20NAMO)%20(%E7%94%98%E4%BC%BD%E5%8D%B0%E5%BA%A6%E9%A4%90%E5%8E%85)%20in%20Guilin%20%E2%80%94%20can%20you%20help%20me%20find%20%2F%20book%20it%3F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
-            </div>
+        </a>
+        <a href="./elephant.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-elephant.webp" alt="Elephant Trunk Hill"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Elephant Trunk Hill</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">Guilin's city symbol — a limestone arch shaped like an elephant drinking from the river, glowing at night.</p>
           </div>
-        </article>
-
-        <article id="desi-indian" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
-          <div class="overflow-hidden relative">
-            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/food-dish-indian.webp" alt="Desi Indian Restaurant (德西印度餐厅) — Indian in Yangshuo · West Street">
+        </a>
+        <a href="./yangshuo.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-yangshuo.webp" alt="Yangshuo & West Street"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Yangshuo & West Street</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">Pedestrian street packed with cafes, bars, and shops — the social heart of Guilin's foreign traveler scene.</p>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · West Street</p>
-            <h3 class="font-display text-xl text-river mb-1">Desi Indian Restaurant</h3>
-            <p class="text-sm text-stone-600 mb-3">德西印度餐厅</p>
-            <div class="mb-3"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Indian</span></div>
-            <p class="text-sm text-stone/80 leading-relaxed mb-1">Small, warm and highly rated — honest North Indian flavors near the center of town.</p>
-            <p class="text-xs text-stone-500 mt-2">Must try: Tandoori mixer · Dal makhani · Garlic naan</p>
-            <div class="mt-auto flex items-end justify-between gap-3 pt-4">
-              <div>
-                <p class="text-xs text-stone-500">Avg / person</p>
-                <p class="font-display text-lg text-river">¥85<span class="text-xs text-stone-500"> $$</span></p>
-              </div>
-              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Desi%20Indian%20Restaurant%20(%E5%BE%B7%E8%A5%BF%E5%8D%B0%E5%BA%A6%E9%A4%90%E5%8E%85)%20in%20Guilin%20%E2%80%94%20can%20you%20help%20me%20find%20%2F%20book%20it%3F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
-            </div>
+        </a>
+        <a href="./longji.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-longji.webp" alt="Longji Rice Terraces"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Longji Rice Terraces</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">Cascading dragon-back terraces carved into mountainsides — a mirror of sky during water season.</p>
           </div>
-        </article>
-
-        <article id="amys-on-the-li" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
-          <div class="overflow-hidden relative">
-            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/food-dish-riverview.webp" alt="Amy’s on the Li (漓江艾米餐厅) — Italian · Chinese in Yangshuo · Li River">
+        </a>
+        <a href="./reedflute.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-reedflute.webp" alt="Reed Flute Cave"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Reed Flute Cave</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">A limestone cave filled with colorful stalactites and stalagmites — nature's underground palace.</p>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · Li River</p>
-            <h3 class="font-display text-xl text-river mb-1">Amy’s on the Li</h3>
-            <p class="text-sm text-stone-600 mb-3">漓江艾米餐厅</p>
-            <div class="mb-3"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Italian · Chinese</span></div>
-            <p class="text-sm text-stone/80 leading-relaxed mb-1">Awesome food with a river view — a rare spot where Italian and Chinese share one menu beautifully.</p>
-            <p class="text-xs text-stone-500 mt-2">Must try: Wood-fired pizza · Catch of the day · River-view table</p>
-            <div class="mt-auto flex items-end justify-between gap-3 pt-4">
-              <div>
-                <p class="text-xs text-stone-500">Avg / person</p>
-                <p class="font-display text-lg text-river">¥100<span class="text-xs text-stone-500"> $$</span></p>
-              </div>
-              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Amy%E2%80%99s%20on%20the%20Li%20(%E6%BC%93%E6%B1%9F%E8%89%BE%E7%B1%B3%E9%A4%90%E5%8E%85)%20in%20Guilin%20%E2%80%94%20can%20you%20help%20me%20find%20%2F%20book%20it%3F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
-            </div>
+        </a>
+        <a href="./yulong.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-yulong.webp" alt="Yulong River Rafting"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Yulong River Rafting</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">Gentle bamboo raft rides through countryside karst — quieter and more peaceful than the main Li River.</p>
           </div>
-        </article>
-
-        <article id="rock-n-grill" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
-          <div class="overflow-hidden relative">
-            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/food-dish-pizza.webp" alt="Rock N Grill Cafe (摇滚烤吧) — Italian · Pizza in Yangshuo · West Street">
+        </a>
+        <a href="./tworivers.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-tworivers.webp" alt="Two Rivers & Four Lakes"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Two Rivers & Four Lakes</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">A scenic chain of waterways through Guilin city center — stunning by day, magical illuminated at night.</p>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · West Street</p>
-            <h3 class="font-display text-xl text-river mb-1">Rock N Grill Cafe</h3>
-            <p class="text-sm text-stone-600 mb-3">摇滚烤吧</p>
-            <div class="mb-3"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Italian · Pizza</span></div>
-            <p class="text-sm text-stone/80 leading-relaxed mb-1">Wood-fired pizza and grills on the main strip — a reliable crowd-pleaser for groups and kids.</p>
-            <p class="text-xs text-stone-500 mt-2">Must try: Margherita pizza · Grilled ribs · Craft soda</p>
-            <div class="mt-auto flex items-end justify-between gap-3 pt-4">
-              <div>
-                <p class="text-xs text-stone-500">Avg / person</p>
-                <p class="font-display text-lg text-river">¥70<span class="text-xs text-stone-500"> $$</span></p>
-              </div>
-              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Rock%20N%20Grill%20Cafe%20(%E6%91%87%E6%BB%9A%E7%83%A4%E5%90%A7)%20in%20Guilin%20%E2%80%94%20can%20you%20help%20me%20find%20%2F%20book%20it%3F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
-            </div>
+        </a>
+        <a href="./xingping.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-xingping.webp" alt="Xingping Ancient Town"></div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Xingping Ancient Town</h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-4">The backdrop of China's 20-yuan banknote — historic riverside town with Ming-Dynasty streets and iconic karst vistas.</p>
           </div>
-        </article>
-
-        <article id="garden-bamboo-leaf" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
-          <div class="overflow-hidden relative">
-            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/food-dish-pizza.webp" alt="The Garden @ Bamboo Leaf Hotel (竹叶花园餐厅) — Pizza · European in Yangshuo · Countryside">
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · Countryside</p>
-            <h3 class="font-display text-xl text-river mb-1">The Garden @ Bamboo Leaf Hotel</h3>
-            <p class="text-sm text-stone-600 mb-3">竹叶花园餐厅</p>
-            <div class="mb-3"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Pizza · European</span></div>
-            <p class="text-sm text-stone/80 leading-relaxed mb-1">Poolside pizza and a Greek salad — a genuine respite from the heat and crowds of town.</p>
-            <p class="text-xs text-stone-500 mt-2">Must try: Margherita · Greek salad · Poolside table</p>
-            <div class="mt-auto flex items-end justify-between gap-3 pt-4">
-              <div>
-                <p class="text-xs text-stone-500">Avg / person</p>
-                <p class="font-display text-lg text-river">¥100<span class="text-xs text-stone-500"> $$</span></p>
-              </div>
-              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20The%20Garden%20%40%20Bamboo%20Leaf%20Hotel%20(%E7%AB%B9%E5%8F%B6%E8%8A%B1%E5%9B%AD%E9%A4%90%E5%8E%85)%20in%20Guilin%20%E2%80%94%20can%20you%20help%20me%20find%20%2F%20book%20it%3F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
-            </div>
-          </div>
-        </article>
-
-        <article id="demo-bar" class="group card-hover bg-white rounded-2xl overflow-hidden border border-sand-dark flex flex-col">
-          <div class="overflow-hidden relative">
-            <img loading="lazy" decoding="async" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/food-dish-cafe.webp" alt="Demo Bar (Demo酒吧) — Bar · Grill in Yangshuo · West Street">
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">Yangshuo · West Street</p>
-            <h3 class="font-display text-xl text-river mb-1">Demo Bar</h3>
-            <p class="text-sm text-stone-600 mb-3">Demo酒吧</p>
-            <div class="mb-3"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sand-dark text-river">Bar · Grill</span></div>
-            <p class="text-sm text-stone/80 leading-relaxed mb-1">Great food, stunning views and chill vibes — a rooftop bar with a quiz night and live jams.</p>
-            <p class="text-xs text-stone-500 mt-2">Must try: Burgers · Cocktails · Sunset view</p>
-            <div class="mt-auto flex items-end justify-between gap-3 pt-4">
-              <div>
-                <p class="text-xs text-stone-500">Avg / person</p>
-                <p class="font-display text-lg text-river">¥80<span class="text-xs text-stone-500"> $$</span></p>
-              </div>
-              <a href="https://wa.me/8618777358302?text=Hi%2C%20I'm%20interested%20in%20Demo%20Bar%20(Demo%E9%85%92%E5%90%A7)%20in%20Guilin%20%E2%80%94%20can%20you%20help%20me%20find%20%2F%20book%20it%3F" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors shrink-0">WhatsApp</a>
-            </div>
-          </div>
-        </article></div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="max-w-[1400px] mx-auto px-6 pb-16">
-    <h2 class="font-display text-2xl md:text-3xl text-river mb-6">Frequently asked questions</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      
-          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
-            <h3 class="font-display text-lg md:text-xl text-river mb-2">Best Indian food in town?</h3>
-            <p class="text-stone/80 leading-relaxed text-sm md:text-base">Ganga Impression (NAMO NAMO) is the most-reviewed; Desi Indian is the smaller, highly-rated alternative.</p>
-          </div>
-
-          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
-            <h3 class="font-display text-lg md:text-xl text-river mb-2">Good pizza?</h3>
-            <p class="text-stone/80 leading-relaxed text-sm md:text-base">Rock N Grill and The Garden @ Bamboo Leaf both do wood-fired pizza; Amy’s on the Li mixes Italian with a river view.</p>
-          </div>
-
-          <div class="bg-white rounded-2xl border border-sand-dark p-6 md:p-7 fade-in">
-            <h3 class="font-display text-lg md:text-xl text-river mb-2">Family / kid friendly?</h3>
-            <p class="text-stone/80 leading-relaxed text-sm md:text-base">Yes — pizza and café spots are easy wins with children; most have high chairs or relaxed seating.</p>
-          </div>
-    </div>
-  </section>
-
-  <!-- RELATED CATEGORIES -->
-  <section class="max-w-[1400px] mx-auto px-6 pb-20">
-    <h2 class="font-display text-2xl md:text-3xl text-river mb-6">Other ways to browse food</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      
-          <a href="guide.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-            <div class="p-6">
-              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">桂林美食</p>
-              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Guilin Food Guide</h3>
-              <p class="text-sm text-stone-600 mt-1">What to eat, where to find it, and how to order like a local.</p>
-            </div>
-          </a>
-
-          <a href="featured.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-            <div class="p-6">
-              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">特色餐厅</p>
-              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Featured Restaurants</h3>
-              <p class="text-sm text-stone-600 mt-1">Scenic, characterful and experience-led tables worth the trip.</p>
-            </div>
-          </a>
-
-          <a href="chinese.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-            <div class="p-6">
-              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">中餐厅</p>
-              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Chinese Restaurants</h3>
-              <p class="text-sm text-stone-600 mt-1">Local Guilin cooking, Guangxi fusion and home-style favorites.</p>
-            </div>
-          </a>
-
-          <a href="must-eat.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
-            <div class="p-6">
-              <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark mb-1">必吃榜</p>
-              <h3 class="font-display text-lg text-river group-hover:text-gold-dark transition-colors">Must-Eat List</h3>
-              <p class="text-sm text-stone-600 mt-1">The shortlist we’d give a friend with three days in town.</p>
-            </div>
-          </a>
+        </a>
+      </div>
+      <div class="mt-14 rounded-2xl bg-white border border-sand-dark p-8 text-center fade-in">
+        <h3 class="font-display text-2xl text-river mb-2">Ready to plan your route?</h3>
+        <p class="text-stone-600 mb-5 max-w-xl mx-auto">Turn this shortlist into a day-by-day plan with our local team — free, no obligation.</p>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <a href="../plan/index.html" class="inline-flex items-center gap-1 bg-river hover:bg-river-light text-white font-semibold px-5 py-2.5 rounded-full transition-colors">Plan Like a Local →</a>
+          <a href="../guides/index.html" class="inline-flex items-center gap-1 bg-sand hover:bg-sand-dark text-river font-semibold px-5 py-2.5 rounded-full transition-colors">Read the guides</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -501,6 +355,7 @@
           <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Explore</h4>
           <ul class="space-y-3 text-sm">
             <li><a href="../attractions/index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Attractions</a></li>
+            <li><a href="../plan/index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Plan Like a Local</a></li>
             <li><a href="../#experience" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Experiences</a></li>
             <li><a href="../#tour" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Tours &amp; Itineraries</a></li>
             <li><a href="/guides/index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Travel Guides</a></li>
@@ -552,5 +407,65 @@
       </div>
     </div>
   </div>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  </script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Li River Cruise",
+      "url": "https://myguilin.com/attractions/liriver.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Elephant Trunk Hill",
+      "url": "https://myguilin.com/attractions/elephant.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Yangshuo & West Street",
+      "url": "https://myguilin.com/attractions/yangshuo.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Longji Rice Terraces",
+      "url": "https://myguilin.com/attractions/longji.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Reed Flute Cave",
+      "url": "https://myguilin.com/attractions/reedflute.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Yulong River Rafting",
+      "url": "https://myguilin.com/attractions/yulong.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "Two Rivers & Four Lakes",
+      "url": "https://myguilin.com/attractions/tworivers.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "Xingping Ancient Town",
+      "url": "https://myguilin.com/attractions/xingping.html"
+    }
+  ]
+}</script>
 </body>
 </html>
