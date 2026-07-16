@@ -4,6 +4,10 @@
 
 > Visit Guilin is an English-language travel guide and private-tour service for international visitors to Guilin, China. It covers the Li River cruise, karst limestone peaks, Longji rice terraces, Reed Flute Cave, Yulong River bamboo rafting, Elephant Trunk Hill, the Sun & Moon Pagodas, and Xingping ancient town — with practical planning info: best time to visit, how to get there, tickets, suggested routes, and FAQs. Content is written and reviewed by a local Guilin team, and prices/routes are checked regularly.
 
+## Start here — Before You Go (read this first)
+
+- [Before You Go: China Travel Essentials](https://myguilin.com/essentials/index.html): What foreign visitors actually worry about before coming to China (crime, politics — which almost never cause trouble) versus what really goes wrong (the firewall, payments, taxis, road safety). The four things to set up before you fly: a VPN, Alipay/WeChat Pay linked to an international card, DiDi, and a translator app. Based on analysis of 400+ traveler posts (r/chinatravel, r/travelchina, r/solotravel, r/femaletravel, 2021–2026) cross-checked with Chinese inbound-tourism reports. This is the single most useful page for a first-time visitor.
+
 ## Top destinations
 
 - [Li River (漓江)](https://myguilin.com/attractions/liriver.html): China's Most Scenic River Journey · Guilin–Yangshuo

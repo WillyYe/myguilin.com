@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before You Go: China Travel Essentials for First-Time Visitors | Visit Guilin</title>
+  <meta name="description" content="The complete pre-trip guide for foreigners visiting China: what visitors fear vs what actually goes wrong, how to set up a VPN, Alipay/WeChat Pay, DiDi, eSIM/roaming, translation, plus money, health, visa, and Guilin-specific tips. Based on 400+ traveler posts and inbound-tourism research.">
+  <meta name="theme-color" content="#0e4d64">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="canonical" href="https://myguilin.com/essentials/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Visit Guilin">
+  <meta property="og:title" content="Before You Go: China Travel Essentials">
+  <meta property="og:description" content="The practical, no-fluff pre-trip guide for China: what to worry about, the 4 things to set up before you fly (VPN, Alipay/WeChat Pay, DiDi, translation), and every real headache avoided.">
+  <meta property="og:url" content="https://myguilin.com/essentials/index.html">
+  <meta property="og:image" content="https://myguilin.com/images/hero-liriver.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Before You Go: China Travel Essentials">
+  <meta name="twitter:description" content="The practical pre-trip guide for China: what to worry about, what to set up, and how to avoid the few real headaches.">
+  <meta name="twitter:image" content="https://myguilin.com/images/hero-liriver.webp">
+  <link rel="stylesheet" href="../tailwind.css">
+  <link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <script>
+    function openContactModal(e) {
+      if (e) e.preventDefault();
+      var m = document.getElementById('contactModal');
+      var p = document.getElementById('contactModalPanel');
+      if (!m || !p) return;
+      m.classList.remove('hidden');
+      requestAnimationFrame(function() { requestAnimationFrame(function() { p.style.transform = 'scale(1)'; p.style.opacity = '1'; }); });
+      document.addEventListener('keydown', onEscKey);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContactModal() {
+      var m = document.getElementById('contactModal');
+      var p = document.getElementById('contactModalPanel');
+      if (!m || !p) return;
+      p.style.transform = 'scale(.95)';
+      p.style.opacity = '0';
+      setTimeout(function() { m.classList.add('hidden'); document.body.style.overflow = ''; }, 250);
+      document.removeEventListener('keydown', onEscKey);
+    }
+    function onEscKey(e) { if (e.key === 'Escape') closeContactModal(); }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #c9a96e; transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    html { scroll-padding-top: 88px; }
+    section[id] { scroll-margin-top: 88px; }
+    .nav-item { position: relative; }
+    .card-hover { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .guide-tag { display: inline-block; background: #f4f1ea; color: #7a5f24; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 999px; margin: 0.2rem 0.3rem 0.2rem 0; }
+    .pillar-num { font-family: 'Playfair Display', serif; }
+    .toc-link { transition: color .2s ease, background .2s ease; }
+    .toc-link:hover { color: #0e4d64; background: #f4f1ea; }
+  </style>
+</head>
+<body class="bg-sand text-stone antialiased">
+  
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-sand-dark" style="height:64px;">
+    <div class="max-w-[1400px] mx-auto px-6 h-full flex items-center justify-between">
+      <a href="../" class="flex items-center gap-2 shrink-0">
+        <span class="text-2xl">🏞️</span>
+        <span class="font-display text-xl text-river tracking-wide">Visit Guilin</span>
+      </a>
+      <nav class="hidden lg:flex items-center h-full">
+        <ul class="flex items-center h-full">
+          <li class="nav-item h-full flex items-center"><a href="index.html" class="nav-link text-sm font-semibold text-river hover:text-river px-4 h-full flex items-center active" aria-current="page">Before You Go</a></li>
+          <li class="nav-item h-full flex items-center"><a href="../" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Home</a></li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../attractions/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Attraction
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:700px;">
+              <div class="grid grid-cols-2 gap-x-10 gap-y-1">
+                <div>
+                  <p class="mega-col-title">Guilin City &amp; Around</p>
+                  <a href="../attractions/liriver.html" class="mega-link">🛶 Li River Cruise (漓江)</a>
+                  <a href="../attractions/elephant.html" class="mega-link">🐘 Elephant Trunk Hill (象鼻山)</a>
+                  <a href="../attractions/reedflute.html" class="mega-link">🪨 Reed Flute Cave (芦笛岩)</a>
+                  <a href="../attractions/yulong.html" class="mega-link">🚣 Yulong River Rafting (遇龙河)</a>
+                </div>
+                <div>
+                  <p class="mega-col-title">Countryside &amp; Beyond</p>
+                  <a href="../attractions/yangshuo.html" class="mega-link">🚲 Yangshuo &amp; West Street (阳朔)</a>
+                  <a href="../attractions/longji.html" class="mega-link">🌾 Longji Rice Terraces (龙脊)</a>
+                  <a href="../attractions/tworivers.html" class="mega-link">🌉 Two Rivers &amp; Four Lakes (两江四湖)</a>
+                  <a href="../attractions/xingping.html" class="mega-link">🏘️ Xingping Ancient Town (兴坪)</a>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <a href="../attractions/index.html" class="inline-flex items-center gap-1 text-sm font-semibold text-river hover:text-gold-dark transition-colors">View All Attractions →</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item h-full flex items-center"><a href="../plan/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Plan</a></li>
+          <li class="nav-item h-full flex items-center"><a href="/guides/index.html" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center">Guides</a></li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../#experience" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Experiences
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:900px;">
+              <div class="grid grid-cols-4 gap-4">
+                <a href="../experiences/li-river-cruise.html" class="mega-feature block"><picture><source srcset="../images/exp-liriver.webp" type="image/webp"><img src="../images/exp-liriver.jpg" alt="Li River Cruise" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Li<br>River<br>Cruise</span></a>
+                <a href="../experiences/countryside-cycling.html" class="mega-feature block"><picture><source srcset="../images/exp-cycling.webp" type="image/webp"><img src="../images/exp-cycling.jpg" alt="Countryside Cycling" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Countryside<br>Cycling</span></a>
+                <a href="../experiences/longji-terraces-trek.html" class="mega-feature block"><picture><source srcset="../images/exp-longji.webp" type="image/webp"><img src="../images/exp-longji.jpg" alt="Longji Trekking" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Longji<br>Trekking</span></a>
+                <a href="../experiences/cormorant-fishing.html" class="mega-feature block"><picture><source srcset="../images/exp-cormorant.webp" type="image/webp"><img src="../images/exp-cormorant.jpg" alt="Cormorant Fishing" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Cormorant<br>Fishing</span></a>
+              </div>
+              <div class="mt-4 grid grid-cols-4 gap-4">
+                <a href="../experiences/bamboo-rafting.html" class="mega-feature block"><picture><source srcset="../images/exp-bamboo.webp" type="image/webp"><img src="../images/exp-bamboo.jpg" alt="Bamboo Rafting" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Bamboo<br>Rafting</span></a>
+                <a href="../experiences/rock-climbing.html" class="mega-feature block"><picture><source srcset="../images/exp-climb.webp" type="image/webp"><img src="../images/exp-climb.jpg" alt="Rock Climbing" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Rock<br>Climbing</span></a>
+                <a href="../experiences/cooking-class.html" class="mega-feature block"><picture><source srcset="../images/exp-cook.webp" type="image/webp"><img src="../images/exp-cook.jpg" alt="Cooking Class" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Cooking<br>Class</span></a>
+                <a href="../experiences/sunrise-viewpoint.html" class="mega-feature block"><picture><source srcset="../images/exp-xianggong.webp" type="image/webp"><img src="../images/exp-xianggong.jpg" alt="Sunrise Viewpoint" class="h-28 w-full object-cover" loading="lazy" decoding="async" ></picture><div class="overlay"></div><span class="absolute bottom-2 left-3 text-white text-xs font-semibold leading-tight">Sunrise<br>Viewpoint</span></a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../#tour" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Things to do &amp; Tour
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:600px;">
+              <div class="grid grid-cols-2 gap-8">
+                <div>
+                  <a href="../#tour-ranking" class="mega-link">🏆 Top 8 Must-See Spots</a>
+                  <a href="../#tour-day" class="mega-link">📅 Day Tours</a>
+                  <a href="../#tour-private-card" class="mega-link">🎒 Private Tours</a>
+                  <a href="../#tour-vip-card" class="mega-link">💎 VIP Tours</a>
+                </div>
+                <div>
+                  <p class="mega-col-title">Featured</p>
+                  <a href="../#tour" class="mega-link text-river font-semibold">All Tours →</a>
+                  <a href="../#tour-private-card" class="mega-link text-river font-semibold">Most Popular: Private Guide + Car</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../#hotel" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Hotels
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:640px;">
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                <div>
+                  <a href="../hotels/scenic-view.html" class="mega-link">🏞️ Scenic-View Hotels</a>
+                  <a href="../hotels/selected.html" class="mega-link">⭐ Curated Stays</a>
+                  <a href="../hotels/budget.html" class="mega-link">💡 Great-Value Stays</a>
+                  <a href="../hotels/region.html" class="mega-link">📍 Hotels by Area</a>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <p class="mega-col-title">By area</p>
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-2">
+                  <a href="../hotels/region.html#yangshuo" class="mega-link">🛶 Yangshuo &amp; Yulong River</a>
+                  <a href="../hotels/region.html#guilin-city" class="mega-link">🏙️ Guilin City</a>
+                  <a href="../hotels/region.html#longji" class="mega-link">🌾 Longji Terraces</a>
+                  <a href="../hotels/region.html#xingping" class="mega-link">🏘️ Xingping Ancient Town</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item h-full flex items-center">
+            <a href="../#food" class="nav-link text-sm font-semibold text-stone hover:text-river px-4 h-full flex items-center gap-1">
+              Food
+              <svg class="dropdown-caret" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="mega-menu" style="width:640px;">
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                <div>
+                  <a href="../food/guide.html" class="mega-link">🍜 Guilin Food Guide</a>
+                  <a href="../food/featured.html" class="mega-link">⭐ Featured Restaurants</a>
+                  <a href="../food/chinese.html" class="mega-link">🥢 Chinese Restaurants</a>
+                  <a href="../food/western.html" class="mega-link">🍕 Western &amp; International</a>
+                  <a href="../food/must-eat.html" class="mega-link">🏆 Must-Eat List</a>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-sand-dark">
+                <p class="mega-col-title">Quick picks</p>
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1 mt-2">
+                  <a href="../food/chinese.html" class="mega-link">🐟 Beer Fish houses</a>
+                  <a href="../food/western.html" class="mega-link">🌏 Indian &amp; Pizza</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item h-full flex items-center"><button type="button" onclick="openContactModal(event)" class="nav-link bg-transparent border-0 cursor-pointer text-sm font-semibold text-river hover:bg-river hover:text-white px-4 h-full flex items-center rounded-full transition-colors">Contact us</button></li>
+        </ul>
+      </nav>
+      <div class="hidden lg:flex items-center shrink-0">
+        <a href="https://wa.me/8618777358302" target="_blank" class="flex items-center gap-2 bg-river hover:bg-river-light text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors duration-300">
+          <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp
+        </a>
+      </div>
+      <button class="lg:hidden text-river" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" aria-label="Open menu">
+        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-sand-dark px-6 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
+      <a href="index.html" class="block text-river font-bold py-2">★ Before You Go</a>
+      <a href="../" class="block text-stone font-semibold py-2">1. Home</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">2. Attraction</p>
+      <a href="../attractions/liriver.html" class="mega-link">Li River Cruise</a>
+      <a href="../attractions/elephant.html" class="mega-link">Elephant Trunk Hill</a>
+      <a href="../attractions/yangshuo.html" class="mega-link">Yangshuo &amp; West Street</a>
+      <a href="../attractions/longji.html" class="mega-link">Longji Rice Terraces</a>
+      <a href="../attractions/reedflute.html" class="mega-link">Reed Flute Cave</a>
+      <a href="../attractions/yulong.html" class="mega-link">Yulong River Rafting</a>
+      <a href="../attractions/tworivers.html" class="mega-link">Two Rivers &amp; Four Lakes</a>
+      <a href="../attractions/xingping.html" class="mega-link">Xingping Ancient Town</a>
+      <a href="../attractions/index.html" class="mega-link font-semibold">View All Attractions →</a>
+      <a href="../plan/index.html" class="block text-stone font-semibold py-2 pt-3">Plan</a>
+      <a href="/guides/index.html" class="block text-stone font-semibold py-2">Guides</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">3. Experiences</p>
+      <a href="../experiences/bamboo-rafting.html" class="mega-link">Bamboo Rafting</a>
+      <a href="../experiences/countryside-cycling.html" class="mega-link">Countryside Cycling</a>
+      <a href="../experiences/rock-climbing.html" class="mega-link">Karst Climbing</a>
+      <a href="../experiences/cooking-class.html" class="mega-link">Cooking Classes</a>
+      <a href="../experiences/cormorant-fishing.html" class="mega-link">Cormorant Fishing</a>
+      <a href="../experiences/li-river-cruise.html" class="mega-link">Li River Cruise</a>
+      <a href="../experiences/longji-terraces-trek.html" class="mega-link">Longji Terraces Trek</a>
+      <a href="../experiences/sunrise-viewpoint.html" class="mega-link">Sunrise Viewpoint</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">4. Things to do &amp; Tour</p>
+      <a href="../#tour-ranking" class="block text-stone/80 py-1 pl-3 text-sm">Top 8 Must-See Spots</a>
+      <a href="../#tour-day" class="block text-stone/80 py-1 pl-3 text-sm">Day Tours</a>
+      <a href="../#tour-private-card" class="block text-stone/80 py-1 pl-3 text-sm">Private Tours</a>
+      <a href="../#tour-vip-card" class="block text-stone/80 py-1 pl-3 text-sm">VIP Tours</a>
+      <a href="../#hotel" class="block text-stone font-semibold py-2 pt-3">5. Hotel</a>
+      <p class="text-gold-dark text-xs font-bold uppercase tracking-wide pt-3 pb-1">6. Food</p>
+      <a href="../food/guide.html" class="mega-link">Guilin Food Guide</a>
+      <a href="../food/featured.html" class="mega-link">Featured Restaurants</a>
+      <a href="../food/chinese.html" class="mega-link">Chinese Restaurants</a>
+      <a href="../food/western.html" class="mega-link">Western &amp; International</a>
+      <a href="../food/must-eat.html" class="mega-link">Must-Eat List</a>
+      <button type="button" onclick="openContactModal(event);document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left bg-transparent border-0 cursor-pointer text-river font-semibold py-2 pt-3 border-t border-sand-dark mt-2">7. Contact us</button>
+      <a href="https://wa.me/8618777358302" target="_blank" class="block text-center bg-river text-white font-semibold py-2.5 rounded-full mt-3">WhatsApp Us</a>
+    </div>
+  </header>
+
+  <main>
+  <!-- HERO -->
+  <section class="relative bg-river text-white py-20 lg:py-28 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <nav class="flex items-center gap-2 text-white/70 text-sm mb-6" aria-label="Breadcrumb">
+        <a href="../" class="hover:text-white transition-colors">Home</a>
+        <span class="text-white/40">/</span>
+        <span class="text-white font-medium">Before You Go</span>
+      </nav>
+      <p class="text-[#e6cfa1] text-xs font-bold uppercase tracking-[0.3em] mb-4">Read this before you book the flight</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] mb-5">Before You Go to China</h1>
+      <p class="text-white/80 text-lg md:text-xl max-w-3xl leading-relaxed">The thing first-time visitors get wrong isn't safety — it's preparation. Here's what foreigners actually worry about, what really goes wrong on the ground, and the four things to set up <em>before you land</em> so China feels easy instead of stressful. Everything below is the stuff we wish every guest knew a week before arrival.</p>
+    </div>
+  </section>
+
+  <!-- IN-PAGE JUMP NAV -->
+  <nav class="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-sand-dark" aria-label="On this page">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <ul class="flex flex-wrap gap-1 py-2.5 text-sm">
+        <li><a href="#mismatch" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Fears vs reality</a></li>
+        <li><a href="#pillars" class="toc-link text-stone-600 rounded-full px-3 py-1.5">4 things to set up</a></li>
+        <li><a href="#vpn" class="toc-link text-stone-600 rounded-full px-3 py-1.5">VPN &amp; internet</a></li>
+        <li><a href="#connectivity" class="toc-link text-stone-600 rounded-full px-3 py-1.5">SIM &amp; eSIM</a></li>
+        <li><a href="#pay" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Payments</a></li>
+        <li><a href="#didi" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Getting around</a></li>
+        <li><a href="#translate" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Language</a></li>
+        <li><a href="#roads" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Road safety</a></li>
+        <li><a href="#scams" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Scams</a></li>
+        <li><a href="#money" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Money &amp; costs</a></li>
+        <li><a href="#food" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Food &amp; comfort</a></li>
+        <li><a href="#health" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Health</a></li>
+        <li><a href="#entry" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Visa &amp; documents</a></li>
+        <li><a href="#etiquette" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Etiquette</a></li>
+        <li><a href="#guilin" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Guilin tips</a></li>
+        <li><a href="#emergency" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Emergencies</a></li>
+        <li><a href="#checklist" class="toc-link text-stone-600 rounded-full px-3 py-1.5">Checklist</a></li>
+        <li><a href="#faq" class="toc-link text-stone-600 rounded-full px-3 py-1.5">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- AT A GLANCE: the core insight -->
+  <section id="mismatch" class="border-y border-sand-dark/60 bg-white/60">
+    <div class="max-w-[1400px] mx-auto px-6 py-10 lg:py-12">
+      <div class="flex items-start gap-4">
+        <span class="shrink-0 mt-0.5 w-9 h-9 rounded-full bg-gold/15 text-gold-dark flex items-center justify-center"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <div>
+          <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.2em] mb-2">The big mismatch</p>
+          <p class="text-stone/85 text-base md:text-lg leading-relaxed max-w-3xl">Foreign travelers worry most about <strong class="text-river">crime and politics</strong> — but those almost never cause trouble (real incident rates run around 2–8%). The headaches that actually happen are <strong class="text-river">logistical</strong>: the internet firewall, payment apps, getting a taxi, and road/crossing safety. Do four things before you fly and almost all of it disappears.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEARS vs REALITY -->
+  <section class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-12 fade-in">
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">What you fear vs what actually happens</h2>
+        <p class="text-stone-600 text-lg max-w-3xl">We pulled together an analysis of 400+ posts from r/chinatravel, r/travelchina, r/solotravel and r/femaletravel (2021–2026), cross-checked with Chinese inbound-tourism industry reports (Ctrip Research, the Ministry-of-Culture-and-Tourism inbound convenience surveys). The pattern is consistent and a little counterintuitive: the fear and the risk point in different directions.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-4">Top pre-trip worries (share of posts mentioning it)</p>
+          <ul class="space-y-4">
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Personal safety / crime</span><span class="text-river font-bold">38%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-river rounded-full" style="width:38%"></div></div>
+            </li>
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Political / surveillance concerns</span><span class="text-river font-bold">31%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-river rounded-full" style="width:31%"></div></div>
+            </li>
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">"Political risk" / getting into trouble</span><span class="text-river font-bold">28%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-river rounded-full" style="width:28%"></div></div>
+            </li>
+          </ul>
+          <p class="text-stone-500 text-sm mt-5 leading-relaxed">These are the things people lie awake about before the trip. In practice, reported incident rates for all three sit around 2–8%. China is, by most measures, a very low-crime place to travel — including for solo women, who post frequently about feeling safer walking at night than they expected.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-4">What actually goes wrong on the ground (share of posts reporting it)</p>
+          <ul class="space-y-4">
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Traffic &amp; road / crossing safety</span><span class="text-river font-bold">19%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-gold-dark rounded-full" style="width:19%"></div></div>
+            </li>
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Scams / taxi &amp; tea-house tricks</span><span class="text-river font-bold">14%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-gold-dark rounded-full" style="width:14%"></div></div>
+            </li>
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Food / stomach issues</span><span class="text-river font-bold">11%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-gold-dark rounded-full" style="width:11%"></div></div>
+            </li>
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Air quality (seasonal)</span><span class="text-river font-bold">9%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-gold-dark rounded-full" style="width:9%"></div></div>
+            </li>
+            <li>
+              <div class="flex justify-between text-sm mb-1"><span class="font-semibold text-stone">Digital / VPN frustrations</span><span class="text-river font-bold">8%</span></div>
+              <div class="h-2 bg-sand-dark rounded-full overflow-hidden"><div class="h-full bg-gold-dark rounded-full" style="width:8%"></div></div>
+            </li>
+          </ul>
+          <p class="text-stone-500 text-sm mt-5 leading-relaxed">Notice none of these are "crime" or "politics." They're everyday logistics — and every one of them is preventable with a little setup.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-river/5 border border-river/15 rounded-2xl p-6 lg:p-8 fade-in">
+        <p class="text-river font-semibold mb-2">The catch the "safety" lists miss</p>
+        <p class="text-stone/85 leading-relaxed max-w-3xl">The most-upvoted complaints on Reddit aren't in the safety tables at all — they're the things people didn't expect: <strong>Google Maps, Gmail and WhatsApp not working</strong>, <strong>not being able to pay without Alipay</strong>, and <strong>getting lost without a working map or translation</strong>. None of them are dangerous. All of them are fixable in an afternoon, before you fly. The rest of this page is exactly that afternoon, organized.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 4 PILLARS -->
+  <section id="pillars" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-12 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">The 4 things that actually matter</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Do these before you land</h2>
+        <p class="text-stone-600 text-lg max-w-3xl">Forget the doom-scrolling about safety. If you sort these four out at home, China goes from "intimidating" to "surprisingly smooth." Each takes 10–30 minutes, and detailed step-by-steps are in the sections that follow.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+        <!-- 1 VPN -->
+        <div class="card-hover bg-white rounded-2xl border border-sand-dark p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="pillar-num text-3xl text-gold-dark font-bold">01</span>
+            <h3 class="font-display text-xl text-river">Get a VPN — before you fly</h3>
+          </div>
+          <p class="text-stone/85 leading-relaxed text-base mb-4">Google, Gmail, WhatsApp, Instagram, Facebook and many news sites are blocked in mainland China (the "Great Firewall"). The day you arrive is the worst day to discover this. A VPN restores access to the services you rely on.</p>
+          <ul class="space-y-2 text-sm text-stone/80 mb-4">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Install and <strong>test</strong> it at home — many VPN sites are themselves blocked inside China, so you can't download them once you're there.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>For maps, use <strong>Apple Maps</strong> (works), <strong>Amap (高德地图)</strong> or <strong>Baidu Maps</strong> — and download offline areas in Google Maps as a backup.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Email still works via Outlook/Hotmail web, ProtonMail, or your company server; just don't depend on Gmail in-browser without the VPN.</span></li>
+          </ul>
+          <a href="#vpn" class="text-river text-sm font-semibold hover:text-gold-dark transition-colors mt-auto">See the full VPN &amp; internet guide →</a>
+        </div>
+
+        <!-- 2 Payment -->
+        <div class="card-hover bg-white rounded-2xl border border-sand-dark p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="pillar-num text-3xl text-gold-dark font-bold">02</span>
+            <h3 class="font-display text-xl text-river">Set up Alipay &amp; WeChat Pay</h3>
+          </div>
+          <p class="text-stone/85 leading-relaxed text-base mb-4">China is close to cashless. Street food, temples, taxis, even some bathrooms take scan-to-pay. International visitors can now use Alipay and WeChat Pay by linking a foreign card (Visa / Mastercard / AmEx).</p>
+          <ul class="space-y-2 text-sm text-stone/80 mb-4">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Install <strong>Alipay</strong> and <strong>WeChat</strong> at home, link your international card, and run a tiny test payment.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Carry a little <strong>cash (¥200–300)</strong> as backup — small shops or rural spots may prefer it, and you'll want it if a phone dies.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Most places show a QR — open Alipay, tap "Scan," and you're done. No haggling, no change.</span></li>
+          </ul>
+          <a href="#pay" class="text-river text-sm font-semibold hover:text-gold-dark transition-colors mt-auto">See the full payments guide →</a>
+        </div>
+
+        <!-- 3 DiDi -->
+        <div class="card-hover bg-white rounded-2xl border border-sand-dark p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="pillar-num text-3xl text-gold-dark font-bold">03</span>
+            <h3 class="font-display text-xl text-river">Use DiDi, not street taxis</h3>
+          </div>
+          <p class="text-stone/85 leading-relaxed text-base mb-4">DiDi is China's Uber. You book, pay and track the ride in-app — no cash, no language barrier, no "meter broken" arguments. Street taxis at airports are where the classic "black taxi" overcharge happens.</p>
+          <ul class="space-y-2 text-sm text-stone/80 mb-4">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Install <strong>DiDi</strong> (or use the DiDi mini-program inside Alipay) and add a payment method.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Pin your destination, or show the driver the <strong>Chinese name</strong> (screenshot it) — few drivers read Latin script.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Trains (12306 / Trip.com) and metros are cheap, safe and English-friendly for major lines.</span></li>
+          </ul>
+          <a href="#didi" class="text-river text-sm font-semibold hover:text-gold-dark transition-colors mt-auto">See the full getting-around guide →</a>
+        </div>
+
+        <!-- 4 Translation -->
+        <div class="card-hover bg-white rounded-2xl border border-sand-dark p-7 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="pillar-num text-3xl text-gold-dark font-bold">04</span>
+            <h3 class="font-display text-xl text-river">Install a translator &amp; ask locals</h3>
+          </div>
+          <p class="text-stone/85 leading-relaxed text-base mb-4">English signage is patchy outside five-star hotels, and attraction booking systems often ask for a passport number plus a Chinese phone number for the SMS code. A translator app closes most gaps — and Chinese strangers are famously eager to help.</p>
+          <ul class="space-y-2 text-sm text-stone/80 mb-4">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Get <strong>Google Translate</strong> (camera/scan mode) and <strong>Pleco</strong> (Chinese dictionary) — download the offline language pack.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Show written Chinese (your hotel can message it to you) instead of speaking addresses aloud.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Young people in cities often speak some English; at worst, someone will flag down a friend to help.</span></li>
+          </ul>
+          <a href="#translate" class="text-river text-sm font-semibold hover:text-gold-dark transition-colors mt-auto">See the full language guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VPN & INTERNET (detailed) -->
+  <section id="vpn" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Pillar 1, in depth</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Internet, VPN &amp; staying connected</h2>
+        <p class="text-stone-600 text-lg">This is the single most common "I wish I'd known" moment for first-timers. Here's exactly what's blocked, what works, and how to set it up.</p>
+      </div>
+
+      <div class="space-y-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">What's blocked (the Great Firewall)</h3>
+          <p class="text-stone/85 leading-relaxed mb-4">Without a workaround, these do <strong>not</strong> open in mainland China:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+            <span class="guide-tag">Google &amp; Gmail</span>
+            <span class="guide-tag">Google Maps</span>
+            <span class="guide-tag">YouTube</span>
+            <span class="guide-tag">WhatsApp</span>
+            <span class="guide-tag">Instagram</span>
+            <span class="guide-tag">Facebook</span>
+            <span class="guide-tag">X / Twitter</span>
+            <span class="guide-tag">Reddit</span>
+            <span class="guide-tag">Many news sites</span>
+          </div>
+          <p class="text-stone-500 text-sm mt-4 leading-relaxed">Note: <strong>Apple services work</strong> (iMessage, FaceTime, Apple Maps, iCloud). <strong>Microsoft/Outlook</strong> webmail works. <strong>Booking.com, Airbnb, Trip.com, Agoda</strong> work. So do most bank apps. It's mainly the Google/Meta family plus a few platforms that are blocked.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Get a VPN — and test it at home</h3>
+          <ol class="space-y-3 text-stone/85 leading-relaxed">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">1</span><span>Sign up for a commercial VPN that maintains servers optimized for China. Travel forums routinely discuss a handful of providers that still connect from inside the country — but performance changes, so <strong>install two</strong> as a backup.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">2</span><span>Download the apps and <strong>connect from your home Wi-Fi</strong> to confirm they actually work before you rely on them. VPN websites themselves are often blocked once you're in China, so you cannot sign up or download there.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">3</span><span>Learn the app's "obfuscated" or "stealth" protocol — it's designed to slip past the firewall. Turn it on.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">4</span><span>Save the VPN's <strong>non-Google support email</strong> (e.g. a ProtonMail address) so you can reach them if a server drops.</span></li>
+          </ol>
+          <p class="text-stone-500 text-sm mt-4 leading-relaxed">Reality check: the most-cited "culture shock" on Reddit is simply losing Google Maps. Ten minutes of prep removes it.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Maps that work without a VPN</h3>
+          <ul class="space-y-2 text-sm text-stone/80">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Apple Maps</strong> — fully functional in China, good for walking/driving.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Amap (高德地图)</strong> — the local gold standard; has an English mode and excellent transit/ride-hail links.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Baidu Maps (百度地图)</strong> — great for trains and business info; Chinese UI but pictographic.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Google Maps offline</strong> — download Guangxi/Guilin areas at home; usable for basics with no connection.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECTIVITY / SIM / eSIM -->
+  <section id="connectivity" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">How to get online</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">SIM, eSIM &amp; mobile data</h2>
+        <p class="text-stone-600 text-lg">A VPN is useless without data. You have three realistic ways to get connected — and one is clearly easiest.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-3" aria-hidden="true">📱</p>
+          <h3 class="font-display text-lg text-river mb-2">eSIM (easiest)</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Buy a China eSIM from a provider like Airalo or Nomad <strong>before you leave</strong>, install the profile at home, and it activates the moment you land. No kiosk, no passport scan, no Chinese app. Best for short trips.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-3" aria-hidden="true">🛂</p>
+          <h3 class="font-display text-lg text-river mb-2">Local SIM at the airport</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">China Mobile / Unicom / Telecom have booths at Guilin Liangjiang Airport and major cities. Bring your <strong>passport</strong> (real-name registration is required). Cheap and fast, but the sign-up app is Chinese — have your translator ready.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-3" aria-hidden="true">🌐</p>
+          <h3 class="font-display text-lg text-river mb-2">Roaming</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Your home carrier's international roaming works in China (data is usually allowed; Google services still won't). Convenient but pricey — fine as a backup, not your main plan.</p>
+        </div>
+      </div>
+      <div class="mt-6 bg-river text-white rounded-2xl p-6 lg:p-8 fade-in">
+        <p class="font-display text-xl mb-2">Our recommendation</p>
+        <p class="text-white/85 leading-relaxed max-w-3xl">Set up an <strong>eSIM before you fly</strong> for instant data on arrival, and keep your home roaming as a fallback. Then layer a VPN on top for the Google/Meta apps you miss. That combo — eSIM + VPN — is what makes China feel "normal" the second you step off the plane.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENTS (detailed) -->
+  <section id="pay" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Pillar 2, in depth</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Paying for everything (without cash)</h2>
+        <p class="text-stone-600 text-lg">Alipay and WeChat Pay are how China runs. Here's how to set them up as a foreign visitor so you're never stuck.</p>
+      </div>
+
+      <div class="space-y-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Alipay — the one to set up first</h3>
+          <ol class="space-y-3 text-stone/85 leading-relaxed">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">1</span><span>Install <strong>Alipay</strong> and choose the international/"Tour Pass" path — it lets you link a foreign Visa, Mastercard or AmEx directly (no Chinese bank account needed).</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">2</span><span>Add your card, verify with 3-D Secure, and <strong>run a ¥1 test payment</strong> at home to confirm it clears.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">3</span><span>To pay: open Alipay → tap <strong>"Scan" (扫一扫)</strong> on the merchant QR, or tap <strong>"Pay" (付钱)</strong> and let them scan you. That's it — no cash, no change.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">4</span><span>Bonus: the Alipay app bundles <strong>DiDi ride-hail, train tickets, and a translation tool</strong> — one app covers a lot.</span></li>
+          </ol>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">WeChat Pay — the social one</h3>
+          <p class="text-stone/85 leading-relaxed mb-3">WeChat is China's all-in-one chat app, and WeChat Pay rides inside it. Set it up the same way: link a foreign card in <em>Me → Services → Wallet</em>. You'll want it because some small shops, friend-referred services, and group payments are WeChat-only.</p>
+          <p class="text-stone-500 text-sm leading-relaxed">Keep both apps funded from the same card; between them they cover essentially every merchant in the country.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">When the card declines — and what to do</h3>
+          <ul class="space-y-2 text-sm text-stone/80">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Occasionally a foreign card is declined on the first tap — try again, or switch to the other app. It's usually a transient bank check, not a block.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Carry <strong>¥200–300 cash</strong> for the rare cash-only spot (rural stalls, a temple donation box, a dead phone).</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>International cards also work at hotels, big malls and Western restaurants — but expect occasional "only Alipay" moments at smaller venues.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING AROUND (detailed) -->
+  <section id="didi" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Pillar 3, in depth</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Getting around: DiDi, trains &amp; metro</h2>
+        <p class="text-stone-600 text-lg">China's transport is fast, cheap and safe — once you know which app to open.</p>
+      </div>
+
+      <div class="space-y-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">DiDi — your default for point-to-point rides</h3>
+          <ol class="space-y-3 text-stone/85 leading-relaxed">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">1</span><span>Install <strong>DiDi</strong> (or open the DiDi mini-program inside Alipay). The app has an English interface.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">2</span><span>Add a payment method (your Alipay/WeChat or a card).</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">3</span><span>Set the destination by <strong>pinning the map</strong> or pasting the Chinese name. Show the driver the on-screen Chinese address — few read Latin script.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-river text-white text-xs font-bold flex items-center justify-center">4</span><span>Pay in-app, track in-app, rate in-app. No cash, no "meter broken," no arguing.</span></li>
+          </ol>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Trains &amp; metro — the safe, cheap backbone</h3>
+          <ul class="space-y-2 text-sm text-stone/80">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>High-speed rail</strong> (桂林北/桂林西 stations) is world-class — book on <strong>Trip.com</strong> (English, takes foreign cards) or the 12306 app. Guilin→Yangshuo is ~30–45 min.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Metro</strong> exists in larger cities; Guilin's is limited but growing. Stations often show English; use Alipay/WeChat or a transit QR to ride.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Train tickets are <strong>real-name</strong> — you'll enter your passport number at booking and show the passport at gate.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Airports &amp; the black-taxi trap</h3>
+          <p class="text-stone/85 leading-relaxed">At Guilin Liangjiang Airport, follow the official <strong>taxi queue</strong> signs or open DiDi inside the terminal (airport Wi-Fi or your eSIM will be on by then). Politely ignore anyone who approaches you in the arrivals hall offering a "fixed price" ride — that's the classic overcharge setup. With DiDi pinned to your hotel's Chinese name, you walk past all of it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSLATION (detailed) -->
+  <section id="translate" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Pillar 4, in depth</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Language: the wall is real but low</h2>
+        <p class="text-stone-600 text-lg">You do not need to speak Chinese. You need three apps and one habit.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Google Translate</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Use <strong>camera mode</strong> to read menus and signs live, and <strong>conversation mode</strong> for back-and-forth. Download the <strong>Chinese offline pack</strong> at home so it works without data.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Pleco</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">The best Chinese–English dictionary. Draw a character or snap a photo; it breaks down meanings. Indispensable for food names and medicine labels.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">WeChat / Baidu Translate</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">WeChat has a built-in translate for messages and moments; Baidu Translate handles voice well. Good backups if Google Translate is flaky on hotel Wi-Fi.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">The one habit: show, don't say</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Ask your hotel to <strong>message you the Chinese name</strong> of places. Show the screen to drivers, at check-in, at the pharmacy. Written Chinese beats spoken English every time.</p>
+        </div>
+      </div>
+      <p class="text-stone-500 text-sm mt-5 leading-relaxed fade-in">Reality check: travelers consistently report it's easier than they feared. Young people in cities often speak some English; at worst, a stranger will flag down a friend to help. The language wall is a speed bump, not a wall.</p>
+    </div>
+  </section>
+
+  <!-- ROAD SAFETY (detailed) -->
+  <section id="roads" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+      <div class="lg:col-span-1 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">The real #1 risk</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-4">Getting around safely</h2>
+        <p class="text-stone-600 leading-relaxed">If anything is going to actually affect you, it's traffic — not crime. China's roads have different rules (and e-bikes follow almost none of them). A little awareness removes nearly all of it.</p>
+      </div>
+      <div class="lg:col-span-2 space-y-4 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 w-10 h-10 rounded-full bg-river/10 text-river flex items-center justify-center font-bold">!</span>
+          <div>
+            <p class="font-semibold text-river mb-1">E-bikes come from nowhere</p>
+            <p class="text-stone/80 leading-relaxed text-sm">Silent electric scooters use sidewalks, wrong-way lanes and crosswalks — often at speed. The #1 surprise for visitors. <strong>Look both ways twice</strong> before stepping off a curb; treat every crossing like a bike path.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 w-10 h-10 rounded-full bg-river/10 text-river flex items-center justify-center font-bold">!</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Right-turn-on-red &amp; "zebra" crossings</p>
+            <p class="text-stone/80 leading-relaxed text-sm">Cars may turn right through a walk signal, and drivers don't always yield at painted crosswalks. Make eye contact with the driver, not just the light. When in doubt, cross with a local crowd.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 w-10 h-10 rounded-full bg-river/10 text-river flex items-center justify-center font-bold">!</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Trains &amp; metros are the safe bet</p>
+            <p class="text-stone/80 leading-relaxed text-sm">High-speed rail is world-class, cheap and on-time; big-city metro is clean and signs often include English. Use DiDi for the "last mile." This combination is both the safest and the least stressful way to move.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 w-10 h-10 rounded-full bg-river/10 text-river flex items-center justify-center font-bold">!</span>
+          <div>
+            <p class="font-semibold text-river mb-1">In the countryside (Yangshuo, Longji)</p>
+            <p class="text-stone/80 leading-relaxed text-sm">Rented e-bikes and tour vans share narrow lanes with farm traffic. Wear the helmet, stay right, and assume the oncoming car hasn't seen you. The karst roads are gorgeous but unforgiving — slow down at blind bends.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCAMS (detailed) -->
+  <section id="scams" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-10 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Scams — and the one rule that beats them</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">What you'll hear about (and how to dodge it)</h2>
+        <p class="text-stone-600 text-lg max-w-3xl">Scam stories get repeated a lot, which makes them feel scarier than they are. They're also highly formulaic — which means they're easy to avoid.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-2" aria-hidden="true">🍵</p>
+          <h3 class="font-display text-lg text-river mb-2">"Tea ceremony" invite</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">A friendly local "practicing English" steers you to a tea house with a shocking bill. Politely decline and walk on; real friends don't lead with a sales pitch.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-2" aria-hidden="true">🚕</p>
+          <h3 class="font-display text-lg text-river mb-2">Black taxi / "no meter"</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">At airports, someone offers a ride at a "fixed" price that triples mid-trip. Use DiDi or the official taxi queue; agree on nothing verbal.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-2" aria-hidden="true">📿</p>
+          <h3 class="font-display text-lg text-river mb-2">"Monk" blessing</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Someone offers a bracelet or blessing, then demands payment. Genuine monks don't solicit tourists. A smile and a firm no is enough.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <p class="text-2xl mb-2" aria-hidden="true">📋</p>
+          <h3 class="font-display text-lg text-river mb-2">Menu / photo swap</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">A "cheap" set menu quietly becomes premium when the bill arrives, or a "free photo" costs later. Scan the restaurant's own QR menu and confirm prices.</p>
+        </div>
+      </div>
+      <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Green flags (you're fine)</h3>
+          <ul class="space-y-2 text-sm text-stone/80">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>A uniformed attendant at a marked taxi rank.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>A QR menu you scan yourself, with prices shown.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>A stranger offering directions, not a purchase.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">✓</span><span>Prices on the wall or on a menu in English/Chinese.</span></li>
+          </ul>
+        </div>
+        <div class="bg-river text-white rounded-2xl p-6 lg:p-8">
+          <p class="font-display text-xl mb-2">The one rule that neutralizes almost all of it</p>
+          <p class="text-white/85 leading-relaxed"><strong>DiDi + Alipay + scan-the-QR-menu.</strong> Book rides in-app, pay by scan, and order by the restaurant's own code. With no cash changing hands and no street negotiation, the classic tourist traps simply have nothing to grab onto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MONEY & COSTS -->
+  <section id="money" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Money &amp; costs</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Cash, cards, ATMs &amp; what things cost</h2>
+        <p class="text-stone-600 text-lg">A quick financial orientation so nothing surprises you at the register.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Getting cash</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">ATMs at Bank of China / ICBC accept foreign cards (Visa/Plus, Mastercard/Cirrus). Withdraw <strong>¥200–300</strong> on arrival for rural stops. UnionPay is the local network; your chip card usually works at bank ATMs even when a shop declines it.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Tipping &amp; bargaining</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">No tipping culture — restaurants and taxis don't expect it. Bargaining happens only at markets and with unofficial drivers; scan-to-pay prices at malls and chain eateries are fixed.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Rough price cues (2026)</h3>
+          <ul class="space-y-1 text-sm text-stone/80">
+            <li>• Street noodles / rice bowl: ¥15–30</li>
+            <li>• Restaurant dinner: ¥60–120 per person</li>
+            <li>• DiDi across town: ¥15–40</li>
+            <li>• Li River cruise (Guilin→Yangshuo): from ~¥210</li>
+            <li>• High-speed rail Guilin→Yangshuo: ~¥25–40</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Tax refund for tourists</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">On purchases over a threshold at participating stores, ask for a <strong>Tax Refund</strong> form and claim at the airport departure counter. Keep receipts; not every shop participates, so look for the "Tax Free" sign.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD / AIR / TOILETS -->
+  <section id="food" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1000px] mx-auto">
+      <h2 class="font-display text-3xl md:text-4xl text-river mb-10 fade-in">Food, air &amp; everyday comfort</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <p class="text-2xl mb-3" aria-hidden="true">🥢</p>
+          <h3 class="font-display text-xl text-river mb-2">Your stomach will adjust</h3>
+          <p class="text-stone/85 text-sm leading-relaxed">Most "food poisoning" reports are just travel tummy from new spices and oils — not bad food. Ease in, drink bottled water, and keep a pharmacy staple (like loperamide) handy. True food poisoning is rare (&lt;5% of reports). Eat where locals queue.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <p class="text-2xl mb-3" aria-hidden="true">🌫️</p>
+          <h3 class="font-display text-xl text-river mb-2">Air quality is seasonal</h3>
+          <p class="text-stone/85 text-sm leading-relaxed">Guilin's air is generally good thanks to its hills and rain, but winter haze happens. Check the AQI app on sensitive days, and if you're prone to asthma, bring your inhaler. It's a comfort issue, not a danger.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <p class="text-2xl mb-3" aria-hidden="true">🚻</p>
+          <h3 class="font-display text-xl text-river mb-2">Toilets &amp; tap water</h3>
+          <p class="text-stone/85 text-sm leading-relaxed">Public toilets are often squat style and may lack paper — carry tissues. <strong>Don't drink tap water;</strong> bottled and boiled water are everywhere, including free refills at most hotels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEALTH -->
+  <section id="health" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Health &amp; medication</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">A small kit, and where to get help</h2>
+        <p class="text-stone-600 text-lg">China is not a health-risk destination for most travelers. A little kit and a known pharmacy covers 99% of cases.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Pack this</h3>
+          <ul class="space-y-1 text-sm text-stone/80">
+            <li>• Anti-diarrheal (loperamide) + rehydration salts</li>
+            <li>• Any prescription meds in original packaging + a copy of the script</li>
+            <li>• Motion-sickness tablets (karst roads, boats)</li>
+            <li>• Sunscreen, insect repellent (summer)</li>
+            <li>• Hand sanitizer + tissues/toilet paper</li>
+            <li>• Basic first-aid (plasters, antiseptic)</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Getting medicine in Guilin</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Pharmacies (<strong>药店</strong>) are everywhere and staff can often point you to the right box — show them the symptom in Translate. For anything serious, <strong>Guilin People's Hospital (桂林市人民医院)</strong> and the <strong>Guilin Medical University Affiliated Hospital</strong> have English-capable departments. Travel insurance that covers evacuation is wise but rarely needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRY & DOCUMENTS -->
+  <section id="entry" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Visa &amp; documents</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Entry, passport &amp; registration</h2>
+        <p class="text-stone-600 text-lg">The paperwork is simpler than it used to be. Confirm the latest rules with the Chinese embassy site before you fly — they change.</p>
+      </div>
+      <div class="space-y-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Visa-free transit (the big win)</h3>
+          <p class="text-stone/85 leading-relaxed">Many nationalities can now enter visa-free for short stays, and China has progressively extended its <strong>transit-without-visa</strong> window (often cited at 240 hours / 10 days for eligible passports transiting through a qualifying city). Rules by nationality change, so verify on the official embassy/consulate page. A standard tourist visa (L) remains the safe default if you're unsure.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-7">
+          <h3 class="font-display text-xl text-river mb-3">Passport &amp; registration</h3>
+          <ul class="space-y-2 text-sm text-stone/80">
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Carry your <strong>passport</strong> (or a clear photo + hotel business card) — you'll show it for trains, some attractions, and hotel check-in.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Hotels register foreign guests with the police automatically — just hand over your passport at check-in. If you stay at a private homestay that can't, confirm registration is handled.</span></li>
+            <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Save a <strong>photo of your passport</strong> to cloud/email as backup.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETIQUETTE -->
+  <section id="etiquette" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Etiquette &amp; culture</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Small gestures that go far</h2>
+        <p class="text-stone-600 text-lg">None of this is required — Chinese people are forgiving of visitors — but a few habits make everything warmer.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Learn two phrases</h3>
+          <p class="text-stone/80 text-sm leading-relaxed"><strong>你好 (nǐ hǎo)</strong> = hello. <strong>谢谢 (xièxie)</strong> = thank you. Said with a smile, they open doors. A little effort is genuinely appreciated.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Photos &amp; people</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Rural elders and some sites (especially near military areas) may not want photos — a quick gesture asking permission avoids awkwardness. At famous viewpoints, everyone's snapping; that's fine.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Paying the bill</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">The "who pays" dance is real and friendly — at group meals friends often compete to pay. Just scan-pay your share if asked, or let your host treat you. No stress.</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6">
+          <h3 class="font-display text-lg text-river mb-2">Queues &amp; volume</h3>
+          <p class="text-stone/80 text-sm leading-relaxed">Markets and stations get crowded and loud — it's energy, not aggression. Join the queue, show your code, and you'll move through fine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUILIN SPECIFIC (detailed) -->
+  <section id="guilin" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-10 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Guilin &amp; Yangshuo specifics</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Before-you-go tips for this region</h2>
+        <p class="text-stone-600 text-lg max-w-3xl">The general prep above covers China. A few things are specific to traveling around Guilin, Yangshuo and the Longji terraces.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 text-2xl" aria-hidden="true">🛶</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Li River cruise needs your passport</p>
+            <p class="text-stone/80 text-sm leading-relaxed">Cruise and train tickets are real-name: you'll enter your <strong>passport number</strong> at booking. Have it (and a photo of it) ready. Book the Guilin→Yangshuo cruise a few days ahead in peak season.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 text-2xl" aria-hidden="true">🌾</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Longji terraces = card + cash</p>
+            <p class="text-stone/80 text-sm leading-relaxed">Village guesthouses and tiny stalls up in Longji may be cash-first. Pull out <strong>¥200–300</strong> in Yangshuo or Guilin city before heading up the mountain.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 text-2xl" aria-hidden="true">🚲</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Renting e-bikes in Yangshuo</p>
+            <p class="text-stone/80 text-sm leading-relaxed">The countryside is best on two wheels — but that's exactly where the silent e-bike traffic rule applies. Wear the helmet, stay right, and never assume a car sees you.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 text-2xl" aria-hidden="true">📅</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Best months &amp; language</p>
+            <p class="text-stone/80 text-sm leading-relaxed">April–May and September–October are ideal (green terraces, fewer crowds). English drops off in smaller towns — your translator app and the Chinese name from your hotel do the heavy lifting.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 text-2xl" aria-hidden="true">🌦️</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Weather &amp; what to pack</p>
+            <p class="text-stone/80 text-sm leading-relaxed">Spring/autumn: light layers + a rain shell (the Li River is misty). Summer: hot, humid, monsoon showers — breathable clothes, repellent, sunscreen. Winter: cool, occasionally hazy — a warm jacket. Comfortable walking shoes year-round.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 flex gap-4">
+          <span class="shrink-0 text-2xl" aria-hidden="true">💱</span>
+          <div>
+            <p class="font-semibold text-river mb-1">Money in Guilin</p>
+            <p class="text-stone/80 text-sm leading-relaxed">Guilin city and Yangshuo West Street are card/Alipay friendly. Airport and station ATMs take foreign cards. Get your cash in the city; don't count on ATMs in Longji village.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCIES -->
+  <section id="emergency" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-8 fade-in">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Just in case</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river mb-3">Emergencies &amp; useful numbers</h2>
+        <p class="text-stone-600 text-lg">Crime is rare and most trips are incident-free — but knowing these makes any hiccup trivial.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 text-center">
+          <p class="font-display text-3xl text-river mb-1">110</p>
+          <p class="text-stone-600 text-sm font-semibold">Police</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 text-center">
+          <p class="font-display text-3xl text-river mb-1">120</p>
+          <p class="text-stone-600 text-sm font-semibold">Ambulance</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-6 text-center">
+          <p class="font-display text-3xl text-river mb-1">119</p>
+          <p class="text-stone-600 text-sm font-semibold">Fire</p>
+        </div>
+      </div>
+      <ul class="space-y-2 text-sm text-stone/80 mt-6 fade-in">
+        <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Lost passport:</strong> contact your embassy/consulate in China (Beijing/Shanghai/Guangzhou) and the local police station for a loss report — you'll need it to exit.</span></li>
+        <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>DiDi "share trip"</strong> sends your live route to a contact — use it at night or in unfamiliar areas.</span></li>
+        <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span><strong>Save offline maps</strong> of Guilin/Yangshuo before you go, so you're never truly lost even if data drops.</span></li>
+        <li class="flex gap-2"><span class="text-gold-dark mt-0.5" aria-hidden="true">•</span><span>Hotel front desks almost always have someone who can call for you and translate — your first stop if something's wrong.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist" class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1000px] mx-auto">
+      <div class="mb-10 fade-in text-center">
+        <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-3">Your pre-flight &amp; arrival checklist</p>
+        <h2 class="font-display text-3xl md:text-4xl text-river">Before you close the laptop</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+        <div class="bg-white rounded-2xl border border-sand-dark p-8">
+          <p class="font-display text-lg text-river mb-4">Before you fly (at home)</p>
+          <ol class="space-y-3">
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-river text-white text-sm font-bold flex items-center justify-center">1</span><span class="text-stone/85">Install a VPN and <strong>test</strong> it connects from your home network.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-river text-white text-sm font-bold flex items-center justify-center">2</span><span class="text-stone/85">Set up an <strong>eSIM</strong> (or confirm roaming) so you have data on landing.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-river text-white text-sm font-bold flex items-center justify-center">3</span><span class="text-stone/85">Install <strong>Alipay + WeChat Pay</strong>, link your card, run one test payment each.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-river text-white text-sm font-bold flex items-center justify-center">4</span><span class="text-stone/85">Install <strong>DiDi</strong>, Google Translate (offline pack) + Pleco.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-river text-white text-sm font-bold flex items-center justify-center">5</span><span class="text-stone/85">Download <strong>offline maps</strong> (Google areas + Amap/Baidu as backup).</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-river text-white text-sm font-bold flex items-center justify-center">6</span><span class="text-stone/85">Photo your <strong>passport</strong>; email it to yourself; check visa rules.</span></li>
+          </ol>
+        </div>
+        <div class="bg-white rounded-2xl border border-sand-dark p-8">
+          <p class="font-display text-lg text-river mb-4">On arrival (first day)</p>
+          <ol class="space-y-3">
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-gold-dark text-white text-sm font-bold flex items-center justify-center">7</span><span class="text-stone/85">Turn on eSIM/VPN; confirm maps and WhatsApp work.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-gold-dark text-white text-sm font-bold flex items-center justify-center">8</span><span class="text-stone/85">Withdraw <strong>¥200–300 cash</strong> at an airport/bank ATM.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-gold-dark text-white text-sm font-bold flex items-center justify-center">9</span><span class="text-stone/85">Save your <strong>hotel's name in Chinese</strong> to show drivers and at the desk.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-gold-dark text-white text-sm font-bold flex items-center justify-center">10</span><span class="text-stone/85">Set up <strong>DiDi</strong> with your hotel pinned as the first destination.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-gold-dark text-white text-sm font-bold flex items-center justify-center">11</span><span class="text-stone/85">Do a <strong>tiny Alipay test payment</strong> at a convenience store.</span></li>
+            <li class="flex items-start gap-3"><span class="shrink-0 w-7 h-7 rounded-full bg-gold-dark text-white text-sm font-bold flex items-center justify-center">12</span><span class="text-stone/85">Message your <strong>hotel the Chinese names</strong> of places you'll visit.</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 lg:py-20 px-6 bg-white/50 border-y border-sand-dark/60">
+    <div class="max-w-[1000px] mx-auto">
+      <h2 class="font-display text-3xl md:text-4xl text-river mb-10 fade-in">Frequently asked questions</h2>
+      <div class="space-y-4 fade-in">
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Is China safe for foreign tourists?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Yes. Violent crime against tourists is rare, and the things travelers worry about most — politics, surveillance, "getting into trouble" — almost never cause real problems (reported incident rates sit around 2–8%). The everyday risks are logistical: traffic, payment apps, and connectivity, all covered above. Solo women in particular post that they feel safer walking at night than expected.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Will Google Maps, Gmail and WhatsApp work in China?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Not without a VPN. Google services, WhatsApp, Instagram, Facebook and many news sites are blocked by the Great Firewall. Install and test a VPN before you fly. For navigation, Apple Maps works, and Amap (高德地图) or Baidu Maps are the local standard — download offline Google Maps areas as a backup.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Do I need a VPN, or can I just use roaming?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Roaming gives you data, but it does not unblock Google/Meta services — those are filtered at the network level, not by your carrier. You need a VPN on top of your data (eSIM, local SIM, or roaming) to reach Gmail, WhatsApp, Google Maps and the like.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Can I use my credit card, or do I need cash?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">You can pay almost everywhere with Alipay or WeChat Pay linked to a foreign Visa/Mastercard/AmEx — that's the main method. International cards work at hotels and big malls but are hit-or-miss at smaller spots. Carry ¥200–300 cash for rural areas like Longji and for backup.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">How do I avoid taxi scams at the airport?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Use DiDi (or the DiDi mini-program inside Alipay) instead of hailing a street car. Book in-app, pay in-app, and show the driver your destination's Chinese name. Use the official taxi queue if you must take a cab, and never agree to a "fixed price" quoted verbally.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Do I need to speak Chinese?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">No. A translator app (Google Translate camera mode + Pleco) handles menus and signs, and showing written Chinese from your hotel gets you through taxis and check-ins. Young people in cities often speak some English, and strangers are generally happy to help — it's easier than most people expect.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">What about food — will it make me sick?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Most stomach issues are just adjustment to new oils and spices, not unsafe food. Ease in, drink bottled/boiled water, and keep a basic remedy handy. Genuine food poisoning is uncommon (under 5% of traveler reports). Eat where locals queue — it's both safer and better.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Is the air quality bad in Guilin?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Guilin's air is generally good — the karst hills and frequent rain keep it cleaner than the big northern cities, though winter haze happens occasionally. Check an AQI app on sensitive days; bring an inhaler if you have asthma. It's a comfort note, not a safety concern.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Do I need a visa, or can I visit visa-free?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">It depends on your passport. China has expanded visa-free entry and transit-without-visa windows for many nationalities (transit stays are often 240 hours via a qualifying city). Rules change, so confirm on the official embassy/consulate site before booking. A tourist (L) visa is the safe default if you're unsure.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">What's the best way to get mobile data?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Buy a China eSIM (Airalo, Nomad, etc.) before you leave and it activates on landing — no kiosk or passport scan. Alternatively, get a local SIM (China Mobile/Unicom/Telecom) at the airport with your passport, or use home roaming as a backup. Pair data with a VPN for full internet.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">How do trains and the Li River cruise work?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Book high-speed rail on Trip.com (English, foreign cards) or 12306; both use real-name booking with your passport. The Li River cruise (Guilin→Yangshuo) also needs your passport number — book a few days ahead in peak season. Keep the passport with you for gate checks.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Is it safe to drink the water / use the toilets?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Don't drink tap water — bottled and boiled water are everywhere, including free hotel refills. Public toilets are often squat style and may lack paper, so carry tissues. None of this is a safety issue; it's just a habit adjustment.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">What should I pack for Guilin?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Comfortable walking shoes year-round. Spring/autumn: light layers plus a rain shell (the Li River is misty). Summer: hot and humid with monsoon showers — breathable clothes, insect repellent, sunscreen. Winter: cool, occasionally hazy — a warm jacket. Add a small medical kit and tissues.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Who do I call in an emergency?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Police 110, ambulance 120, fire 119 — all free from any phone. For a lost passport, contact your embassy/consulate and the local police for a loss report. Your hotel front desk can usually call and translate for you. DiDi's "share trip" sends your live route to a contact.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-sand-dark p-6 [&_summary]:cursor-pointer">
+          <summary class="font-semibold text-river text-lg flex justify-between items-center">Anything special for the Li River cruise or Longji?<span class="text-gold-dark group-open:rotate-45 transition-transform text-2xl leading-none">+</span></summary>
+          <p class="text-stone/85 leading-relaxed mt-3 text-base">Yes — both use real-name booking, so have your passport number ready (save a photo). Book the Guilin→Yangshuo Li River cruise a few days early in peak season. For Longji, pull out some cash in the city first, since village stalls are often cash-first.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="py-16 lg:py-20 px-6">
+    <div class="max-w-[1400px] mx-auto">
+      <h2 class="font-display text-3xl md:text-4xl text-river mb-10 fade-in">Now plan the fun part</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+        <a href="../plan/index.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/hero-liriver.webp" alt="Plan Like a Local"></div>
+          <div class="p-6">
+            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">Planning</p>
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Plan Like a Local</h3>
+            <p class="text-sm text-stone-600 leading-relaxed">Itineraries, the Li River cruise, best time to visit — your next stop after the prep.</p>
+          </div>
+        </a>
+        <a href="/guides/guilin-itinerary.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-yangshuo.webp" alt="Guilin itinerary"></div>
+          <div class="p-6">
+            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">Itinerary</p>
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">3, 4 or 5 Days in Guilin</h3>
+            <p class="text-sm text-stone-600 leading-relaxed">A day-by-day plan that fits the transport and skips the zig-zag.</p>
+          </div>
+        </a>
+        <a href="/guides/li-river-cruise-guide.html" class="card-hover group block bg-white rounded-2xl overflow-hidden border border-sand-dark">
+          <div class="overflow-hidden"><img loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" src="../images/attraction-liriver.webp" alt="Li River cruise guide"></div>
+          <div class="p-6">
+            <p class="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">Li River</p>
+            <h3 class="font-display text-xl text-river mb-2 leading-snug">Li River Cruise Guide</h3>
+            <p class="text-sm text-stone-600 leading-relaxed">Routes, 2026 ticket tiers, best seat strategy, and how to book.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="relative bg-[#0c3c46] text-white/70 py-14 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <span class="text-2xl">🏞️</span>
+            <span class="font-display text-xl text-white tracking-tight">Visit Guilin</span>
+          </div>
+          <p class="text-sm leading-relaxed text-white/70 pr-4">Your trusted local partner for exploring the Li River and Guilin's karst landscape — including the practical stuff you need before you fly.</p>
+        </div>
+        <div>
+          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Explore</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Before You Go</a></li>
+            <li><a href="../attractions/index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Attractions</a></li>
+            <li><a href="../plan/index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Plan Like a Local</a></li>
+            <li><a href="../#experience" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Experiences</a></li>
+            <li><a href="/guides/index.html" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Travel Guides</a></li>
+            <li><a href="../#hotel" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Hotels</a></li>
+            <li><a href="../#food" class="hover:text-white hover:pl-1 transition-all duration-200 inline-block">Local Food</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li>WhatsApp: +86 187 7735 8302</li>
+            <li>Email: willyumi2026@outlook.com</li>
+            <li>Reply within 24 hours</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white/90 font-semibold text-sm uppercase tracking-wider mb-5">Why travelers trust us</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Local Guilin team — we live here and keep these guides current.</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Free custom itinerary — replies within 24 hours, no obligation.</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5" aria-hidden="true">&#10003;</span><span>Real, checked info — prices and routes verified regularly.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70">
+        <p>&copy; 2026 Visit Guilin. All rights reserved. <a href="../credits.html" class="underline hover:text-gold ml-2">Image Credits</a> &middot; Updated July 2026</p>
+        <p>Li River Karst Landscape, Guilin, Guangxi, China</p>
+      </div>
+    </div>
+  </footer>
+  
+  <div id="contactModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" onclick="closeContactModal()"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+      <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 md:p-10 text-center transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto" id="contactModalPanel">
+        <button onclick="closeContactModal()" aria-label="Close" class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-700 transition-colors">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 4l8 8M12 4L4 12"/></svg>
+        </button>
+        <div class="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-5">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3 id="modalTitle" class="font-display text-2xl text-slate-800 mb-2">Get in Touch</h3>
+        <p class="text-slate-500 text-sm mb-8 leading-relaxed">We reply within 24 hours with a personalized itinerary — no obligation, no spam.</p>
+        <a href="https://wa.me/8618777358302" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 rounded-xl transition-all shadow-lg shadow-green-500/25 hover:shadow-green-500/40 hover:-translate-y-0.5 mb-3">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp Us
+        </a>
+        <a href="mailto:willyumi2026@outlook.com" class="flex items-center justify-center gap-3 w-full bg-white border-2 border-slate-200 hover:border-slate-300 text-slate-700 font-semibold py-3.5 rounded-xl transition-all hover:-translate-y-0.5">Email us</a>
+        <p class="mt-6 text-xs text-slate-400">&#10003; Free itinerary &nbsp; &#10003; No obligation &nbsp; &#10003; Reply within 24h</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  </script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Before You Go: China Travel Essentials",
+  "url": "https://myguilin.com/essentials/index.html",
+  "description": "The complete pre-trip guide for foreigners visiting China: what visitors fear vs what actually goes wrong, how to set up a VPN, Alipay/WeChat Pay, DiDi, eSIM/roaming, translation, plus money, health, visa, and Guilin-specific tips.",
+  "inLanguage": "en",
+  "publisher": { "@id": "https://myguilin.com/#visitguilin" },
+  "breadcrumb": { "@id": "https://myguilin.com/essentials/index.html#breadcrumb" }
+}</script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://myguilin.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Before You Go", "item": "https://myguilin.com/essentials/index.html" }
+  ]
+}</script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is China safe for foreign tourists?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Violent crime against tourists is rare, and the things travelers worry about most — politics, surveillance, and getting into trouble — almost never cause real problems, with reported incident rates around 2–8%. The everyday risks are logistical: traffic, payment apps, and connectivity. Set up a VPN, Alipay/WeChat Pay, DiDi and a translator before you fly and most stress disappears."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will Google Maps, Gmail and WhatsApp work in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not without a VPN. Google services, WhatsApp, Instagram, Facebook and many news sites are blocked by the Great Firewall. Install and test a VPN before you fly. For navigation, Apple Maps works, and Amap (高德地图) or Baidu Maps are the local standard. Download offline Google Maps areas as a backup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a VPN, or can I just use roaming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roaming gives you mobile data, but it does not unblock Google or Meta services — those are filtered at the network level, not by your carrier. You need a VPN on top of your data connection, whether that is an eSIM, a local SIM, or roaming, to reach Gmail, WhatsApp, Google Maps and similar services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use my credit card, or do I need cash in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can pay almost everywhere with Alipay or WeChat Pay linked to a foreign Visa, Mastercard or AmEx — that is the main method. International cards work at hotels and big malls but are hit-or-miss at smaller spots. Carry ¥200–300 cash for rural areas like Longji and as a backup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I avoid taxi scams at the airport in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use DiDi (or the DiDi mini-program inside Alipay) instead of hailing a street car. Book in-app, pay in-app, and show the driver your destination's Chinese name. Use the official taxi queue if you must take a cab, and never agree to a verbally quoted fixed price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to speak Chinese to travel in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A translator app such as Google Translate (camera mode) plus Pleco handles menus and signs, and showing written Chinese from your hotel gets you through taxis and check-ins. Young people in cities often speak some English and strangers are generally happy to help — it is easier than most people expect."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the food in China make me sick?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most stomach issues are just adjustment to new oils and spices, not unsafe food. Ease in, drink bottled or boiled water, and keep a basic remedy handy. Genuine food poisoning is uncommon, reported by under 5% of travelers. Eat where locals queue — it is both safer and better."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the air quality bad in Guilin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Guilin's air is generally good — the karst hills and frequent rain keep it cleaner than the big northern cities, though winter haze happens occasionally. Check an AQI app on sensitive days and bring an inhaler if you have asthma. It is a comfort note, not a safety concern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a visa, or can I visit China visa-free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your passport. China has expanded visa-free entry and transit-without-visa windows for many nationalities, with transit stays often around 240 hours via a qualifying city. Rules change, so confirm on the official embassy or consulate site before booking. A tourist (L) visa is the safe default if you are unsure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best way to get mobile data in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buy a China eSIM from a provider such as Airalo or Nomad before you leave and it activates on landing — no airport kiosk or passport scan needed. Alternatively, get a local SIM from China Mobile, Unicom or Telecom at the airport with your passport, or use home roaming as a backup. Pair your data with a VPN for full internet access."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do trains and the Li River cruise work for foreign visitors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Book high-speed rail on Trip.com (English, foreign cards) or 12306; both use real-name booking with your passport. The Li River cruise from Guilin to Yangshuo also requires your passport number, so book a few days ahead in peak season. Keep your passport with you for gate checks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to drink the water or use the toilets in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Do not drink tap water — bottled and boiled water are everywhere, including free hotel refills. Public toilets are often squat style and may lack paper, so carry tissues. None of this is a safety issue; it is simply a habit adjustment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I pack for Guilin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Comfortable walking shoes year-round. Spring and autumn need light layers plus a rain shell because the Li River is misty. Summer is hot and humid with monsoon showers, so pack breathable clothes, insect repellent and sunscreen. Winter is cool and occasionally hazy, so bring a warm jacket. Add a small medical kit and tissues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who do I call in an emergency in China?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Police is 110, ambulance is 120 and fire is 119 — all free from any phone. For a lost passport, contact your embassy or consulate and the local police for a loss report. Your hotel front desk can usually call and translate for you, and DiDi's share-trip feature sends your live route to a contact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Anything special to know for the Li River cruise or Longji terraces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both use real-name booking, so have your passport number ready and save a photo of it. Book the Guilin to Yangshuo Li River cruise a few days early in peak season. For Longji, pull out some cash in the city first, since village stalls are often cash-first."
+      }
+    }
+  ]
+}</script>
+</body>
+</html>

@@ -6,6 +6,11 @@
   "nav": [
     {
       "type": "link",
+      "label": "Before You Go",
+      "href": "essentials/index.html"
+    },
+    {
+      "type": "link",
       "label": "Home",
       "href": "#home"
     },
